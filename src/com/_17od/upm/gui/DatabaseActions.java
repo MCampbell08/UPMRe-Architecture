@@ -638,10 +638,12 @@ public class DatabaseActions {
 
 
     public void showAbout() {
-        AboutDialog aboutDialog = new AboutDialog(mainWindow);
-        aboutDialog.pack();
-        aboutDialog.setLocationRelativeTo(mainWindow);
-        aboutDialog.show();
+        new Thread() {
+            @Override
+            public void run() {
+                javafx.application.Application.launch(AboutDialog.class);
+            }
+        }.start();
     }
 
 

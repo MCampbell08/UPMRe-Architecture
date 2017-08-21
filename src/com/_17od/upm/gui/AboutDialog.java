@@ -20,39 +20,36 @@
  */
 package com._17od.upm.gui;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextArea;
+import java.awt.*;
+import static com.sun.glass.ui.Cursor.setVisible;
 
-import com._17od.upm.util.Translator;
+public class AboutDialog extends Application {
 
-public class AboutDialog extends EscapeDialog {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
 
-    private static final long serialVersionUID = 1L;
-
-    public AboutDialog(JFrame frame) {
-        super(frame, Translator.translate("aboutUPM"), true);
-
-        String version = AboutDialog.class.getPackage().getImplementationVersion();
+        String version = com._17od.upm.gui.AboutDialog.class.getPackage().getImplementationVersion();
         if (version == null) {
             version = "<version unknown>";
         }
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        BorderPane pane = new BorderPane();
+        primaryStage.setTitle("About UPM");
 
-        JTextArea jTextArea = new JTextArea();
+        TextArea textArea = new TextArea();
         StringBuffer aboutText = new StringBuffer();
         aboutText.append("Universal Password Manager\n");
         aboutText.append(version);
@@ -60,32 +57,34 @@ public class AboutDialog extends EscapeDialog {
         aboutText.append("Copyright \u00a9 2005-2013 Adrian Smith & Contributors\n\n");
         aboutText.append("adrian@17od.com\n");
         aboutText.append("http://upm.sourceforge.net");
-        jTextArea.setText(aboutText.toString());
-        jTextArea.setAlignmentX(Component.CENTER_ALIGNMENT);
-        jTextArea.setEditable(false);
-        jTextArea.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        jTextArea.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        panel.add(jTextArea);
-        panel.add(new JSeparator());
+        textArea.setText(aboutText.toString());
+        textArea.setLayoutX(Component.CENTER_ALIGNMENT);
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Tahoma", 12));
 
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        Button okButton = new Button("Okay");
+        okButton.setOnAction(new EventHandler<ActionEvent>() {
 
-        JButton okButton = new JButton(Translator.translate("ok"));
-        okButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @Override
+            public void handle(ActionEvent event) {
                 setVisible(false);
-                dispose();
+                primaryStage.close();
             }
         });
-        okButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(okButton);
 
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        getRootPane().setDefaultButton(okButton);
-        getContentPane().add(panel);
-        
-        setResizable(false);
-        
+        HBox button = new HBox(10);
+        button.setAlignment(Pos.BOTTOM_CENTER);
+        button.getChildren().add(okButton);
+
+        pane.setPadding(new Insets(5));
+        pane.setCenter(textArea);
+        pane.setBottom(button);
+
+        Scene scene = new Scene(pane, 300, 200);
+
+        primaryStage.setScene(scene);
+
+        primaryStage.setResizable(false);
+        primaryStage.show();
     }
-
 }
