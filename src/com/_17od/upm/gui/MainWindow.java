@@ -166,6 +166,10 @@ public class MainWindow extends Application implements EventHandler {
 	private DatabaseActions dbActions;
 
 	private String windowTitle = "";
+    private static int window_X = 0;
+    private static int window_Y = 0;
+    private static int window_Height = 0;
+    private static int window_Width = 0;
 
 	public MainWindow(String title) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			IllegalBlockSizeException, IOException, GeneralSecurityException,
@@ -251,6 +255,10 @@ public class MainWindow extends Application implements EventHandler {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.getIcons().add(new Image("upm.gif"));
 		primaryStage.setTitle(windowTitle);
+        window_X = primaryStage.getX();
+        window_Y = primaryStage.getY();
+        window_Width = primaryStage.getWidth();
+        window_Height = primaryStage.getHeight();
 		primaryStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
 			@Override
 			public void handle(javafx.stage.WindowEvent event) {
@@ -889,10 +897,10 @@ public class MainWindow extends Application implements EventHandler {
 	 * Writes current window position and size to the preferences
 	 */
 	private void storeWindowBounds() {
-		Preferences.set(Preferences.ApplicationOptions.XLOC, Integer.toString(this.getX()));
-		Preferences.set(Preferences.ApplicationOptions.YLOC, Integer.toString(this.getY()));
-		Preferences.set(Preferences.ApplicationOptions.WWIDTH, Integer.toString(this.getWidth()));
-		Preferences.set(Preferences.ApplicationOptions.WHEIGHT, Integer.toString(this.getHeight()));
+		Preferences.set(Preferences.ApplicationOptions.XLOC, Integer.toString(window_X));
+		Preferences.set(Preferences.ApplicationOptions.YLOC, Integer.toString(window_Y));
+		Preferences.set(Preferences.ApplicationOptions.WWIDTH, Integer.toString(window_Width));
+		Preferences.set(Preferences.ApplicationOptions.WHEIGHT, Integer.toString(window_Height));
 	}
 
 	/**
@@ -901,19 +909,19 @@ public class MainWindow extends Application implements EventHandler {
 	 * position
 	 */
 	private void restoreWindowBounds() {
-		int x = Preferences.getInt(Preferences.ApplicationOptions.XLOC, this.getX());
-		int y = Preferences.getInt(Preferences.ApplicationOptions.YLOC, this.getY());
+		int x = Preferences.getInt(Preferences.ApplicationOptions.XLOC, window_X);
+		int y = Preferences.getInt(Preferences.ApplicationOptions.YLOC, window_Y);
 		// check if this position can still be displayed to avoid problems
 		// for people who dragged the window on a screen that is no longer
 		// connected.
 		if (getGraphicsConfigurationContaining(x, y) == null) {
-			x = this.getX();
-			y = this.getY();
+			x = window_X;
+			y = window_Y;
 		}
-		int width = Preferences.getInt(Preferences.ApplicationOptions.WWIDTH, (this.getWidth()));
-		int height = Preferences.getInt(Preferences.ApplicationOptions.WHEIGHT, this.getHeight());
+		int width = Preferences.getInt(Preferences.ApplicationOptions.WWIDTH, window_Width);
+		int height = Preferences.getInt(Preferences.ApplicationOptions.WHEIGHT, window_Height);
 
-		this.setBounds(x, y, width, height);
+		//-----------------------//AppWindow..setBounds(x, y, width, height);
 	}
 
 	/**

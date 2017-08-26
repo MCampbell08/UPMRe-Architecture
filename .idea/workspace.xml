@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0adc7940-2796-4165-86a5-46f8d88bff97" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/platformspecific/mac/MACOSXSpecificCode.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/platformspecific/mac/MACOSXSpecificCode.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,25 +17,27 @@
       <file leaf-file-name="MainWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1260">
-              <caret line="798" column="68" lean-forward="false" selection-start-line="798" selection-start-column="68" selection-end-line="798" selection-end-column="68" />
+            <state relative-caret-position="3026">
+              <caret line="928" column="7" lean-forward="true" selection-start-line="928" selection-start-column="7" selection-end-line="928" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
+                <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
                 <element signature="method#main#0;class#MainWindow#0" expanded="false" />
                 <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-                <element signature="e#11550#12170#0" expanded="true" />
-                <element signature="e#12169#12170#0" expanded="true" />
-                <element signature="e#13584#13981#0" expanded="true" />
-                <element signature="e#13980#13981#0" expanded="true" />
-                <element signature="e#14189#14338#0" expanded="true" />
-                <element signature="e#14337#14338#0" expanded="true" />
-                <element signature="e#14375#14531#0" expanded="true" />
-                <element signature="e#14530#14531#0" expanded="true" />
-                <element signature="e#14650#15187#0" expanded="true" />
-                <element signature="e#15186#15187#0" expanded="true" />
+                <element signature="e#11885#12505#0" expanded="true" />
+                <element signature="e#12504#12505#0" expanded="true" />
+                <element signature="e#13919#14316#0" expanded="true" />
+                <element signature="e#14315#14316#0" expanded="true" />
+                <element signature="e#14524#14673#0" expanded="true" />
+                <element signature="e#14672#14673#0" expanded="true" />
+                <element signature="e#14710#14866#0" expanded="true" />
+                <element signature="e#14865#14866#0" expanded="true" />
+                <element signature="e#14985#15522#0" expanded="true" />
+                <element signature="e#15521#15522#0" expanded="true" />
                 <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-                <element signature="e#28866#28867#0" expanded="true" />
-                <element signature="e#28896#28897#0" expanded="true" />
+                <element signature="e#29201#29202#0" expanded="true" />
+                <element signature="e#29231#29232#0" expanded="true" />
                 <element signature="method#actionPerformed#0;class#MainWindow#0" expanded="false" />
                 <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
                 <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
@@ -376,12 +374,12 @@
       <workItem from="1503593732323" duration="600000" />
       <workItem from="1503601766992" duration="4857000" />
       <workItem from="1503673934310" duration="10586000" />
-      <workItem from="1503774989554" duration="2249000" />
+      <workItem from="1503774989554" duration="7313000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35600000" />
+    <option name="totallyTimeSpent" value="40664000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -462,12 +460,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java</url>
-          <line>211</line>
+          <line>215</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java</url>
+          <line>283</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java</url>
+          <line>229</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -522,21 +532,23 @@
           <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
+            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
             <element signature="method#main#0;class#MainWindow#0" expanded="false" />
             <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#11550#12170#0" expanded="true" />
-            <element signature="e#12169#12170#0" expanded="true" />
-            <element signature="e#13584#13981#0" expanded="true" />
-            <element signature="e#13980#13981#0" expanded="true" />
-            <element signature="e#14189#14338#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14375#14531#0" expanded="true" />
-            <element signature="e#14530#14531#0" expanded="true" />
-            <element signature="e#14650#15187#0" expanded="true" />
-            <element signature="e#15186#15187#0" expanded="true" />
+            <element signature="e#11885#12505#0" expanded="true" />
+            <element signature="e#12504#12505#0" expanded="true" />
+            <element signature="e#13919#14316#0" expanded="true" />
+            <element signature="e#14315#14316#0" expanded="true" />
+            <element signature="e#14524#14673#0" expanded="true" />
+            <element signature="e#14672#14673#0" expanded="true" />
+            <element signature="e#14710#14866#0" expanded="true" />
+            <element signature="e#14865#14866#0" expanded="true" />
+            <element signature="e#14985#15522#0" expanded="true" />
+            <element signature="e#15521#15522#0" expanded="true" />
             <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#28866#28867#0" expanded="true" />
-            <element signature="e#28896#28897#0" expanded="true" />
+            <element signature="e#29201#29202#0" expanded="true" />
+            <element signature="e#29231#29232#0" expanded="true" />
             <element signature="method#actionPerformed#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
@@ -618,21 +630,23 @@
           <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
+            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
             <element signature="method#main#0;class#MainWindow#0" expanded="false" />
             <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#11550#12170#0" expanded="true" />
-            <element signature="e#12169#12170#0" expanded="true" />
-            <element signature="e#13584#13981#0" expanded="true" />
-            <element signature="e#13980#13981#0" expanded="true" />
-            <element signature="e#14189#14338#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14375#14531#0" expanded="true" />
-            <element signature="e#14530#14531#0" expanded="true" />
-            <element signature="e#14650#15187#0" expanded="true" />
-            <element signature="e#15186#15187#0" expanded="true" />
+            <element signature="e#11885#12505#0" expanded="true" />
+            <element signature="e#12504#12505#0" expanded="true" />
+            <element signature="e#13919#14316#0" expanded="true" />
+            <element signature="e#14315#14316#0" expanded="true" />
+            <element signature="e#14524#14673#0" expanded="true" />
+            <element signature="e#14672#14673#0" expanded="true" />
+            <element signature="e#14710#14866#0" expanded="true" />
+            <element signature="e#14865#14866#0" expanded="true" />
+            <element signature="e#14985#15522#0" expanded="true" />
+            <element signature="e#15521#15522#0" expanded="true" />
             <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#28866#28867#0" expanded="true" />
-            <element signature="e#28896#28897#0" expanded="true" />
+            <element signature="e#29201#29202#0" expanded="true" />
+            <element signature="e#29231#29232#0" expanded="true" />
             <element signature="method#actionPerformed#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
@@ -704,21 +718,23 @@
           <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
+            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
             <element signature="method#main#0;class#MainWindow#0" expanded="false" />
             <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#11550#12170#0" expanded="true" />
-            <element signature="e#12169#12170#0" expanded="true" />
-            <element signature="e#13584#13981#0" expanded="true" />
-            <element signature="e#13980#13981#0" expanded="true" />
-            <element signature="e#14189#14338#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14375#14531#0" expanded="true" />
-            <element signature="e#14530#14531#0" expanded="true" />
-            <element signature="e#14650#15187#0" expanded="true" />
-            <element signature="e#15186#15187#0" expanded="true" />
+            <element signature="e#11885#12505#0" expanded="true" />
+            <element signature="e#12504#12505#0" expanded="true" />
+            <element signature="e#13919#14316#0" expanded="true" />
+            <element signature="e#14315#14316#0" expanded="true" />
+            <element signature="e#14524#14673#0" expanded="true" />
+            <element signature="e#14672#14673#0" expanded="true" />
+            <element signature="e#14710#14866#0" expanded="true" />
+            <element signature="e#14865#14866#0" expanded="true" />
+            <element signature="e#14985#15522#0" expanded="true" />
+            <element signature="e#15521#15522#0" expanded="true" />
             <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#28866#28867#0" expanded="true" />
-            <element signature="e#28896#28897#0" expanded="true" />
+            <element signature="e#29201#29202#0" expanded="true" />
+            <element signature="e#29231#29232#0" expanded="true" />
             <element signature="method#actionPerformed#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
@@ -790,21 +806,23 @@
           <caret line="274" column="14" lean-forward="false" selection-start-line="274" selection-start-column="14" selection-end-line="274" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
+            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
             <element signature="method#main#0;class#MainWindow#0" expanded="false" />
             <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#11550#12170#0" expanded="true" />
-            <element signature="e#12169#12170#0" expanded="true" />
-            <element signature="e#13584#13981#0" expanded="true" />
-            <element signature="e#13980#13981#0" expanded="true" />
-            <element signature="e#14189#14338#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14375#14531#0" expanded="true" />
-            <element signature="e#14530#14531#0" expanded="true" />
-            <element signature="e#14650#15187#0" expanded="true" />
-            <element signature="e#15186#15187#0" expanded="true" />
+            <element signature="e#11885#12505#0" expanded="true" />
+            <element signature="e#12504#12505#0" expanded="true" />
+            <element signature="e#13919#14316#0" expanded="true" />
+            <element signature="e#14315#14316#0" expanded="true" />
+            <element signature="e#14524#14673#0" expanded="true" />
+            <element signature="e#14672#14673#0" expanded="true" />
+            <element signature="e#14710#14866#0" expanded="true" />
+            <element signature="e#14865#14866#0" expanded="true" />
+            <element signature="e#14985#15522#0" expanded="true" />
+            <element signature="e#15521#15522#0" expanded="true" />
             <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#28866#28867#0" expanded="true" />
-            <element signature="e#28896#28897#0" expanded="true" />
+            <element signature="e#29201#29202#0" expanded="true" />
+            <element signature="e#29231#29232#0" expanded="true" />
             <element signature="method#actionPerformed#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
@@ -837,21 +855,23 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
+            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
             <element signature="method#main#0;class#MainWindow#0" expanded="false" />
             <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#11550#12170#0" expanded="true" />
-            <element signature="e#12169#12170#0" expanded="true" />
-            <element signature="e#13584#13981#0" expanded="true" />
-            <element signature="e#13980#13981#0" expanded="true" />
-            <element signature="e#14189#14338#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14375#14531#0" expanded="true" />
-            <element signature="e#14530#14531#0" expanded="true" />
-            <element signature="e#14650#15187#0" expanded="true" />
-            <element signature="e#15186#15187#0" expanded="true" />
+            <element signature="e#11885#12505#0" expanded="true" />
+            <element signature="e#12504#12505#0" expanded="true" />
+            <element signature="e#13919#14316#0" expanded="true" />
+            <element signature="e#14315#14316#0" expanded="true" />
+            <element signature="e#14524#14673#0" expanded="true" />
+            <element signature="e#14672#14673#0" expanded="true" />
+            <element signature="e#14710#14866#0" expanded="true" />
+            <element signature="e#14865#14866#0" expanded="true" />
+            <element signature="e#14985#15522#0" expanded="true" />
+            <element signature="e#15521#15522#0" expanded="true" />
             <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#28866#28867#0" expanded="true" />
-            <element signature="e#28896#28897#0" expanded="true" />
+            <element signature="e#29201#29202#0" expanded="true" />
+            <element signature="e#29231#29232#0" expanded="true" />
             <element signature="method#actionPerformed#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
@@ -888,21 +908,23 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
+            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
             <element signature="method#main#0;class#MainWindow#0" expanded="false" />
             <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#11550#12170#0" expanded="true" />
-            <element signature="e#12169#12170#0" expanded="true" />
-            <element signature="e#13584#13981#0" expanded="true" />
-            <element signature="e#13980#13981#0" expanded="true" />
-            <element signature="e#14189#14338#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14375#14531#0" expanded="true" />
-            <element signature="e#14530#14531#0" expanded="true" />
-            <element signature="e#14650#15187#0" expanded="true" />
-            <element signature="e#15186#15187#0" expanded="true" />
+            <element signature="e#11885#12505#0" expanded="true" />
+            <element signature="e#12504#12505#0" expanded="true" />
+            <element signature="e#13919#14316#0" expanded="true" />
+            <element signature="e#14315#14316#0" expanded="true" />
+            <element signature="e#14524#14673#0" expanded="true" />
+            <element signature="e#14672#14673#0" expanded="true" />
+            <element signature="e#14710#14866#0" expanded="true" />
+            <element signature="e#14865#14866#0" expanded="true" />
+            <element signature="e#14985#15522#0" expanded="true" />
+            <element signature="e#15521#15522#0" expanded="true" />
             <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#28866#28867#0" expanded="true" />
-            <element signature="e#28896#28897#0" expanded="true" />
+            <element signature="e#29201#29202#0" expanded="true" />
+            <element signature="e#29231#29232#0" expanded="true" />
             <element signature="method#actionPerformed#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
@@ -1048,25 +1070,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1260">
-          <caret line="798" column="68" lean-forward="false" selection-start-line="798" selection-start-column="68" selection-end-line="798" selection-end-column="68" />
+        <state relative-caret-position="3026">
+          <caret line="928" column="7" lean-forward="true" selection-start-line="928" selection-start-column="7" selection-end-line="928" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
+            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
             <element signature="method#main#0;class#MainWindow#0" expanded="false" />
             <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#11550#12170#0" expanded="true" />
-            <element signature="e#12169#12170#0" expanded="true" />
-            <element signature="e#13584#13981#0" expanded="true" />
-            <element signature="e#13980#13981#0" expanded="true" />
-            <element signature="e#14189#14338#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14375#14531#0" expanded="true" />
-            <element signature="e#14530#14531#0" expanded="true" />
-            <element signature="e#14650#15187#0" expanded="true" />
-            <element signature="e#15186#15187#0" expanded="true" />
+            <element signature="e#11885#12505#0" expanded="true" />
+            <element signature="e#12504#12505#0" expanded="true" />
+            <element signature="e#13919#14316#0" expanded="true" />
+            <element signature="e#14315#14316#0" expanded="true" />
+            <element signature="e#14524#14673#0" expanded="true" />
+            <element signature="e#14672#14673#0" expanded="true" />
+            <element signature="e#14710#14866#0" expanded="true" />
+            <element signature="e#14865#14866#0" expanded="true" />
+            <element signature="e#14985#15522#0" expanded="true" />
+            <element signature="e#15521#15522#0" expanded="true" />
             <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-            <element signature="e#28866#28867#0" expanded="true" />
-            <element signature="e#28896#28897#0" expanded="true" />
+            <element signature="e#29201#29202#0" expanded="true" />
+            <element signature="e#29231#29232#0" expanded="true" />
             <element signature="method#actionPerformed#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
