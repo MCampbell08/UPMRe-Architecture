@@ -35,17 +35,17 @@ public class MACOSXSpecificCode extends PlatformSpecificCode {
         fApplication.setEnabledAboutMenu(true);
         fApplication.addApplicationListener(new ApplicationAdapter() {
             public void handleAbout(ApplicationEvent e) {
-                mainWindow.getAboutMenuItem().doClick();
+               //mainWindow.getAboutMenuItem().doClick();
                 e.setHandled(true);
             }
 
             public void handlePreferences(ApplicationEvent e) {
-                mainWindow.getOptionsButton().doClick();
+                //mainWindow.getOptionsButton().doClick();
                 e.setHandled(true);
             }
 
             public void handleQuit(ApplicationEvent e) {
-                mainWindow.getExitMenuItem().doClick();
+                //mainWindow.getExitMenuItem().doClick();
                 e.setHandled(true);
             }
         });

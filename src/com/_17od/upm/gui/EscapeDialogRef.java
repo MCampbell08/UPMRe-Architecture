@@ -20,42 +20,40 @@
  */
 package com._17od.upm.gui;
 
+import javafx.scene.control.Dialog;
+import javafx.stage.Stage;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JRootPane;
-import javax.swing.KeyStroke;
 
 
-public class EscapeDialog extends JDialog {
+public class EscapeDialogRef extends Dialog {
 
     private static final long serialVersionUID = 1L;
 
-    public EscapeDialog(JFrame frame, String title, boolean modal) {
-        super(frame, title, modal);
+    public EscapeDialogRef(Stage frame, String title, boolean modal) {
+        super();
     }
 
 
-    public EscapeDialog(JFrame frame, boolean modal) {
-        super(frame, modal);
+    public EscapeDialogRef(Stage frame, boolean modal) {
+        super();
     }
 
 
-    protected JRootPane createRootPane() {
-        ActionListener actionListener = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                setVisible(false);
-                dispose();
-            }
-        };
-        JRootPane rootPane = new JRootPane();
-        KeyStroke stroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
-        rootPane.registerKeyboardAction(actionListener, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
-        return rootPane;
-    }
+//    protected RootPane createRootPane() {
+//        ActionListener actionListener = new ActionListener() {
+//            public void actionPerformed(ActionEvent actionEvent) {
+//                setVisible(false);
+//                dispose();
+//            }
+//        };
+//        JRootPane rootPane = new JRootPane();
+//        KeyStroke stroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
+//        rootPane.registerKeyboardAction(actionListener, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
+//        return rootPane;
+//    }
 
 }
