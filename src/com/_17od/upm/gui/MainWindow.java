@@ -43,6 +43,8 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.security.GeneralSecurityException;
 import javax.crypto.IllegalBlockSizeException;
+import javax.swing.*;
+//import javax.swing.*;
 //import javax.swing.BorderFactory;
 //import javax.swing.Box;
 //import javax.swing.BoxLayout;
@@ -70,14 +72,20 @@ import javax.crypto.IllegalBlockSizeException;
 //import javax.swing.event.ListSelectionListener;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.UrlValidator;
 import com._17od.upm.crypto.InvalidPasswordException;
@@ -237,11 +245,12 @@ public class MainWindow extends Application implements EventHandler {
 					Translator.initialise();
 					Double jvmVersion = new Double(System.getProperty("java.specification.version"));
 					if (jvmVersion.doubleValue() < 1.4) {
-						JOptionPane.showMessageDialog(null, Translator.translate("requireJava14"),
-								Translator.translate("problem"), JOptionPane.ERROR_MESSAGE);
-						System.exit(1);
+						Alert alert = new Alert(Alert.AlertType.ERROR);
+						alert.setTitle(Translator.translate("problem"));
+						alert.setHeaderText(null);
+						alert.setContentText(Translator.translate("requireJava14"));
+						alert.showAndWait();
 					} else {
-						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 						AppWindow = new MainWindow(applicationName);
 					}
 
@@ -256,10 +265,12 @@ public class MainWindow extends Application implements EventHandler {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.getIcons().add(new Image("upm.gif"));
 		primaryStage.setTitle(windowTitle);
-        window_X = Integer.parseInt(String.valueOf(primaryStage.getX()));
-        window_Y = Integer.parseInt(String.valueOf(primaryStage.getY()));
-        window_Width = Integer.parseInt(String.valueOf(primaryStage.getWidth()));
-        window_Height = Integer.parseInt(String.valueOf(primaryStage.getHeight()));
+
+        window_X = (int)primaryStage.getX();
+        window_Y = (int)primaryStage.getY();
+        window_Width = (int)primaryStage.getWidth();
+        window_Height = (int)primaryStage.getHeight();
+
 		primaryStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
 			@Override
 			public void handle(javafx.stage.WindowEvent event) {
@@ -273,86 +284,86 @@ public class MainWindow extends Application implements EventHandler {
 				System.out.println("Closing Application");
 			}
 		});
+		MenuBar menuBar = createMenuBar();
+		GridPane newPane = addComponentsToPane();
+		Scene scene = new Scene(new VBox());
+		scene.getRoot().getChildrenUnmodifiable().addAll(menuBar, newPane);
 
 		Boolean appAlwaysonTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
 		primaryStage.setAlwaysOnTop(appAlwaysonTop.booleanValue());
+
+		primaryStage.setScene(scene);
+		primaryStage.show();
 		// -------------------------- // primaryStage.setVisible(true); // ---------------------------- //
 
 	}
 
-	private void addComponentsToPane() {
+	private GridPane addComponentsToPane() {
 
 		// Ensure the layout manager is a BorderLayout
-		if (!(getContentPane().getLayout() instanceof GridBagLayout)) {
-			getContentPane().setLayout(new GridBagLayout());
-		}
+//        if (!(getContentPane().getLayout() instanceof GridBagLayout)) {
+//            getContentPane().setLayout(new GridBagLayout());
+//        }
 
-		// Create the menubar
-		setJMenuBar(createMenuBar());
+		GridPane pane = new GridPane();
 
-		GridBagConstraints c = new GridBagConstraints();
+		//GridBagConstraints c = new GridBagConstraints();
 
 		// The toolbar Row
-		c.gridx = 0;
-		c.gridy = 0;
-		c.anchor = GridBagConstraints.FIRST_LINE_START;
-		c.insets = new Insets(0, 0, 0, 0);
-		c.weightx = 0;
-		c.weighty = 0;
-		c.gridwidth = 3;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		Component toolbar = createToolBar();
-		getContentPane().add(toolbar, c);
+//		c.gridx = 0;
+//		c.gridy = 0;
+//		c.anchor = GridBagConstraints.FIRST_LINE_START;
+//		c.insets = new Insets(0, 0, 0, 0);
+//		c.weightx = 0;
+//		c.weighty = 0;
+//		c.gridwidth = 3;
+//		c.fill = GridBagConstraints.HORIZONTAL;
+		ToolBar toolbar = createToolBar();
+		toolbar.setOrientation(Orientation.HORIZONTAL);
+		pane.getChildren().addAll(toolbar);
 
 		// Keep the frame background color consistent
-		getContentPane().setBackground(toolbar.getBackground());
+		pane.setBackground(toolbar.getBackground());
 
 		// The seperator Row
-		c.gridx = 0;
-		c.gridy = 1;
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(0, 0, 0, 0);
-		c.weightx = 1;
-		c.weighty = 0;
-		c.gridwidth = 3;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		getContentPane().add(new JSeparator(), c);
+//		c.gridx = 0;
+//		c.gridy = 1;
+//		c.anchor = GridBagConstraints.LINE_START;
+//		c.insets = new Insets(0, 0, 0, 0);
+//		c.weightx = 1;
+//		c.weighty = 0;
+//		c.gridwidth = 3;
+//		c.fill = GridBagConstraints.HORIZONTAL;
+		pane.getChildren().add(new Separator());
 
 		// The search field row
-		searchIcon = new JLabel(Util.loadImage("search.gif"));
-		searchIcon.setDisabledIcon(Util.loadImage("search_d.gif"));
-		searchIcon.setEnabled(false);
-		c.gridx = 0;
-		c.gridy = 2;
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(5, 1, 5, 1);
-		c.weightx = 0;
-		c.weighty = 0;
-		c.gridwidth = 1;
-		c.fill = GridBagConstraints.NONE;
-		getContentPane().add(searchIcon, c);
+		Image backgroundImage10 = new Image(getClass().getResourceAsStream("/util/search.gif"));
+		searchIcon = new Label();
+		searchIcon.setGraphic(new ImageView(backgroundImage10));
+		//searchIcon.setDisabledIcon(Util.loadImage("search_d.gif"));
+		searchIcon.setDisable(false);
+//		c.gridx = 0;
+//		c.gridy = 2;
+//		c.anchor = GridBagConstraints.LINE_START;
+//		c.insets = new Insets(5, 1, 5, 1);
+//		c.weightx = 0;
+//		c.weighty = 0;
+//		c.gridwidth = 1;
+//		c.fill = GridBagConstraints.NONE;
+		pane.getChildren().add(searchIcon);
 
-		searchField = new JTextField(15);
-		searchField.setEnabled(false);
-		searchField.setMinimumSize(searchField.getPreferredSize());
-		searchField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				// This method never seems to be called
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				dbActions.filter();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				dbActions.filter();
-			}
+		searchField = new TextField();
+		searchField.setDisable(true);
+		searchField.setMinSize(searchField.getPrefWidth(), searchField.getPrefHeight());
+		searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+			dbActions.filter();
 		});
-		searchField.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+		searchField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
+			@Override
+			public void handle(javafx.scene.input.KeyEvent event) {
+				if (event.getEventType() == javafx.scene.input.KeyEvent.KEY_RELEASED) {
 					dbActions.resetSearch();
-				} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				} else if (event.getEventType() == javafx.scene.input.KeyEvent.KEY_PRESSED) {
 					// If the user hits the enter key in the search field and
 					// there's only one item
 					// in the listview then open that item (this code assumes
@@ -360,84 +371,102 @@ public class MainWindow extends Application implements EventHandler {
 					// the listview has already been selected. this is done
 					// automatically in the
 					// DatabaseActions.filter() method)
-					if (accountsListview.getModel().getSize() == 1) {
-						viewAccountMenuItem.doClick();
+					if (accountsListview.getItems().size() == 1) {
+						viewAccountMenuItem.fire();
 					}
 				}
 			}
 		});
-		c.gridx = 1;
-		c.gridy = 2;
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(5, 1, 5, 1);
-		c.weightx = 0;
-		c.weighty = 0;
-		c.gridwidth = 1;
-		c.fill = GridBagConstraints.NONE;
-		getContentPane().add(searchField, c);
+//		c.gridx = 1;
+//		c.gridy = 2;
+//		c.anchor = GridBagConstraints.LINE_START;
+//		c.insets = new Insets(5, 1, 5, 1);
+//		c.weightx = 0;
+//		c.weighty = 0;
+//		c.gridwidth = 1;
+//		c.fill = GridBagConstraints.NONE;
+		pane.getChildren().add(searchField);
 
-		resetSearchButton = new JButton(Util.loadImage("stop.gif"));
-		resetSearchButton.setDisabledIcon(Util.loadImage("stop_d.gif"));
-		resetSearchButton.setEnabled(false);
-		resetSearchButton.setToolTipText(Translator.translate(RESET_SEARCH_TXT));
-		resetSearchButton.setActionCommand(RESET_SEARCH_TXT);
-		resetSearchButton.addActionListener(this);
-		resetSearchButton.setBorder(BorderFactory.createEmptyBorder());
-		resetSearchButton.setFocusable(false);
-		c.gridx = 2;
-		c.gridy = 2;
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(5, 1, 5, 1);
-		c.weightx = 1;
-		c.weighty = 0;
-		c.gridwidth = 1;
-		c.fill = GridBagConstraints.NONE;
-		getContentPane().add(resetSearchButton, c);
+
+		Image backgroundImage9 = new Image(getClass().getResourceAsStream("/util/stop.gif"));
+		//resetSearchButton = new Button(Util.loadImage("stop.gif"));
+		resetSearchButton = new Button();
+		resetSearchButton.setGraphic(new ImageView(backgroundImage9));
+		//resetSearchButton.setDisabledIcon(Util.loadImage("stop_d.gif"));
+		resetSearchButton.setDisable(true);
+		resetSearchButton.setTooltip(new Tooltip(Translator.translate(RESET_SEARCH_TXT)));
+		resetSearchButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
+				resetSearchButton.setText(Translator.translate(RESET_SEARCH_TXT));
+			}
+		});
+		resetSearchButton.setOnAction(this);
+		Border other = new Border(new BorderStroke(javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+		databaseFileChangedPanel.setBorder(other);
+		resetSearchButton.setBorder(other);
+		resetSearchButton.setDisable(true);
+//		c.gridx = 2;
+//		c.gridy = 2;
+//		c.anchor = GridBagConstraints.LINE_START;
+//		c.insets = new Insets(5, 1, 5, 1);
+//		c.weightx = 1;
+//		c.weighty = 0;
+//		c.gridwidth = 1;
+//		c.fill = GridBagConstraints.NONE;
+		pane.getChildren().add(resetSearchButton);
 
 		// The accounts listview row
-		accountsListview = new JList();
-		accountsListview.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		accountsListview.setSelectedIndex(0);
-		accountsListview.setVisibleRowCount(10);
-		accountsListview.setModel(new SortedListModel());
-		JScrollPane accountsScrollList = new JScrollPane(accountsListview, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		accountsListview.addFocusListener(new FocusAdapter() {
-			public void focusGained(FocusEvent e) {
-				// If the listview gets focus, there is one ore more items in
-				// the listview and there is nothing
-				// already selected, then select the first item in the list
-				if (accountsListview.getModel().getSize() > 0 && accountsListview.getSelectedIndex() == -1) {
-					accountsListview.setSelectionInterval(0, 0);
-				}
-			}
-		});
-		accountsListview.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
+		accountsListview = new ListView();
+		accountsListview.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		accountsListview.getSelectionModel().selectFirst();
+		//accountsListview.setVisibleRowCount(10);
+		//accountsListview.setSelectionModel(new SortedListModel());
+		ScrollPane accountsScrollList = new ScrollPane();
+//		accountsListview.setFocusModel(new EventHandler<>() {
+//			@Override
+//			public void handle(Event event) {
+//				// If the listview gets focus, there is one ore more items in
+//				// the listview and there is nothing
+//				// already selected, then select the first item in the list
+//				if (accountsListview.getItems().size() > 0 && accountsListview.getEditingIndex() == -1) {
+//					accountsListview.getSelectionModel().selectIndices(0, 0);
+//				}
+//			}
+//		});
+		accountsListview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+			@Override
+			public void changed(ObservableValue observable, Object oldValue, Object newValue) {
 				dbActions.setButtonState();
 			}
+
+//			public void valueChanged(ChangeListener e) {
+//				dbActions.setButtonState();
+//			}
 		});
-		accountsListview.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					viewAccountMenuItem.doClick();
+		accountsListview.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+			@Override
+			public void handle(javafx.scene.input.MouseEvent event) {
+				if (event.getClickCount() == 2) {
+					viewAccountMenuItem.fire();
 				}
 			}
 		});
-		accountsListview.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					viewAccountMenuItem.doClick();
+		accountsListview.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
+			@Override
+			public void handle(javafx.scene.input.KeyEvent e) {
+				if (e.getCode() == KeyCode.ENTER) {
+					viewAccountMenuItem.fire();
 				}
 			}
 		});
 		// Create a shortcut to delete account functionality with DEL(delete)
 		// key
 
-		accountsListview.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-
+		accountsListview.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
+			@Override
+			public void handle(javafx.scene.input.KeyEvent event) {
+				if (event.getCode() == KeyCode.DELETE) {
 					try {
 						dbActions.reloadDatabaseBefore(new DeleteAccountAction());
 					} catch (InvalidPasswordException e1) {
@@ -450,168 +479,195 @@ public class MainWindow extends Application implements EventHandler {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-
 				}
 			}
 		});
 
-		c.gridx = 0;
-		c.gridy = 3;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 1, 1, 1);
-		c.weightx = 1;
-		c.weighty = 1;
-		c.gridwidth = 3;
-		c.fill = GridBagConstraints.BOTH;
-		getContentPane().add(accountsScrollList, c);
+
+//		c.gridx = 0;
+//		c.gridy = 3;
+//		c.anchor = GridBagConstraints.CENTER;
+//		c.insets = new Insets(0, 1, 1, 1);
+//		c.weightx = 1;
+//		c.weighty = 1;
+//		c.gridwidth = 3;
+//		c.fill = GridBagConstraints.BOTH;
+		pane.getChildren().add(accountsScrollList);
 
 		// The "File Changed" panel
-		c.gridx = 0;
-		c.gridy = 4;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 1, 0, 1);
-		c.ipadx = 3;
-		c.ipady = 3;
-		c.weightx = 0;
-		c.weighty = 0;
-		c.gridwidth = 3;
-		c.fill = GridBagConstraints.BOTH;
-		databaseFileChangedPanel = new JPanel();
-		databaseFileChangedPanel.setLayout(new BoxLayout(databaseFileChangedPanel, BoxLayout.X_AXIS));
-		databaseFileChangedPanel.setBackground(new Color(249, 172, 60));
-		databaseFileChangedPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		JLabel fileChangedLabel = new JLabel("Database file changed");
-		fileChangedLabel.setAlignmentX(LEFT_ALIGNMENT);
-		databaseFileChangedPanel.add(fileChangedLabel);
-		databaseFileChangedPanel.add(Box.createHorizontalGlue());
-		JButton reloadButton = new JButton("Reload");
-		reloadButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+//		c.gridx = 0;
+//		c.gridy = 4;
+//		c.anchor = GridBagConstraints.CENTER;
+//		c.insets = new Insets(0, 1, 0, 1);
+//		c.ipadx = 3;
+//		c.ipady = 3;
+//		c.weightx = 0;
+//		c.weighty = 0;
+//		c.gridwidth = 3;
+//		c.fill = GridBagConstraints.BOTH;
+		databaseFileChangedPanel = new Pane();
+		//databaseFileChangedPanel.setLayoutX(new ContentDisplay(databaseFileChangedPanel, ContentDisplay.LEFT));
+		databaseFileChangedPanel.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#F9AC3C"), CornerRadii.EMPTY, javafx.geometry.Insets.EMPTY)));
+		Border border = new Border(new BorderStroke(javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+		databaseFileChangedPanel.setBorder(border);
+		Label fileChangedLabel = new Label("Database file changed");
+		fileChangedLabel.setAlignment(Pos.CENTER_LEFT);
+		databaseFileChangedPanel.getChildren().add(fileChangedLabel);
+		//databaseFileChangedPanel.getChildren().add(Box);
+		Button reloadButton = new Button("Reload");
+		reloadButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
 				try {
 					dbActions.reloadDatabaseFromDisk();
-				} catch (Exception ex) {
+				} catch (Exception ex)        {
 					dbActions.errorHandler(ex);
 				}
 			}
 		});
-		databaseFileChangedPanel.add(reloadButton);
+
+		databaseFileChangedPanel.getChildren().add(reloadButton);
 		databaseFileChangedPanel.setVisible(false);
-		getContentPane().add(databaseFileChangedPanel, c);
+		pane.getChildren().add(databaseFileChangedPanel);
 
 		// Add the statusbar
-		c.gridx = 0;
-		c.gridy = 5;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0, 1, 1, 1);
-		c.weightx = 1;
-		c.weighty = 0;
-		c.gridwidth = 3;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		getContentPane().add(statusBar, c);
-
+//		c.gridx = 0;
+//		c.gridy = 5;
+//		c.anchor = GridBagConstraints.CENTER;
+//		c.insets = new Insets(0, 1, 1, 1);
+//		c.weightx = 1;
+//		c.weighty = 0;
+//		c.gridwidth = 3;
+//		c.fill = GridBagConstraints.HORIZONTAL;
+		pane.getChildren().add(statusBar);
+		return pane;
 	}
 
 	public void setFileChangedPanelVisible(boolean visible) {
 		databaseFileChangedPanel.setVisible(visible);
 	}
 
-	private JToolBar createToolBar() {
+	private ToolBar createToolBar() {
 
-		JToolBar toolbar = new JToolBar();
-		toolbar.setFloatable(false);
-		toolbar.setRollover(true);
+		ToolBar toolbar = new ToolBar();
+//		toolbar.setFloatable(false);
+//		toolbar.setRollover(true);
 
 		// The "Add Account" button
-		addAccountButton = new JButton();
-		addAccountButton.setToolTipText(Translator.translate(ADD_ACCOUNT_TXT));
-		addAccountButton.setIcon(Util.loadImage("add_account.gif"));
-		addAccountButton.setDisabledIcon(Util.loadImage("add_account_d.gif"));
-		;
-		addAccountButton.addActionListener(this);
-		addAccountButton.setEnabled(false);
-		addAccountButton.setActionCommand(ADD_ACCOUNT_TXT);
-		toolbar.add(addAccountButton);
+		Image backgroundImage = new Image(getClass().getResourceAsStream("/util/add_account.gif"));
+		addAccountButton = new Button();
+		addAccountButton.setGraphic(new ImageView(backgroundImage));
+		addAccountButton.setTooltip(new Tooltip(Translator.translate(ADD_ACCOUNT_TXT)));
+		//addAccountButton.setDisabledIcon(Util.loadImage("add_account_d.gif"));
+		addAccountButton.setOnAction(this);
+		addAccountButton.setDisable(true);
+		addAccountButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
+				addAccountMenuItem.setText(ADD_ACCOUNT_TXT);
+			}
+		});
+		toolbar.getChildrenUnmodifiable().add(addAccountButton);
 
 		// The "Edit Account" button
-		editAccountButton = new JButton();
-		editAccountButton.setToolTipText(Translator.translate(EDIT_ACCOUNT_TXT));
-		editAccountButton.setIcon(Util.loadImage("edit_account.gif"));
-		editAccountButton.setDisabledIcon(Util.loadImage("edit_account_d.gif"));
-		;
-		editAccountButton.addActionListener(this);
-		editAccountButton.setEnabled(false);
-		editAccountButton.setActionCommand(EDIT_ACCOUNT_TXT);
-		toolbar.add(editAccountButton);
+		Image backgroundImage2 = new Image(getClass().getResourceAsStream("/util/edit_account.gif"));
+		//editAccountButton = new Button(Util.loadImage("edit_account.gif"));
+		editAccountButton = new Button();
+		editAccountButton.setGraphic(new ImageView(backgroundImage2));
+		editAccountButton.setTooltip(new Tooltip(Translator.translate(EDIT_ACCOUNT_TXT)));
+		//editAccountButton.setDisabledIcon(Util.loadImage("edit_account_d.gif"));
+		editAccountButton.setOnAction(this);
+		editAccountButton.setDisable(true);
+		editAccountButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
+				editAccountMenuItem.setText(EDIT_ACCOUNT_TXT);
+			}
+		});
+		toolbar.getChildrenUnmodifiable().add(editAccountButton);
 
 		// The "Delete Account" button
-		deleteAccountButton = new JButton();
-		deleteAccountButton.setToolTipText(Translator.translate(DELETE_ACCOUNT_TXT));
-		deleteAccountButton.setIcon(Util.loadImage("delete_account.gif"));
-		deleteAccountButton.setDisabledIcon(Util.loadImage("delete_account_d.gif"));
-		;
-		deleteAccountButton.addActionListener(this);
-		deleteAccountButton.setEnabled(false);
-		deleteAccountButton.setActionCommand(DELETE_ACCOUNT_TXT);
-		toolbar.add(deleteAccountButton);
+		Image backgroundImage3 = new Image(getClass().getResourceAsStream("/util/delete_account.gif"));
+		//deleteAccountButton = new Button(Util.loadImage("delete_account.gif"));
+		deleteAccountButton = new Button();
+		deleteAccountButton.setGraphic(new ImageView(backgroundImage3));
+		deleteAccountButton.setTooltip(new Tooltip(Translator.translate(DELETE_ACCOUNT_TXT)));
+		//deleteAccountButton.setDisabledIcon(Util.loadImage("delete_account_d.gif"));
+		deleteAccountButton.setOnAction(this);
+		deleteAccountButton.setDisable(true);
+		deleteAccountButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
+				deleteAccountMenuItem.setText(DELETE_ACCOUNT_TXT);
+			}
+		});
+		toolbar.getChildrenUnmodifiable().add(deleteAccountButton);
 
-		toolbar.addSeparator();
+		toolbar.getChildrenUnmodifiable().add(new Separator());
 
 		// The "Copy Username" button
-		copyUsernameButton = new JButton();
-		copyUsernameButton.setToolTipText(Translator.translate(COPY_USERNAME_TXT));
-		copyUsernameButton.setIcon(Util.loadImage("copy_username.gif"));
-		copyUsernameButton.setDisabledIcon(Util.loadImage("copy_username_d.gif"));
-		;
-		copyUsernameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		Image backgroundImage4 = new Image(getClass().getResourceAsStream("/util/copy_username.gif"));
+		//copyUsernameButton = new Button(Util.loadImage("copy_username.gif"));
+		copyUsernameButton = new Button();
+		copyUsernameButton.setGraphic(new ImageView(backgroundImage4));
+		copyUsernameButton.setTooltip(new Tooltip(Translator.translate(COPY_USERNAME_TXT)));
+		//copyUsernameButton.setDisabledIcon(Util.loadImage("copy_username_d.gif"));
+		copyUsernameButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
 				copyUsernameToClipboard();
 			}
 		});
-		copyUsernameButton.setEnabled(false);
-		toolbar.add(copyUsernameButton);
+		copyUsernameButton.setDisable(true);
+		toolbar.getChildrenUnmodifiable().add(copyUsernameButton);
 
 		// The "Copy Password" button
-		copyPasswordButton = new JButton();
-		copyPasswordButton.setToolTipText(Translator.translate(COPY_PASSWORD_TXT));
-		copyPasswordButton.setIcon(Util.loadImage("copy_password.gif"));
-		copyPasswordButton.setDisabledIcon(Util.loadImage("copy_password_d.gif"));
-		;
-		copyPasswordButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		Image backgroundImage5 = new Image(getClass().getResourceAsStream("/util/copy_password.gif"));
+		//copyPasswordButton = new Button(Util.loadImage("copy_password.gif"));
+		copyPasswordButton = new Button();
+		copyPasswordButton.setGraphic(new ImageView(backgroundImage5));
+		copyPasswordButton.setTooltip(new Tooltip(Translator.translate(COPY_PASSWORD_TXT)));
+		//copyPasswordButton.setDisabledIcon(Util.loadImage("copy_password_d.gif"));
+		copyPasswordButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
 				copyPasswordToClipboard();
 			}
 		});
-		copyPasswordButton.setEnabled(false);
-		toolbar.add(copyPasswordButton);
+		copyPasswordButton.setDisable(true);
+		toolbar.getChildrenUnmodifiable().add(copyPasswordButton);
 
 		// The "Launch URL" button
-		launchURLButton = new JButton();
-		launchURLButton.setToolTipText(Translator.translate(LAUNCH_URL_TXT));
-		launchURLButton.setIcon(Util.loadImage("launch_URL.gif"));
-		launchURLButton.setDisabledIcon(Util.loadImage("launch_URL_d.gif"));
-		;
-		launchURLButton.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
+		Image backgroundImage6 = new Image(getClass().getResourceAsStream("/util/launch_URL.gif"));
+		//launchURLButton = new Button(Util.loadImage("launch_URL.gif"));
+		launchURLButton = new Button();
+		launchURLButton.setGraphic(new ImageView(backgroundImage6));
+		launchURLButton.setTooltip(new Tooltip(Translator.translate(LAUNCH_URL_TXT)));
+		//launchURLButton.setDisabledIcon(Util.loadImage("launch_URL_d.gif"));
+		launchURLButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
 				AccountInformation accInfo = dbActions.getSelectedAccount();
 				String uRl = accInfo.getUrl();
 
 				// Check if the selected url is null or emty and inform the user
 				// via JoptioPane message
 				if ((uRl == null) || (uRl.length() == 0)) {
-					JOptionPane.showMessageDialog(launchURLButton.getParent(),
-							Translator.translate("EmptyUrlJoptionpaneMsg"),
-							Translator.translate("UrlErrorJoptionpaneTitle"), JOptionPane.WARNING_MESSAGE);
+					Alert alert = new Alert(Alert.AlertType.WARNING);
+					alert.setTitle(Translator.translate("EmptyUrlJoptionpaneMsg"));
+					alert.setHeaderText(null);
+					alert.setContentText(Translator.translate("UrlErrorJoptionpaneTitle"));
+					alert.showAndWait();
 
 					// Check if the selected url is a valid formated url(via
 					// urlIsValid() method) and inform the user via JoptioPane
 					// message
 				} else if (!(urlIsValid(uRl))) {
-					JOptionPane.showMessageDialog(launchURLButton.getParent(),
-							Translator.translate("InvalidUrlJoptionpaneMsg"),
-							Translator.translate("UrlErrorJoptionpaneTitle"), JOptionPane.WARNING_MESSAGE);
-
+					Alert alert = new Alert(Alert.AlertType.WARNING);
+					alert.setTitle(Translator.translate("InvalidUrlJoptionpaneMsg"));
+					alert.setHeaderText(null);
+					alert.setContentText(Translator.translate("UrlErrorJoptionpaneTitle"));
+					alert.showAndWait();
 					// Call the method LaunchSelectedURL() using the selected
 					// url as input
 				} else {
@@ -620,34 +676,46 @@ public class MainWindow extends Application implements EventHandler {
 				}
 			}
 		});
-		launchURLButton.setEnabled(false);
-		toolbar.add(launchURLButton);
+		launchURLButton.setDisable(true);
+		toolbar.getChildrenUnmodifiable().add(launchURLButton);
 
-		toolbar.addSeparator();
+		toolbar.getChildrenUnmodifiable().add(new Separator());
 
 		// The "Option" button
-		optionsButton = new JButton();
-		optionsButton.setToolTipText(Translator.translate(OPTIONS_TXT));
-		optionsButton.setIcon(Util.loadImage("options.gif"));
-		optionsButton.setDisabledIcon(Util.loadImage("options_d.gif"));
-		;
-		optionsButton.addActionListener(this);
-		optionsButton.setEnabled(true);
-		optionsButton.setActionCommand(OPTIONS_TXT);
-		toolbar.add(optionsButton);
+		Image backgroundImage7 = new Image(getClass().getResourceAsStream("/util/options.gif"));
+		//optionsButton = new Button(Util.loadImage("options.gif"));
+		optionsButton = new Button();
+		optionsButton.setGraphic(new ImageView(backgroundImage7));
+		optionsButton.setTooltip(new Tooltip(Translator.translate(OPTIONS_TXT)));
+		//optionsButton.setDisabledIcon(Util.loadImage("options_d.gif"));
+		optionsButton.setOnAction(this);
+		optionsButton.setDisable(false);
+		optionsButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
+				optionsButton.setText(OPTIONS_TXT);
+			}
+		});
+		toolbar.getChildrenUnmodifiable().add(optionsButton);
 
-		toolbar.addSeparator();
+		toolbar.getChildrenUnmodifiable().add(new Separator());
 
 		// The Sync database button
-		syncDatabaseButton = new JButton();
-		syncDatabaseButton.setToolTipText(Translator.translate(SYNC_DATABASE_TXT));
-		syncDatabaseButton.setIcon(Util.loadImage("sync.png"));
-		syncDatabaseButton.setDisabledIcon(Util.loadImage("sync_d.png"));
-		;
-		syncDatabaseButton.addActionListener(this);
-		syncDatabaseButton.setEnabled(false);
-		syncDatabaseButton.setActionCommand(SYNC_DATABASE_TXT);
-		toolbar.add(syncDatabaseButton);
+		Image backgroundImage8 = new Image(getClass().getResourceAsStream("/util/sync.png"));
+		//syncDatabaseButton = new Button(Util.loadImage("sync.png"));
+		syncDatabaseButton = new Button();
+		syncDatabaseButton.setGraphic(new ImageView(backgroundImage8));
+		syncDatabaseButton.setTooltip(new Tooltip(Translator.translate(SYNC_DATABASE_TXT)));
+		//syncDatabaseButton.setDisabledIcon(Util.loadImage("sync_d.png"));
+		syncDatabaseButton.setOnAction(this);
+		syncDatabaseButton.setDisable(true);
+		syncDatabaseButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
+				syncWithRemoteDatabaseMenuItem.setText(SYNC_DATABASE_TXT);
+			}
+		});
+		toolbar.getChildrenUnmodifiable().add(syncDatabaseButton);
 
 		return toolbar;
 	}
@@ -922,7 +990,7 @@ public class MainWindow extends Application implements EventHandler {
 		int width = Preferences.getInt(Preferences.ApplicationOptions.WWIDTH, window_Width);
 		int height = Preferences.getInt(Preferences.ApplicationOptions.WHEIGHT, window_Height);
 
-		this.setBounds(x, y, width, height);
+		//this.setBounds(x, y, width, height);
 	}
 
 	/**

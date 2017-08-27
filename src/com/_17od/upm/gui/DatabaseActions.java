@@ -176,41 +176,41 @@ public class DatabaseActions {
             //If the master password was entered correctly then the next step is to get the new master password
             if (passwordCorrect == true) {
 
-                    final JPasswordField masterPassword = new JPasswordField("");
-                    boolean passwordsMatch = false;
-                    Object buttonClicked;
+                final JPasswordField masterPassword = new JPasswordField("");
+                boolean passwordsMatch = false;
+                Object buttonClicked;
 
-                    //Ask the user for the new master password
-                    //This loop will continue until the two passwords entered match or until the user hits the cancel button
-                    do {
+                //Ask the user for the new master password
+                //This loop will continue until the two passwords entered match or until the user hits the cancel button
+                do {
 
 
-                        JPasswordField confirmedMasterPassword = new JPasswordField("");
-                        JOptionPane pane = new JOptionPane(new Object[] {Translator.translate("enterNewMasterPassword"), masterPassword, Translator.translate("confirmation"), confirmedMasterPassword}, JOptionPane.QUESTION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
-                        JDialog dialog = pane.createDialog(mainWindow, Translator.translate("changeMasterPassword"));
-                        dialog.addWindowFocusListener(new WindowAdapter() {
-                            public void windowGainedFocus(WindowEvent e) {
-                                masterPassword.requestFocusInWindow();
-                            }
-                        });
-                        dialog.show();
-
-                        buttonClicked = pane.getValue();
-                        if (buttonClicked.equals(new Integer(JOptionPane.OK_OPTION))) {
-                            if (!Arrays.equals(masterPassword.getPassword(), confirmedMasterPassword.getPassword())) {
-                                JOptionPane.showMessageDialog(mainWindow, Translator.translate("passwordsDontMatch"));
-                            } else {
-                                passwordsMatch = true;
-                            }
+                    JPasswordField confirmedMasterPassword = new JPasswordField("");
+                    JOptionPane pane = new JOptionPane(new Object[] {Translator.translate("enterNewMasterPassword"), masterPassword, Translator.translate("confirmation"), confirmedMasterPassword}, JOptionPane.QUESTION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+                    JDialog dialog = pane.createDialog(mainWindow, Translator.translate("changeMasterPassword"));
+                    dialog.addWindowFocusListener(new WindowAdapter() {
+                        public void windowGainedFocus(WindowEvent e) {
+                            masterPassword.requestFocusInWindow();
                         }
+                    });
+                    dialog.show();
 
-                    } while (buttonClicked.equals(new Integer(JOptionPane.OK_OPTION)) && !passwordsMatch);
-
-                    //If the user clicked OK and the passwords match then change the database password
-                    if (buttonClicked.equals(new Integer(JOptionPane.OK_OPTION)) && passwordsMatch) {
-                        this.dbPers.getEncryptionService().initCipher(masterPassword.getPassword());
-                        saveDatabase();
+                    buttonClicked = pane.getValue();
+                    if (buttonClicked.equals(new Integer(JOptionPane.OK_OPTION))) {
+                        if (!Arrays.equals(masterPassword.getPassword(), confirmedMasterPassword.getPassword())) {
+                            JOptionPane.showMessageDialog(mainWindow, Translator.translate("passwordsDontMatch"));
+                        } else {
+                            passwordsMatch = true;
+                        }
                     }
+
+                } while (buttonClicked.equals(new Integer(JOptionPane.OK_OPTION)) && !passwordsMatch);
+
+                //If the user clicked OK and the passwords match then change the database password
+                if (buttonClicked.equals(new Integer(JOptionPane.OK_OPTION)) && passwordsMatch) {
+                    this.dbPers.getEncryptionService().initCipher(masterPassword.getPassword());
+                    saveDatabase();
+                }
 
             }
         }
@@ -308,10 +308,10 @@ public class DatabaseActions {
     private void configureAutoLock() {
         lockIfInactive = Preferences.get(
                 Preferences.ApplicationOptions.DATABASE_AUTO_LOCK, "false").
-                    equals("true");
+                equals("true");
         msToWaitBeforeClosingDB = Preferences.getInt(
                 Preferences.ApplicationOptions.DATABASE_AUTO_LOCK_TIME, 5)
-                    * 60 * 1000;
+                * 60 * 1000;
 
         if (lockIfInactive) {
             LOG.debug("Enabling autoclose when focus lost");
@@ -1038,13 +1038,13 @@ public class DatabaseActions {
                 Object[] options = {"Yes", "No"};
                 int i = JOptionPane.showOptionDialog(mainWindow,
                         Translator.translate("fileAlreadyExistsWithFileName", selectedFile.getAbsolutePath()) + '\n' +
-                            Translator.translate("overwrite"),
-                            Translator.translate("fileAlreadyExists"),
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,
-                            options,
-                            options[1]);
+                                Translator.translate("overwrite"),
+                        Translator.translate("fileAlreadyExists"),
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
                 if (i == JOptionPane.YES_OPTION) {
                     gotValidFile = true;
                 }
