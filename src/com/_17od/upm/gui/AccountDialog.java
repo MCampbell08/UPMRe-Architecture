@@ -64,6 +64,8 @@ import com._17od.upm.util.Preferences;
 import com._17od.upm.util.Translator;
 import com._17od.upm.util.Util;
 
+import static com.sun.glass.ui.Cursor.setVisible;
+
 public class AccountDialog extends EscapeDialog {
 
 	private static final long serialVersionUID = 1L;
