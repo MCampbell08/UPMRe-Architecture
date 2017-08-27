@@ -164,6 +164,7 @@ public class MainWindow extends Application implements EventHandler {
 	public static MainWindow AppWindow;
 
 	private DatabaseActions dbActions;
+	private Stage primary_stage;
 
 	private String windowTitle = "";
     private static int window_X = 0;
@@ -255,10 +256,10 @@ public class MainWindow extends Application implements EventHandler {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.getIcons().add(new Image("upm.gif"));
 		primaryStage.setTitle(windowTitle);
-        window_X = primaryStage.getX();
-        window_Y = primaryStage.getY();
-        window_Width = primaryStage.getWidth();
-        window_Height = primaryStage.getHeight();
+        window_X = Integer.parseInt(String.valueOf(primaryStage.getX()));
+        window_Y = Integer.parseInt(String.valueOf(primaryStage.getY()));
+        window_Width = Integer.parseInt(String.valueOf(primaryStage.getWidth()));
+        window_Height = Integer.parseInt(String.valueOf(primaryStage.getHeight()));
 		primaryStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
 			@Override
 			public void handle(javafx.stage.WindowEvent event) {
@@ -921,7 +922,7 @@ public class MainWindow extends Application implements EventHandler {
 		int width = Preferences.getInt(Preferences.ApplicationOptions.WWIDTH, window_Width);
 		int height = Preferences.getInt(Preferences.ApplicationOptions.WHEIGHT, window_Height);
 
-		//-----------------------//AppWindow..setBounds(x, y, width, height);
+		this.setBounds(x, y, width, height);
 	}
 
 	/**
