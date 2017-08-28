@@ -251,16 +251,16 @@ public class DatabaseActions extends Application {
     }
 
     private void doCloseDatabaseActions() {
-        mainWindow.getAddAccountButton().setEnabled(false);
-        mainWindow.getAddAccountMenuItem().setEnabled(false);
-        mainWindow.getSearchField().setEnabled(false);
+        mainWindow.getAddAccountButton().setDisable(true);
+        mainWindow.getAddAccountMenuItem().setDisable(true);
+        mainWindow.getSearchField().setDisable(true);
         mainWindow.getSearchField().setText("");
-        mainWindow.getSearchIcon().setEnabled(false);
-        mainWindow.getResetSearchButton().setEnabled(false);
-        mainWindow.getChangeMasterPasswordMenuItem().setEnabled(false);
-        mainWindow.getDatabasePropertiesMenuItem().setEnabled(false);
-        mainWindow.getExportMenuItem().setEnabled(false);
-        mainWindow.getImportMenuItem().setEnabled(false);
+        mainWindow.getSearchIcon().setDisable(true);
+        mainWindow.getResetSearchButton().setDisable(true);
+        mainWindow.getChangeMasterPasswordMenuItem().setDisable(true);
+        mainWindow.getDatabasePropertiesMenuItem().setDisable(true);
+        mainWindow.getExportMenuItem().setDisable(true);
+        mainWindow.getImportMenuItem().setDisable(true);
 
         mainWindow.setTitle(MainWindow.getApplicationName());
 
@@ -270,32 +270,32 @@ public class DatabaseActions extends Application {
         SortedListModel listview = (SortedListModel) mainWindow.getAccountsListview().getModel();
         listview.clear();
 
-        mainWindow.getEditAccountButton().setEnabled(false);
-        mainWindow.getCopyUsernameButton().setEnabled(false);
-        mainWindow.getCopyPasswordButton().setEnabled(false);
-        mainWindow.getLaunchURLButton().setEnabled(false);
-        mainWindow.getDeleteAccountButton().setEnabled(false);
-        mainWindow.getEditAccountMenuItem().setEnabled(false);
-        mainWindow.getCopyUsernameMenuItem().setEnabled(false);
-        mainWindow.getCopyPasswordMenuItem().setEnabled(false);
-        mainWindow.getLaunchURLMenuItem().setEnabled(false);
-        mainWindow.getDeleteAccountMenuItem().setEnabled(false);
-        mainWindow.getViewAccountMenuItem().setEnabled(false);
+        mainWindow.getEditAccountButton().setDisable(true);
+        mainWindow.getCopyUsernameButton().setDisable(true);
+        mainWindow.getCopyPasswordButton().setDisable(true);
+        mainWindow.getLaunchURLButton().setDisable(true);
+        mainWindow.getDeleteAccountButton().setDisable(true);
+        mainWindow.getEditAccountMenuItem().setDisable(true);
+        mainWindow.getCopyUsernameMenuItem().setDisable(true);
+        mainWindow.getCopyPasswordMenuItem().setDisable(true);
+        mainWindow.getLaunchURLMenuItem().setDisable(true);
+        mainWindow.getDeleteAccountMenuItem().setDisable(true);
+        mainWindow.getViewAccountMenuItem().setDisable(true);
     }
 
 
     private void doOpenDatabaseActions() {
-        mainWindow.getAddAccountButton().setEnabled(true);
-        mainWindow.getAddAccountMenuItem().setEnabled(true);
-        mainWindow.getSearchField().setEnabled(true);
+        mainWindow.getAddAccountButton().setDisable(true);
+        mainWindow.getAddAccountMenuItem().setDisable(true);
+        mainWindow.getSearchField().setDisable(true);
         mainWindow.getSearchField().setText("");
-        mainWindow.getSearchIcon().setEnabled(true);
-        mainWindow.getResetSearchButton().setEnabled(true);
-        mainWindow.getChangeMasterPasswordMenuItem().setEnabled(true);
-        mainWindow.getDatabasePropertiesMenuItem().setEnabled(true);
-        mainWindow.getExportMenuItem().setEnabled(true);
-        mainWindow.getImportMenuItem().setEnabled(true);
-
+        mainWindow.getSearchIcon().setDisable(true);
+        mainWindow.getResetSearchButton().setDisable(true);
+        mainWindow.getChangeMasterPasswordMenuItem().setDisable(true);
+        mainWindow.getDatabasePropertiesMenuItem().setDisable(true);
+        mainWindow.getExportMenuItem().setDisable(true);
+        mainWindow.getImportMenuItem().setDisable(true);
+        
         mainWindow.setTitle(database.getDatabaseFile() + " - " + MainWindow.getApplicationName());
 
         setLocalDatabaseDirty(true);
