@@ -172,7 +172,7 @@ public class MainWindow extends Application implements EventHandler {
 	public static MainWindow AppWindow;
 
 	private DatabaseActions dbActions;
-	private Stage primary_stage;
+	public Stage primary_stage;
 
 	private String windowTitle = "";
     private static int window_X = 0;
@@ -294,6 +294,7 @@ public class MainWindow extends Application implements EventHandler {
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		primary_stage = primaryStage;
 		// -------------------------- // primaryStage.setVisible(true); // ---------------------------- //
 
 	}

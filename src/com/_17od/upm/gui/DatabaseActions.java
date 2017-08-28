@@ -33,7 +33,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.Timer;
 
+import com.sun.prism.paint.Paint;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -122,7 +125,7 @@ public class DatabaseActions extends Application {
             alert.getButtonTypes().setAll(ok, cancel);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ok) {
-                if (!Arrays.equals(masterPassword.getPassword(), confirmedMasterPassword.getPassword())) {
+                if (!Arrays.equals(masterPassword.getText().toCharArray(), confirmedMasterPassword.getText().toCharArray())) {
                     Alert error = new Alert(Alert.AlertType.ERROR);
                     error.setContentText(Translator.translate("passwordsDontMatch"));
                     error.showAndWait();
@@ -141,7 +144,7 @@ public class DatabaseActions extends Application {
         }
 
         database = new PasswordDatabase(newDatabaseFile);
-        dbPers = new PasswordDatabasePersistence(masterPassword.getPassword());
+        dbPers = new PasswordDatabasePersistence(masterPassword.getText().toCharArray());
         saveDatabase();
         accountNames = new ArrayList();
         doOpenDatabaseActions();
@@ -216,7 +219,7 @@ public class DatabaseActions extends Application {
                     alert.getButtonTypes().setAll(ok, cancel);
                     result = alert.showAndWait();
                     if (result.get() == ok) {
-                        if (!Arrays.equals(masterPassword.getPassword(), confirmedMasterPassword.getPassword())) {
+                        if (!Arrays.equals(masterPassword.getText().toCharArray(), confirmedMasterPassword.getText().toCharArray())) {
                             Alert newAlert = new Alert(Alert.AlertType.ERROR);
                             newAlert.setHeaderText(Translator.translate("passwordsDontMatch"));
                             newAlert.showAndWait();
@@ -228,7 +231,7 @@ public class DatabaseActions extends Application {
 
                 //If the user clicked OK and the passwords match then change the database password
                 if (result.get() == ok && passwordsMatch) {
-                    this.dbPers.getEncryptionService().initCipher(masterPassword.getPassword());
+                    this.dbPers.getEncryptionService().initCipher(masterPassword.getText().toCharArray());
                     saveDatabase();
                 }
 
@@ -262,13 +265,16 @@ public class DatabaseActions extends Application {
         mainWindow.getExportMenuItem().setDisable(true);
         mainWindow.getImportMenuItem().setDisable(true);
 
-        mainWindow.setTitle(MainWindow.getApplicationName());
+        //mainWindow.setTitle(MainWindow.getApplicationName());
 
         mainWindow.getStatusBar().setText("");
         databaseNeedsReload = false;
 
-        SortedListModel listview = (SortedListModel) mainWindow.getAccountsListview().getModel();
-        listview.clear();
+        SortedListModel listModel = new SortedListModel();
+        for (Object object : mainWindow.getAccountsListview().getItems()) {
+            listModel.addElement(object);
+        }
+        listModel.clear();
 
         mainWindow.getEditAccountButton().setDisable(true);
         mainWindow.getCopyUsernameButton().setDisable(true);
@@ -295,8 +301,8 @@ public class DatabaseActions extends Application {
         mainWindow.getDatabasePropertiesMenuItem().setDisable(true);
         mainWindow.getExportMenuItem().setDisable(true);
         mainWindow.getImportMenuItem().setDisable(true);
-        
-        mainWindow.setTitle(database.getDatabaseFile() + " - " + MainWindow.getApplicationName());
+
+        //mainWindow.setTitle(database.getDatabaseFile() + " - " + MainWindow.getApplicationName());
 
         setLocalDatabaseDirty(true);
         databaseNeedsReload = false;
@@ -323,7 +329,7 @@ public class DatabaseActions extends Application {
         // Give the search field focus.
         // I'm using requestFocusInWindow() rather than
         // requestFocus() because the javadocs recommend it.
-        mainWindow.getSearchField().requestFocusInWindow();
+        mainWindow.getSearchField().requestFocus();
 
         mainWindow.getDatabaseFileChangedPanel().setVisible(false);
     }
@@ -393,7 +399,7 @@ public class DatabaseActions extends Application {
         askUser.getButtonTypes().setAll(ok, cancel);
         Optional<ButtonType> result = askUser.showAndWait();
         if (result.get() != null && result.get() == ok) {
-            password == masterPassword.getPassword();
+            password = masterPassword.getText().toCharArray();
         }
 
         return password;
@@ -466,8 +472,11 @@ public class DatabaseActions extends Application {
     public void deleteAccount() throws IOException, CryptoException, TransportException, ProblemReadingDatabaseFile, PasswordDatabaseException {
 
         if (getLatestVersionOfDatabase()) {
-            SortedListModel listview = (SortedListModel) mainWindow.getAccountsListview().getModel();
-            String selectedAccName = (String) mainWindow.getAccountsListview().getSelectedValue();
+            SortedListModel listModel = new SortedListModel();
+            for (Object object : mainWindow.getAccountsListview().getItems()) {
+                listModel.addElement(object);
+            }
+            String selectedAccName = (String) mainWindow.getAccountsListview().getSelectionModel().getSelectedItem();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(Translator.translate("askConfirmDeleteAccount" + selectedAccName));
@@ -479,7 +488,7 @@ public class DatabaseActions extends Application {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == yes) {
                 //Remove the account from the listview, accountNames arraylist & the database
-                listview.removeElement(selectedAccName);
+                listModel.removeElement(selectedAccName);
                 int i = accountNames.indexOf(selectedAccName);
                 accountNames.remove(i);
                 database.deleteAccount(selectedAccName);
@@ -520,7 +529,7 @@ public class DatabaseActions extends Application {
 
 
     public AccountInformation getSelectedAccount() {
-        String selectedAccName = (String) mainWindow.getAccountsListview().getSelectedValue();
+        String selectedAccName = (String) mainWindow.getAccountsListview().getSelectionModel().getSelectedItem();
         return database.getAccount(selectedAccName);
     }
 
@@ -626,20 +635,23 @@ public class DatabaseActions extends Application {
         populateListview(filteredAccountsList);
 
         //If there's only one item in the listview then select it
-        if (mainWindow.getAccountsListview().getModel().getSize() == 1) {
-            mainWindow.getAccountsListview().setSelectedIndex(0);
+        if (mainWindow.getAccountsListview().getItems().size() == 1) {
+            mainWindow.getAccountsListview().scrollTo(0);
         }
     }
 
 
     public void populateListview(ArrayList accountNames) {
-        SortedListModel listview = (SortedListModel) mainWindow.getAccountsListview().getModel();
+        SortedListModel listModel = new SortedListModel();
+        for (Object object : mainWindow.getAccountsListview().getItems()) {
+            listModel.addElement(object);
+        }
 
-        listview.clear();
-        mainWindow.getAccountsListview().clearSelection();
+        listModel.clear();
+        mainWindow.getAccountsListview().getItems().clear();
 
         for (int i=0; i<accountNames.size(); i++) {
-            listview.addElement(accountNames.get(i));
+            listModel.addElement(accountNames.get(i));
         }
 
         setButtonState();
@@ -647,30 +659,30 @@ public class DatabaseActions extends Application {
 
 
     public void setButtonState() {
-        if (mainWindow.getAccountsListview().getSelectedValue() == null) {
-            mainWindow.getEditAccountButton().setEnabled(false);
-            mainWindow.getCopyUsernameButton().setEnabled(false);
-            mainWindow.getCopyPasswordButton().setEnabled(false);
-            mainWindow.getLaunchURLButton().setEnabled(false);
-            mainWindow.getDeleteAccountButton().setEnabled(false);
-            mainWindow.getEditAccountMenuItem().setEnabled(false);
-            mainWindow.getCopyUsernameMenuItem().setEnabled(false);
-            mainWindow.getCopyPasswordMenuItem().setEnabled(false);
-            mainWindow.getLaunchURLMenuItem().setEnabled(false);
-            mainWindow.getDeleteAccountMenuItem().setEnabled(false);
-            mainWindow.getViewAccountMenuItem().setEnabled(false);
+        if (mainWindow.getAccountsListview().getSelectionModel().getSelectedItem() == null) {
+            mainWindow.getEditAccountButton().setDisable(true);
+            mainWindow.getCopyUsernameButton().setDisable(true);
+            mainWindow.getCopyPasswordButton().setDisable(true);
+            mainWindow.getLaunchURLButton().setDisable(true);
+            mainWindow.getDeleteAccountButton().setDisable(true);
+            mainWindow.getEditAccountMenuItem().setDisable(true);
+            mainWindow.getCopyUsernameMenuItem().setDisable(true);
+            mainWindow.getCopyPasswordMenuItem().setDisable(true);
+            mainWindow.getLaunchURLMenuItem().setDisable(true);
+            mainWindow.getDeleteAccountMenuItem().setDisable(true);
+            mainWindow.getViewAccountMenuItem().setDisable(true);
         } else {
-            mainWindow.getEditAccountButton().setEnabled(true);
-            mainWindow.getCopyUsernameButton().setEnabled(true);
-            mainWindow.getCopyPasswordButton().setEnabled(true);
-            mainWindow.getLaunchURLButton().setEnabled(true);
-            mainWindow.getDeleteAccountButton().setEnabled(true);
-            mainWindow.getEditAccountMenuItem().setEnabled(true);
-            mainWindow.getCopyUsernameMenuItem().setEnabled(true);
-            mainWindow.getCopyPasswordMenuItem().setEnabled(true);
-            mainWindow.getLaunchURLMenuItem().setEnabled(true);
-            mainWindow.getDeleteAccountMenuItem().setEnabled(true);
-            mainWindow.getViewAccountMenuItem().setEnabled(true);
+            mainWindow.getEditAccountButton().setDisable(false);
+            mainWindow.getCopyUsernameButton().setDisable(false);
+            mainWindow.getCopyPasswordButton().setDisable(false);
+            mainWindow.getLaunchURLButton().setDisable(false);
+            mainWindow.getDeleteAccountButton().setDisable(false);
+            mainWindow.getEditAccountMenuItem().setDisable(false);
+            mainWindow.getCopyUsernameMenuItem().setDisable(false);
+            mainWindow.getCopyPasswordMenuItem().setDisable(false);
+            mainWindow.getLaunchURLMenuItem().setDisable(false);
+            mainWindow.getDeleteAccountMenuItem().setDisable(false);
+            mainWindow.getViewAccountMenuItem().setDisable(false);
         }
     }
 
@@ -885,7 +897,8 @@ public class DatabaseActions extends Application {
         try {
             fileMonitor.pause();
 
-            mainWindow.getContentPane().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+            //mainWindow.getContentPane().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
 
             // Get the remote database options
             String remoteLocation = database.getDbOptions().getRemoteLocation();
@@ -986,7 +999,7 @@ public class DatabaseActions extends Application {
             }
 
         } finally {
-            mainWindow.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            //mainWindow.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             fileMonitor.start();
         }
 
@@ -1027,72 +1040,70 @@ public class DatabaseActions extends Application {
             // Prompt for the file to import
             FileChooser fc = new FileChooser();
             fc.setTitle(Translator.translate("import"));
-            int returnVal = fc.showOpenDialog(mainWindow);
 
-            if (returnVal == FileChooser.APPROVE_OPTION) {
-                File csvFile = fc.getSelectedFile();
 
-                // Unmarshall the accounts from the CSV file
-                try {
-                    AccountsCSVMarshaller marshaller = new AccountsCSVMarshaller();
-                    ArrayList accountsInCSVFile = marshaller.unmarshal(csvFile);
-                    ArrayList accountsToImport = new ArrayList();
+            File csvFile = fc.showOpenDialog(mainWindow.primary_stage);
 
-                    boolean importCancelled = false;
-                    // Add each account to the open database. If the account
-                    // already exits the prompt to overwrite
-                    for (int i=0; i<accountsInCSVFile.size(); i++) {
-                        AccountInformation importedAccount = (AccountInformation) accountsInCSVFile.get(i);
-                        if (database.getAccount(importedAccount.getAccountName()) != null) {
+            // Unmarshall the accounts from the CSV file
+            try {
+                AccountsCSVMarshaller marshaller = new AccountsCSVMarshaller();
+                ArrayList accountsInCSVFile = marshaller.unmarshal(csvFile);
+                ArrayList accountsToImport = new ArrayList();
+
+                boolean importCancelled = false;
+                // Add each account to the open database. If the account
+                // already exits the prompt to overwrite
+                for (int i=0; i<accountsInCSVFile.size(); i++) {
+                    AccountInformation importedAccount = (AccountInformation) accountsInCSVFile.get(i);
+                    if (database.getAccount(importedAccount.getAccountName()) != null) {
 //
-                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                            alert.setTitle(Translator.translate("importExistingQuestion", importedAccount.getAccountName()));
-                            alert.setHeaderText(null);
-                            alert.setContentText(Translator.translate("importExistingTitle"));
-                            ButtonType yes = new ButtonType("Yes");
-                            ButtonType no = new ButtonType("No");
-                            ButtonType cancel = new ButtonType("Cancel");
-                            alert.getButtonTypes().setAll(yes, no, cancel);
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.get() == yes) {
-                                continue;
-                            }
-                            else if (result.get() == no) {
-                                importCancelled = true;
-                                break;
-                            }
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle(Translator.translate("importExistingQuestion", importedAccount.getAccountName()));
+                        alert.setHeaderText(null);
+                        alert.setContentText(Translator.translate("importExistingTitle"));
+                        ButtonType yes = new ButtonType("Yes");
+                        ButtonType no = new ButtonType("No");
+                        ButtonType cancel = new ButtonType("Cancel");
+                        alert.getButtonTypes().setAll(yes, no, cancel);
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == yes) {
+                            continue;
                         }
-
-                        accountsToImport.add(importedAccount);
+                        else if (result.get() == no) {
+                            importCancelled = true;
+                            break;
+                        }
                     }
 
-                    if (!importCancelled && accountsToImport.size() > 0) {
-                        for (int i=0; i<accountsToImport.size(); i++) {
-                            AccountInformation accountToImport = (AccountInformation) accountsToImport.get(i);
-                            database.deleteAccount(accountToImport.getAccountName());
-                            database.addAccount(accountToImport);
-                        }
-                        saveDatabase();
-                        accountNames = getAccountNames();
-                        filter();
-                    }
-
-                } catch (ImportException e) {
-                    //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
-                    Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                    newAlert.setContentText(Translator.translate("problemImporting"));
-                    newAlert.showAndWait();
-                } catch (IOException e) {
-                    //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
-                    Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                    newAlert.setContentText(Translator.translate("problemImporting"));
-                    newAlert.showAndWait();
-                } catch (CryptoException e) {
-                    //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
-                    Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                    newAlert.setContentText(Translator.translate("problemImporting"));
-                    newAlert.showAndWait();
+                    accountsToImport.add(importedAccount);
                 }
+
+                if (!importCancelled && accountsToImport.size() > 0) {
+                    for (int i=0; i<accountsToImport.size(); i++) {
+                        AccountInformation accountToImport = (AccountInformation) accountsToImport.get(i);
+                        database.deleteAccount(accountToImport.getAccountName());
+                        database.addAccount(accountToImport);
+                    }
+                    saveDatabase();
+                    accountNames = getAccountNames();
+                    filter();
+                }
+
+            } catch (ImportException e) {
+                //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
+                Alert newAlert = new Alert(Alert.AlertType.ERROR);
+                newAlert.setContentText(Translator.translate("problemImporting"));
+                newAlert.showAndWait();
+            } catch (IOException e) {
+                //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
+                Alert newAlert = new Alert(Alert.AlertType.ERROR);
+                newAlert.setContentText(Translator.translate("problemImporting"));
+                newAlert.showAndWait();
+            } catch (CryptoException e) {
+                //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
+                Alert newAlert = new Alert(Alert.AlertType.ERROR);
+                newAlert.setContentText(Translator.translate("problemImporting"));
+                newAlert.showAndWait();
             }
         }
     }
@@ -1112,13 +1123,9 @@ public class DatabaseActions extends Application {
         do {
             FileChooser fc = new FileChooser();
             fc.setTitle(title);
-            int returnVal = fc.showSaveDialog(mainWindow);
 
-            if (returnVal != FileChooser.APPROVE_OPTION) {
-                return null;
-            }
 
-            selectedFile = fc.getSelectedFile();
+            selectedFile =  fc.showSaveDialog(mainWindow.primary_stage);
 
             //Warn the user if the database file already exists
             if (selectedFile.exists()) {
@@ -1160,15 +1167,15 @@ public class DatabaseActions extends Application {
 
         if (databaseHasRemoteInstance()) {
             if (localDatabaseDirty) {
-                mainWindow.getSyncWithRemoteDatabaseMenuItem().setEnabled(true);
-                mainWindow.getSyncWithRemoteDatabaseButton().setEnabled(true);
+                mainWindow.getSyncWithRemoteDatabaseMenuItem().setDisable(false);
+                mainWindow.getSyncWithRemoteDatabaseButton().setDisable(false);
             } else {
-                mainWindow.getSyncWithRemoteDatabaseMenuItem().setEnabled(false);
-                mainWindow.getSyncWithRemoteDatabaseButton().setEnabled(false);
+                mainWindow.getSyncWithRemoteDatabaseMenuItem().setDisable(true);
+                mainWindow.getSyncWithRemoteDatabaseButton().setDisable(true);
             }
         } else {
-            mainWindow.getSyncWithRemoteDatabaseMenuItem().setEnabled(false);
-            mainWindow.getSyncWithRemoteDatabaseButton().setEnabled(false);
+            mainWindow.getSyncWithRemoteDatabaseMenuItem().setDisable(true);
+            mainWindow.getSyncWithRemoteDatabaseButton().setDisable(true);
         }
 
         setStatusBarText();
@@ -1192,7 +1199,7 @@ public class DatabaseActions extends Application {
             color = Color.BLACK;
         }
         mainWindow.getStatusBar().setText(status);
-        mainWindow.getStatusBar().setForeground(color);
+        mainWindow.getStatusBar().setTextFill(javafx.scene.paint.Paint.valueOf(color.toString()));
     }
 
     private class AutoLockDatabaseListener implements WindowFocusListener {
@@ -1205,6 +1212,7 @@ public class DatabaseActions extends Application {
                 LOG.debug("Stopping closeDBTimer");
                 closeDBTimer.removeActionListener(
                         closeDBTimer.getActionListeners()[0]);
+                closeDBTimer.
                 closeDBTimer = null;
             }
             if (databaseClosedOnTimer != null) {
