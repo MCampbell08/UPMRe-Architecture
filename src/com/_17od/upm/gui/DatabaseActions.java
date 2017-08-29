@@ -65,7 +65,7 @@ import com._17od.upm.util.Preferences;
 import com._17od.upm.util.Util;
 
 
-public class DatabaseActions extends Application {
+public class DatabaseActions extends Stage {
 
     private static Log LOG = LogFactory.getLog(DatabaseActions.class);
 
@@ -81,12 +81,6 @@ public class DatabaseActions extends Application {
     private int msToWaitBeforeClosingDB;
 
     private boolean runSetDBDirtyThread = true;
-
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-    }
 
     public DatabaseActions(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
@@ -344,15 +338,15 @@ public class DatabaseActions extends Application {
 
         if (lockIfInactive) {
             LOG.debug("Enabling autoclose when focus lost");
-            if (mainWindow.getWindowFocusListeners().length == 0) {
-                mainWindow.addWindowFocusListener(new AutoLockDatabaseListener());
-            }
+//            if (mainWindow.getWindowFocusListeners().length == 0) {
+//                mainWindow.addWindowFocusListener(new AutoLockDatabaseListener());
+//            }
         } else {
             LOG.debug("Disabling autoclose when focus lost");
-            for (int i=0; i<mainWindow.getWindowFocusListeners().length; i++) {
-                mainWindow.removeWindowFocusListener(
-                        mainWindow.getWindowFocusListeners()[i]);
-            }
+//            for (int i=0; i<mainWindow.getWindowFocusListeners().length; i++) {
+//                mainWindow.removeWindowFocusListener(
+//                        mainWindow.getWindowFocusListeners()[i]);
+//            }
         }
     }
 
@@ -449,10 +443,8 @@ public class DatabaseActions extends Application {
     public void openDatabase() throws IOException, ProblemReadingDatabaseFile, CryptoException {
         FileChooser fc = new FileChooser();
         fc.setTitle(Translator.translate("openDatabase"));
-        int returnVal = fc.showOpenDialog(mainWindow);
+        File databaseFile = fc.showOpenDialog(this);
 
-        if (returnVal == FileChooser.APPROVE_OPTION) {
-            File databaseFile = fc.getSelectedFile();
             if (databaseFile.exists()) {
                 openDatabase(databaseFile.getAbsolutePath());
             } else {
@@ -462,7 +454,6 @@ public class DatabaseActions extends Application {
                 newAlert.setContentText(Translator.translate("fileDoesntExist"));
                 newAlert.showAndWait();
             }
-        }
 
         // Stop any "SetDBDirtyThread"s that are running
         runSetDBDirtyThread = false;
@@ -1042,7 +1033,7 @@ public class DatabaseActions extends Application {
             fc.setTitle(Translator.translate("import"));
 
 
-            File csvFile = fc.showOpenDialog(mainWindow.primary_stage);
+            File csvFile = fc.showOpenDialog(this);
 
             // Unmarshall the accounts from the CSV file
             try {
@@ -1125,7 +1116,7 @@ public class DatabaseActions extends Application {
             fc.setTitle(title);
 
 
-            selectedFile =  fc.showSaveDialog(mainWindow.primary_stage);
+            selectedFile =  fc.showSaveDialog(this);
 
             //Warn the user if the database file already exists
             if (selectedFile.exists()) {
@@ -1210,9 +1201,7 @@ public class DatabaseActions extends Application {
         public synchronized void windowGainedFocus(WindowEvent we) {
             if (closeDBTimer != null) {
                 LOG.debug("Stopping closeDBTimer");
-                closeDBTimer.removeActionListener(
-                        closeDBTimer.getActionListeners()[0]);
-                closeDBTimer.
+                closeDBTimer.cancel();
                 closeDBTimer = null;
             }
             if (databaseClosedOnTimer != null) {
@@ -1233,26 +1222,26 @@ public class DatabaseActions extends Application {
         public synchronized void windowLostFocus(WindowEvent e) {
             // If the window receiving focus is within this application then the
             // app isn't not losing focus so no further action is required.
-            if (e.getOppositeWindow() != null &&
-                    e.getOppositeWindow().getOwner() == mainWindow) {
+            if (e.getOppositeWindow() != null /*&&
+                    e.getOppositeWindow().getOwner() == mainWindow*/) {
                 LOG.debug("Focus switched to another window within this app");
                 return;
             }
 
             if (database != null && closeDBTimer == null){
-                closeDBTimer = new Timer(msToWaitBeforeClosingDB , null);
-                closeDBTimer.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        LOG.debug("Closing database due to inactivity");
-                        databaseClosedOnTimer =
-                                database.getDatabaseFile().getAbsolutePath();
-                        doCloseDatabaseActions();
-                        database = null;
-                        closeDBTimer = null;
-                    }
-                });
-                closeDBTimer.setRepeats(false);
-                closeDBTimer.start();
+//                closeDBTimer = new Timer(msToWaitBeforeClosingDB , null);
+//                closeDBTimer.addActionListener(new ActionListener() {
+//                    public void actionPerformed(ActionEvent e) {
+//                        LOG.debug("Closing database due to inactivity");
+//                        databaseClosedOnTimer =
+//                                database.getDatabaseFile().getAbsolutePath();
+//                        doCloseDatabaseActions();
+//                        database = null;
+//                        closeDBTimer = null;
+//                    }
+//                });
+//                closeDBTimer.setRepeats(false);
+//                closeDBTimer.start();
                 LOG.debug("Started lost focus timer, " + msToWaitBeforeClosingDB);
             }
         }

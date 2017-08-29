@@ -3,7 +3,7 @@
  * Copyright (C) 2005-2013 Adrian Smith
  *
  * This file is part of Universal Password Manager.
- *   
+ *
  * Universal Password Manager is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -52,8 +52,8 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
     public JTextField usernameTextField;
     public JPasswordField passwordTextField;
     private boolean okClicked = false;
-    
-    
+
+
     public OpenDatabaseFromURLDialog(final JFrame frame) {
         super(frame, Translator.translate("openDatabaseFromURL"), true);
 
@@ -72,7 +72,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBorder(etchedTitleBorder);
         emptyBorderPanel.add(mainPanel);
-        
+
         GridBagConstraints c = new GridBagConstraints();
 
         // The URL Label row
@@ -155,7 +155,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
 
         // The buttons row
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        
+
         JButton okButton = new JButton(Translator.translate("ok"));
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -165,7 +165,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
             }
         });
         buttonPanel.add(okButton);
-        
+
         JButton cancelButton = new JButton(Translator.translate("cancel"));
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -184,19 +184,19 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         return passwordTextField;
     }
 
-    
+
     public JTextField getUrlTextField() {
         return urlTextField;
     }
 
-    
+
     public JTextField getUsernameTextField() {
         return usernameTextField;
     }
-    
-    
+
+
     public boolean getOkClicked() {
         return okClicked;
     }
-    
+
 }

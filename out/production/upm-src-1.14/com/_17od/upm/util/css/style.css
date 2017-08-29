@@ -1,0 +1,5 @@
+.borderStyle{
+    -fx-border-color: deepskyblue;
+    -fx-border-width: 3px;
+    -fx-border-insets:5px;
+}

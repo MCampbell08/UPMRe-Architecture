@@ -20,8 +20,7 @@
  */
 package com._17od.upm.gui;
 
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.*;
 import java.io.File;
 import java.util.Locale;
 
@@ -30,6 +29,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
@@ -43,7 +45,7 @@ import com._17od.upm.util.Util;
 
 import static com.sun.deploy.uitoolkit.ToolkitStore.dispose;
 
-public class OptionsDialog extends Application {
+public class OptionsDialog extends EscapeDialog {
 
 	private static final long serialVersionUID = 1L;
 
@@ -73,6 +75,10 @@ public class OptionsDialog extends Application {
 	//private Frame parentFrame;
 	private boolean languageChanged;
 	private char defaultEchoChar;
+
+	public OptionsDialog(Frame frame, String title, boolean modal) {
+		super(frame, title, modal);
+	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
