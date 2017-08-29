@@ -20,149 +20,120 @@
  */
 package com._17od.upm.gui;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com._17od.upm.database.PasswordDatabase;
+import com._17od.upm.transport.Transport;
+import com._17od.upm.transport.TransportException;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-
-import com._17od.upm.database.PasswordDatabase;
-import com._17od.upm.transport.Transport;
-import com._17od.upm.transport.TransportException;
-import com._17od.upm.util.Translator;
-
-
-public class DatabasePropertiesDialog extends EscapeDialog {
+public class DatabasePropertiesDialog extends Application {
 
     private static final long serialVersionUID = 1L;
-    
+
     private boolean databaseNeedsSaving = false;
-    
-    public DatabasePropertiesDialog(final JFrame frame, ArrayList accountNames, final PasswordDatabase database) {
-        super(frame, Translator.translate("databaseProperties"), true);
-        
-        Container container = getContentPane();
 
-        // Create a pane with an empty border for spacing
-        Border emptyBorder = BorderFactory.createEmptyBorder(2, 5, 5, 5);
-        JPanel emptyBorderPanel = new JPanel();
-        emptyBorderPanel.setLayout(new BoxLayout(emptyBorderPanel, BoxLayout.Y_AXIS));
-        emptyBorderPanel.setBorder(emptyBorder);
-        container.add(emptyBorderPanel);
+    final PasswordDatabase db;
 
-        // Create a pane with an title etched border
-        Border etchedBorder = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-        Border etchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder, ' ' + Translator.translate("remoteLocation") + ' ');
-        JPanel mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(etchedTitleBorder);
-        emptyBorderPanel.add(mainPanel);
+    ArrayList acntName;
 
-        GridBagConstraints c = new GridBagConstraints();
+    public DatabasePropertiesDialog(ArrayList accountNames, final PasswordDatabase database) {
+        this.acntName = accountNames;
+        this.db = database;
+    }
 
-        // The Remote URL Label row
-        JLabel urlLabel = new JLabel(Translator.translate("url"));
-        c.gridx = 0;
-        c.gridy = 0;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(0, 3, 0, 0);
-        c.weightx = 1;
-        c.weighty = 0;
-        c.gridwidth = 1;
-        c.fill = GridBagConstraints.NONE;
-        mainPanel.add(urlLabel, c);
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Database Properties");
+
+        Pane mainPane = new Pane();
+
+        Border pane = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        Pane emptyBorderPanel = new Pane();
+        emptyBorderPanel.setBorder(pane);
+        mainPane.getChildren().add(emptyBorderPanel);
+
+        Border border = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        BorderPane mainPanel = new BorderPane(new GridPane());
+        mainPanel.setBorder(border);
+        emptyBorderPanel.getChildren().add(mainPanel);
+
+        GridPane c = new GridPane();
+
+        // Remote URL Label Row
+        Label urlLabel = new Label("URL");
+//        c.gridx = 0;
+//        c.gridy = 0;
+//        c.anchor = GridBagConstraints.LINE_START;
+//        c.insets = new Insets(0, 3, 0, 0);
+//        c.weightx = 1;
+//        c.weighty = 0;
+//        c.gridwidth = 1;
+//        c.fill = GridBagConstraints.NONE
+        mainPanel.getChildren().add(urlLabel);
 
         // The Remote URL input field row
-        final JTextField urlTextField = new JTextField(database.getDbOptions().getRemoteLocation(), 20);
-        c.gridx = 0;
-        c.gridy = 1;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(0, 3, 3, 3);
-        c.weightx = 1;
-        c.weighty = 0;
-        c.gridwidth = 1;
-        c.fill = GridBagConstraints.NONE;
-        mainPanel.add(urlTextField, c);
+        final TextField urlTextField = new TextField(db.getDbOptions().getRemoteLocation());
+        mainPanel.getChildren().add(urlTextField);
 
-        // The Authentication Credentials label row
-        JLabel authLabel = new JLabel(Translator.translate("authenticationCredentials"));
-        c.gridx = 0;
-        c.gridy = 2;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(3, 3, 0, 0);
-        c.weightx = 1;
-        c.weighty = 0;
-        c.gridwidth = 1;
-        c.fill = GridBagConstraints.NONE;
-        mainPanel.add(authLabel, c);
+        //The Authentication Credentials label row
+        Label authLabel = new Label("Authentication Credentials");
+        mainPanel.getChildren().add(authLabel);
 
-        // The Authentication Credentials input field row
-        String[] sAccountNames = new String[accountNames.size() + 1];
+        //The Authentication Credentials input field row
+        String[] sAccountNames = new String[acntName.size() + 1];
         sAccountNames[0] = "";
-        System.arraycopy(accountNames.toArray(), 0, sAccountNames, 1, accountNames.size());
+        System.arraycopy(acntName.toArray(), 0, sAccountNames, 1, acntName.size());
         Arrays.sort(sAccountNames);
-        final JComboBox auth = new JComboBox(sAccountNames);
-        auth.setSelectedItem(database.getDbOptions().getAuthDBEntry());
-        c.gridx = 0;
-        c.gridy = 3;
-        c.anchor = GridBagConstraints.LINE_START;
-        c.insets = new Insets(0, 3, 3, 3);
-        c.weightx = 1;
-        c.weighty = 0;
-        c.gridwidth = 1;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(auth, c);
+        List<String> list = Arrays.asList(sAccountNames);
+        ObservableList<String> names = FXCollections.observableArrayList(list);
+        final ComboBox auth = new ComboBox(names);
+        auth.setValue(db.getDbOptions().getAuthDBEntry());
+        mainPanel.getChildren().add(auth);
 
-        // Some spacing
-        Component verticalSpace = Box.createVerticalGlue();
-        c.gridx = 0;
-        c.gridy = 4;
-        c.weighty = 1;
-        mainPanel.add(verticalSpace, c);
-        
-        // The buttons row
-        JPanel buttonPanel = new JPanel(new FlowLayout());
-        emptyBorderPanel.add(buttonPanel);
-        JButton okButton = new JButton(Translator.translate("ok"));
-        okButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                saveDatabaseOptions(frame, urlTextField.getText().trim(), (String) auth.getSelectedItem(), database);
+        // The Buttons Row
+        Pane buttonPanel = new Pane(new FlowPane());
+        emptyBorderPanel.getChildren().add(buttonPanel);
+        Button okButton = new Button("Ok");
+        okButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                saveDatabaseOptions(primaryStage, urlTextField.getText().trim(), (String) auth.getValue(), db);
             }
         });
-        buttonPanel.add(okButton);
-        
-        JButton cancelButton = new JButton(Translator.translate("cancel"));
-        cancelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        buttonPanel.getChildren().add(okButton);
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
                 databaseNeedsSaving = false;
-                setVisible(false);
-                dispose();
+                primaryStage.close();
             }
         });
-        buttonPanel.add(cancelButton);
-        
+        buttonPanel.getChildren().add(cancelButton);
+
+        Scene scene = new Scene(mainPane, 300, 200);
+
+        primaryStage.setScene(scene);
+
+        primaryStage.setResizable(false);
+        primaryStage.show();
     }
-    
-    
+
     private URL validateURL(String urlString) {
         URL url = null;
         try {
@@ -172,13 +143,11 @@ public class DatabasePropertiesDialog extends EscapeDialog {
         }
         return url;
     }
-    
-    
-    private void saveDatabaseOptions(JFrame parentFrame, String remoteLocation, String authEntry, PasswordDatabase database) {
 
+    private void saveDatabaseOptions(Stage primaryStage, String remoteLocation, String authEntry, PasswordDatabase database) {
         boolean canCloseWindow = false;
 
-        // If either the url or authentication entry to use have changed then update 
+        // If either the url or authentication entry to use have changed then update
         // the flag to indicate that the database needs to be saved
         if (!database.getDbOptions().getRemoteLocation().equals(remoteLocation) ||
                 !database.getDbOptions().getAuthDBEntry().equals(authEntry)) {
@@ -188,7 +157,6 @@ public class DatabasePropertiesDialog extends EscapeDialog {
             canCloseWindow = true;
         }
 
-        // If the url/remoteLocation is not empty then we need to validate the URL and upload the database
         if (!remoteLocation.equals("")) {
 
             // Check the validity of the URL given by the user
@@ -210,47 +178,57 @@ public class DatabasePropertiesDialog extends EscapeDialog {
                                 transport.put(remoteLocation, database.getDatabaseFile());
                             }
                             canCloseWindow = true;
-                        } catch (TransportException e ){
-                            JOptionPane.showMessageDialog(parentFrame, e.getMessage(), Translator.translate("transportError"), JOptionPane.ERROR_MESSAGE);                            
+                        } catch (TransportException e) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Transport Error");
+                            alert.setHeaderText(null);
+                            alert.setContentText(e.getMessage());
+                            alert.showAndWait();
                         }
                     } else {
                         canCloseWindow = true;
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(parentFrame, Translator.translate("unsupportedProtocol"), Translator.translate("invalidProtocol"), JOptionPane.ERROR_MESSAGE);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Invalid Protocol");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Unsupported Protocol");
+                    alert.showAndWait();
                 }
 
             } else {
                 // If we got here the the URL is invalid
-                JOptionPane.showMessageDialog(parentFrame, Translator.translate("givenURLIsInvalid"), Translator.translate("invalidURL"), JOptionPane.ERROR_MESSAGE);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid URL");
+                alert.setHeaderText(null);
+                alert.setContentText("Given URL is Invalid");
+                alert.showAndWait();
             }
-            
+
         } else {
             // If we were given a blank URL then the user doesn't want to maintain a remote location so we can safetly exit
             canCloseWindow = true;
         }
 
-        
-        // Attempt to save the database and then close the window
         if (canCloseWindow) {
             try {
                 if (databaseNeedsSaving) {
                     database.getDbOptions().setAuthDBEntry(authEntry);
                     database.getDbOptions().setRemoteLocation(remoteLocation);
                 }
-                setVisible(false);
-                dispose();
+                primaryStage.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(parentFrame, e.getMessage(), Translator.translate("problemSavingDB"), JOptionPane.ERROR_MESSAGE);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Problem Saving DB");
+                alert.setHeaderText(null);
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
         }
-        
     }
-
 
     public boolean getDatabaseNeedsSaving() {
         return databaseNeedsSaving;
     }
-
 }
