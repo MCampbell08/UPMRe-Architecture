@@ -1126,7 +1126,7 @@ public class MainWindow extends Application implements EventHandler {
 			} else if(item.getText() == MainWindow.OPEN_DATABASE_TXT){
 				dbActions.openDatabase();
 			} else if(item.getText() == MainWindow.OPEN_DATABASE_FROM_URL_TXT){
-				dbActions.openDatabaseFromURL();
+				//dbActions.openDatabaseFromURL();
 			} else if(item.getText() == MainWindow.SYNC_DATABASE_TXT){
 				dbActions.syncWithRemoteDatabase();
 			} else if(item.getText() == MainWindow.ADD_ACCOUNT_TXT){
@@ -1137,9 +1137,9 @@ public class MainWindow extends Application implements EventHandler {
 			} else if(item.getText() == MainWindow.DELETE_ACCOUNT_TXT){
 				dbActions.reloadDatabaseBefore(new DeleteAccountAction());
 			} else if(item.getText() == MainWindow.VIEW_ACCOUNT_TXT){
-				dbActions.viewAccount();
+				//dbActions.viewAccount();
 			} else if(item.getText() == MainWindow.OPTIONS_TXT){
-				dbActions.options();
+				//dbActions.options();
 			} else if(item.getText() == MainWindow.ABOUT_TXT){
 				dbActions.showAbout();
 			} else if(item.getText() == MainWindow.RESET_SEARCH_TXT){
@@ -1159,49 +1159,6 @@ public class MainWindow extends Application implements EventHandler {
 
 		}
 	}
-
-	public void actionPerformed(ActionEvent event) {
-
-		try {
-			if (event.getActionCommand() == MainWindow.NEW_DATABASE_TXT) {
-				dbActions.newDatabase();
-			} else if (event.getActionCommand() == MainWindow.OPEN_DATABASE_TXT) {
-				dbActions.openDatabase();
-			} else if (event.getActionCommand() == MainWindow.OPEN_DATABASE_FROM_URL_TXT) {
-				dbActions.openDatabaseFromURL();
-			} else if (event.getActionCommand() == MainWindow.SYNC_DATABASE_TXT) {
-				dbActions.syncWithRemoteDatabase();
-			} else if (event.getActionCommand() == MainWindow.ADD_ACCOUNT_TXT) {
-				dbActions.reloadDatabaseBefore(new AddAccountAction());
-			} else if (event.getActionCommand() == MainWindow.EDIT_ACCOUNT_TXT) {
-				String selectedAccName = (String) this.accountsListview.getSelectionModel().getSelectedItem();
-				dbActions.reloadDatabaseBefore(new EditAccountAction(selectedAccName));
-			} else if (event.getActionCommand() == MainWindow.DELETE_ACCOUNT_TXT) {
-				dbActions.reloadDatabaseBefore(new DeleteAccountAction());
-			} else if (event.getActionCommand() == MainWindow.VIEW_ACCOUNT_TXT) {
-				dbActions.viewAccount();
-			} else if (event.getActionCommand() == MainWindow.OPTIONS_TXT) {
-				dbActions.options();
-			} else if (event.getActionCommand() == MainWindow.ABOUT_TXT) {
-				dbActions.showAbout();
-			} else if (event.getActionCommand() == MainWindow.RESET_SEARCH_TXT) {
-				dbActions.resetSearch();
-			} else if (event.getActionCommand() == MainWindow.CHANGE_MASTER_PASSWORD_TXT) {
-				dbActions.reloadDatabaseBefore(new ChangeMasterPasswordAction());
-			} else if (event.getActionCommand() == MainWindow.DATABASE_PROPERTIES_TXT) {
-				dbActions.reloadDatabaseBefore(new ShowDatabasePropertiesAction());
-			} else if (event.getActionCommand() == MainWindow.EXIT_TXT) {
-				dbActions.exitApplication();
-			} else if (event.getActionCommand() == MainWindow.EXPORT_TXT) {
-				dbActions.export();
-			} else if (event.getActionCommand() == MainWindow.IMPORT_TXT) {
-				dbActions.reloadDatabaseBefore(new ImportAccountsAction());
-			}
-		} catch (Exception e) {
-			dbActions.errorHandler(e);
-		}
-	}
-
 	public Button getSyncWithRemoteDatabaseButton() {
 		return syncDatabaseButton;
 	}
@@ -1282,7 +1239,7 @@ public class MainWindow extends Application implements EventHandler {
 
 		public void doAction() {
 			try {
-				dbActions.editAccount(accountToEdit);
+				//dbActions.editAccount(accountToEdit);
 			} catch (Exception e) {
 				dbActions.errorHandler(e);
 			}
@@ -1312,7 +1269,7 @@ public class MainWindow extends Application implements EventHandler {
 	private class AddAccountAction implements ChangeDatabaseAction {
 		public void doAction() {
 			try {
-				dbActions.addAccount();
+				//dbActions.addAccount();
 			} catch (Exception e) {
 				dbActions.errorHandler(e);
 			}
@@ -1322,7 +1279,7 @@ public class MainWindow extends Application implements EventHandler {
 	private class ShowDatabasePropertiesAction implements ChangeDatabaseAction {
 		public void doAction() {
 			try {
-				dbActions.showDatabaseProperties();
+				//dbActions.showDatabaseProperties();
 			} catch (Exception e) {
 				dbActions.errorHandler(e);
 			}
