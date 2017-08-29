@@ -295,7 +295,7 @@ public class DatabaseActions extends Application {
         mainWindow.getDatabasePropertiesMenuItem().setDisable(true);
         mainWindow.getExportMenuItem().setDisable(true);
         mainWindow.getImportMenuItem().setDisable(true);
-        
+
         mainWindow.setTitle(database.getDatabaseFile() + " - " + MainWindow.getApplicationName());
 
         setLocalDatabaseDirty(true);
