@@ -20,12 +20,11 @@
  */
 package com._17od.upm.gui;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
@@ -34,10 +33,18 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -53,10 +60,7 @@ import com._17od.upm.platformspecific.PlatformSpecificCode;
 import com._17od.upm.util.Preferences;
 import com._17od.upm.util.Translator;
 import com._17od.upm.util.Util;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -202,8 +206,9 @@ public class MainWindow extends Application implements EventHandler {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		windowTitle = "UPM";
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../util/images/upm.gif")));
-		primaryStage.setTitle("Hi");
+		primaryStage.setTitle(windowTitle);
 
 		window_X = (int)primaryStage.getX();
 		window_Y = (int)primaryStage.getY();
@@ -227,7 +232,7 @@ public class MainWindow extends Application implements EventHandler {
 		MenuBar menuBar = createMenuBar();
 		GridPane newPane = addComponentsToPane();
 		VBox box = new VBox();
-		box.getChildren().addAll(menuBar, newPane);
+		box.getChildren().addAll(/*menuBar,*/ newPane);
 		Scene scene = new Scene(box);
 
 		//Boolean appAlwaysOnTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
@@ -240,7 +245,6 @@ public class MainWindow extends Application implements EventHandler {
 
 		dbActions = new DatabaseActions(this);
 		addComponentsToPane();
-		windowTitle = "UPM";
 
 //		boolean restore = Preferences.get(Preferences.ApplicationOptions.REMEMBER_WINDOW_POSITION, "false")
 //				.equals("true");
@@ -274,6 +278,7 @@ public class MainWindow extends Application implements EventHandler {
 //        }
 
 		GridPane pane = new GridPane();
+		pane.setPadding(new Insets(0,10,0,10));
 
 		//GridBagConstraints c = new GridBagConstraints();
 
@@ -288,7 +293,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.fill = GridBagConstraints.HORIZONTAL;
 		ToolBar toolbar = createToolBar();
 		toolbar.setOrientation(Orientation.HORIZONTAL);
-		pane.getChildren().addAll(toolbar);
+		pane.add(toolbar, 0, 0);
 
 		// Keep the frame background color consistent
 		pane.setBackground(toolbar.getBackground());
@@ -318,7 +323,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 1;
 //		c.fill = GridBagConstraints.NONE;
-		pane.getChildren().add(searchIcon);
+		pane.add(searchIcon, 2, 1);
 
 		searchField = new TextField();
 		searchField.setDisable(true);
