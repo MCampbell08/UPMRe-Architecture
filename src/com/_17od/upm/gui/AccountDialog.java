@@ -48,10 +48,14 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.UrlValidator;
 
@@ -115,46 +119,52 @@ public class AccountDialog extends Application {
 	private Stage parentWindow;
 	private boolean accountChanged = false;
 	private char defaultEchoChar;
+	private Scene scene;
+	private Pane pane;
+	private boolean readOnly = false;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		pane = new AnchorPane();
+		scene = new Scene(pane, primaryStage.getWidth(), primaryStage.getHeight());
+		scene.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_CLICKED, new EventHandler<javafx.scene.input.MouseEvent>() {
+			@Override
+			public void handle(javafx.scene.input.MouseEvent event) {
+				if(event.getClickCount() == 1){
+					primaryStage.requestFocus();
+				}
+			}
+		});
+		boolean addingAccount = false;
 
+		String title = null;
+		if (readOnly) {
+			title = Translator.translate("viewAccount");
+		} else if (!readOnly && pAccount.getAccountName().trim().equals("")) {
+			title = Translator.translate("addAccount");
+			addingAccount = true;
+		} else {
+			title = Translator.translate("editAccount");
+		}
+		primaryStage.setTitle(title);
 	}
 
 	public AccountDialog(AccountInformation account, Stage parentWindow, boolean readOnly,
 						 ArrayList existingAccounts) {
 		super();
 
-		boolean addingAccount = false;
-
+		this.readOnly = readOnly;
 		//Request focus on Account JDialog when mouse clicked
-		this.setOnMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 1) {
-					requestFocus();
-
-				}
-			}});
 
 		// Set the title based on weather we've been opened in readonly mode and
 		// weather the
 		// Account passed in is empty or not
-		String title = null;
-		if (readOnly) {
-			title = Translator.translate("viewAccount");
-		} else if (!readOnly && account.getAccountName().trim().equals("")) {
-			title = Translator.translate("addAccount");
-			addingAccount = true;
-		} else {
-			title = Translator.translate("editAccount");
-		}
-		setTitle(title);
 
 		this.pAccount = account;
 		this.existingAccounts = existingAccounts;
 		this.parentWindow = parentWindow;
 
-		getContentPane().setLayout(new GridBagLayout());
+		//getContentPane().setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 
 		GridPane container = new GridPane();
@@ -415,9 +425,9 @@ public class AccountDialog extends Application {
 				password.setText(Password);
 			}
 		});
-		if (addingAccount) {
-			generateRandomPasswordButton.fire();
-		}
+//		if (addingAccount) {
+//			generateRandomPasswordButton.fire();
+//		}
 		c.gridx = 1;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.LINE_START;
@@ -1062,7 +1072,8 @@ public class AccountDialog extends Application {
 				ex.printStackTrace();
 			}
 		}
-		textArea.getChildrenUnmodifiable().addAll(text, textArea.getCaretPosition());
+		textArea.setText(text);
+		textArea.getChildrenUnmodifiable().addAll(textArea);
 		textArea.requestFocus();
 	}
 

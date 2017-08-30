@@ -76,7 +76,7 @@ public class OptionsDialog extends EscapeDialog {
 	private boolean languageChanged;
 	private char defaultEchoChar;
 
-	public OptionsDialog(Frame frame, String title, boolean modal) {
+	public OptionsDialog(Application frame, String title, boolean modal) {
 		super(frame, title, modal);
 	}
 
@@ -319,7 +319,8 @@ public class OptionsDialog extends EscapeDialog {
 		// *** The HTTPS Section
 		// ******************
 		// Create a pane with an title etched border
-		Border httpsEtchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder, " HTTPS ");
+		//Border httpsEtchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder, " HTTPS ");
+		Border httpsEtchedTitleBorder = Border.EMPTY;
 		final GridPane httpsPanel = new GridPane();
 		httpsPanel.setBorder(httpsEtchedTitleBorder);
 		emptyBorderPanel.getChildren().add(httpsPanel);
@@ -343,8 +344,9 @@ public class OptionsDialog extends EscapeDialog {
 		// *** The Proxy Section
 		// ******************
 		// Create a pane with an title etched border
-		Border proxyEtchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder,
-				' ' + Translator.translate("httpProxy") + ' ');
+//		Border proxyEtchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder,
+//				' ' + Translator.translate("httpProxy") + ' ');
+		Border proxyEtchedTitleBorder = Border.EMPTY;
 		final GridPane proxyPanel = new GridPane();
 		proxyPanel.setBorder(proxyEtchedTitleBorder);
 		emptyBorderPanel.getChildren().add(proxyPanel);
@@ -505,7 +507,7 @@ public class OptionsDialog extends EscapeDialog {
 		emptyBorderPanel.getChildren().add(buttonPanel);
 		Button okButton = new Button(Translator.translate("ok"));
 		// Link Enter key to okButton
-		getRootPane().setDefaultButton(okButton);
+		//getRootPane().setDefaultButton(okButton);
 		okButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 			@Override
 			public void handle(javafx.event.ActionEvent event) {
@@ -518,8 +520,8 @@ public class OptionsDialog extends EscapeDialog {
 		cancelButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 			@Override
 			public void handle(javafx.event.ActionEvent event) {
-				setVisible(false);
-				dispose();
+				primaryStage.close();
+				event.consume();
 			}
 		});
 		buttonPanel.getChildren().add(cancelButton);

@@ -16,12 +16,12 @@ public class EscapeDialog extends Application {
 
     private static final long serialVersionUID = 1L;
 
-    public EscapeDialog(Frame frame, String title, boolean modal) {
+    public EscapeDialog(Application frame, String title, boolean modal) {
         super();
     }
 
 
-    public EscapeDialog(Frame frame, boolean modal) {
+    public EscapeDialog(Application frame, boolean modal) {
         super();
     }
 

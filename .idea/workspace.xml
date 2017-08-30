@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0adc7940-2796-4165-86a5-46f8d88bff97" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/_17od/upm/util/css/style.css" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/AccountDialog.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/AccountDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/DatabaseActions.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/DatabaseActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/DatabasePropertiesDialog.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/DatabasePropertiesDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/_17od/upm/gui/OpenDatabaseFromURLDialog.java" afterPath="$PROJECT_DIR$/src/com/_17od/upm/gui/OpenDatabaseFromURLDialog.java" />
@@ -22,31 +20,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AboutDialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/AboutDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OptionsDialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/OptionsDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DatabaseActions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/DatabaseActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="507" column="29" lean-forward="false" selection-start-line="507" selection-start-column="29" selection-end-line="507" selection-end-column="29" />
+            <state relative-caret-position="187">
+              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3096#3097#0" expanded="true" />
+                <element signature="e#3140#3141#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainWindow.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="560" column="68" lean-forward="true" selection-start-line="560" selection-start-column="68" selection-end-line="560" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
+                <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
+                <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
+                <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
+                <element signature="class#DeleteAccountAction#0;class#MainWindow#0" expanded="false" />
+                <element signature="class#AddAccountAction#0;class#MainWindow#0" expanded="false" />
+                <element signature="class#ShowDatabasePropertiesAction#0;class#MainWindow#0" expanded="false" />
+                <element signature="class#ImportAccountsAction#0;class#MainWindow#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileOutputStream.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_71/src.zip!/java/io/FileOutputStream.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="463">
+              <caret line="435" column="0" lean-forward="true" selection-start-line="435" selection-start-column="0" selection-end-line="435" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabasePropertiesDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/DatabasePropertiesDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="70" column="36" lean-forward="false" selection-start-line="70" selection-start-column="36" selection-end-line="70" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,12 +76,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabasePropertiesDialog.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/DatabasePropertiesDialog.java">
+      <file leaf-file-name="EscapeDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="74" column="47" lean-forward="false" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
-              <folding />
+            <state relative-caret-position="323">
+              <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#543#544#0" expanded="true" />
+                <element signature="e#566#567#0" expanded="true" />
+                <element signature="e#628#629#0" expanded="true" />
+                <element signature="e#651#652#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OpenDatabaseFromURLDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/OpenDatabaseFromURLDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="50" column="34" lean-forward="true" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5926#5927#0" expanded="true" />
+                <element signature="e#5966#5967#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,12 +139,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/_17od/upm/platformspecific/mac/MACOSXSpecificCode.java" />
-        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/OptionsDialog.java" />
-        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/DatabaseActions.java" />
-        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java" />
         <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java" />
-        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/DatabasePropertiesDialog.java" />
+        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/SortedListModel.java" />
+        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/AccountDialog.java" />
+        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/OptionsDialog.java" />
+        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java" />
+        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/DatabaseActions.java" />
+        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/OpenDatabaseFromURLDialog.java" />
+        <option value="$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java" />
       </list>
     </option>
   </component>
@@ -134,8 +179,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -161,11 +205,19 @@
               <item name="upm" type="462c0819:PsiDirectoryNode" />
               <item name="gui" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="upm-src-1.14" type="b2602c69:ProjectViewProjectNode" />
+              <item name="upm-src-1.14" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="upm" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -311,16 +363,17 @@
       <workItem from="1503794328286" duration="4707000" />
       <workItem from="1503853718608" duration="4690000" />
       <workItem from="1503946693035" duration="365000" />
-      <workItem from="1504035233344" duration="147000" />
+      <workItem from="1504035233344" duration="3925000" />
+      <workItem from="1504058606817" duration="604000" />
+      <workItem from="1504059232074" duration="4608000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20291000" />
+    <option name="totallyTimeSpent" value="29281000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -331,7 +384,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18107833" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37843338" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -390,12 +443,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java</url>
-          <line>49</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java</url>
           <line>216</line>
           <properties />
@@ -403,37 +450,30 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java</url>
-          <line>284</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java</url>
           <line>230</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java</url>
+          <line>261</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/DatabaseActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="297" column="0" lean-forward="true" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/OptionsDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2806#2807#0" expanded="true" />
+            <element signature="e#2839#2840#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -443,6 +483,8 @@
           <caret line="172" column="26" lean-forward="false" selection-start-line="172" selection-start-column="26" selection-end-line="172" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5926#5927#0" expanded="true" />
+            <element signature="e#5966#5967#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -451,7 +493,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="61" column="8" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9132#9133#0" expanded="false" />
+            <element signature="e#9174#9175#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -461,29 +507,20 @@
           <caret line="242" column="0" lean-forward="false" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java" />
     <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
             <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#main#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
@@ -501,6 +538,10 @@
           <caret line="48" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#651#652#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -517,7 +558,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2806#2807#0" expanded="true" />
+            <element signature="e#2839#2840#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -525,7 +569,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="61" column="8" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9132#9133#0" expanded="false" />
+            <element signature="e#9174#9175#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -535,6 +583,8 @@
           <caret line="172" column="26" lean-forward="true" selection-start-line="172" selection-start-column="26" selection-end-line="172" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5926#5927#0" expanded="true" />
+            <element signature="e#5966#5967#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -545,29 +595,20 @@
           <caret line="242" column="0" lean-forward="true" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java" />
     <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
             <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#main#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
@@ -585,6 +626,10 @@
           <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#651#652#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -601,7 +646,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1122">
           <caret line="66" column="13" lean-forward="false" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -609,7 +656,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9132#9133#0" expanded="false" />
+            <element signature="e#9174#9175#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -619,6 +670,8 @@
           <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5926#5927#0" expanded="true" />
+            <element signature="e#5966#5967#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -629,6 +682,8 @@
           <caret line="118" column="24" lean-forward="false" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -639,11 +694,7 @@
           <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
             <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#main#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
@@ -661,6 +712,10 @@
           <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#651#652#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -677,7 +732,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="66" column="13" lean-forward="false" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -685,7 +742,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9132#9133#0" expanded="false" />
+            <element signature="e#9174#9175#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -695,6 +756,8 @@
           <caret line="118" column="24" lean-forward="true" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -705,6 +768,8 @@
           <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5926#5927#0" expanded="true" />
+            <element signature="e#5966#5967#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -715,11 +780,7 @@
           <caret line="274" column="14" lean-forward="false" selection-start-line="274" selection-start-column="14" selection-end-line="274" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
             <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#main#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
@@ -736,7 +797,7 @@
         <state relative-caret-position="102">
           <caret line="63" column="13" lean-forward="false" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -747,11 +808,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
             <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#main#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
@@ -767,7 +824,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8891">
           <caret line="580" column="12" lean-forward="false" selection-start-line="580" selection-start-column="12" selection-end-line="580" selection-end-column="12" />
-          <folding />
+          <folding>
+            <element signature="e#2806#2807#0" expanded="true" />
+            <element signature="e#2839#2840#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -777,6 +837,8 @@
           <caret line="133" column="25" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1168" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -787,11 +849,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
             <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#main#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
             <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
@@ -809,6 +867,8 @@
           <caret line="107" column="12" lean-forward="false" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -820,32 +880,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_71/javafx-src.zip!/javafx/stage/Stage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="240" column="49" lean-forward="false" selection-start-line="240" selection-start-column="49" selection-end-line="240" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_71/javafx-src.zip!/javafx/stage/Window.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="1192" column="0" lean-forward="true" selection-start-line="1192" selection-start-column="0" selection-end-line="1192" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/AccountDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="66" column="13" lean-forward="false" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/SortedListModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -857,13 +895,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/PasswordDatabaseException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_71/javafx-src.zip!/javafx/application/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -871,43 +902,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java">
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/SortedListModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="221">
+          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/PasswordDatabaseException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-221">
-          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#MainWindow#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#main#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#addComponentsToPane#0;class#MainWindow#0" expanded="false" />
-            <element signature="method#createToolBar#0;class#MainWindow#0" expanded="false" />
-            <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
-            <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
-            <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
-            <element signature="class#DeleteAccountAction#0;class#MainWindow#0" expanded="false" />
-            <element signature="class#AddAccountAction#0;class#MainWindow#0" expanded="false" />
-            <element signature="class#ShowDatabasePropertiesAction#0;class#MainWindow#0" expanded="false" />
-            <element signature="class#ImportAccountsAction#0;class#MainWindow#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialogRef.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="51">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -919,39 +925,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/DatabaseActions.java">
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/AccountDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="507" column="29" lean-forward="false" selection-start-line="507" selection-start-column="29" selection-end-line="507" selection-end-column="29" />
+        <state relative-caret-position="2710">
+          <caret line="1078" column="0" lean-forward="true" selection-start-line="1078" selection-start-column="0" selection-end-line="1078" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/OpenDatabaseFromURLDialog.java">
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/EscapeDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="48" column="52" lean-forward="true" selection-start-line="48" selection-start-column="52" selection-end-line="48" selection-end-column="52" />
+        <state relative-caret-position="323">
+          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#651#652#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/OptionsDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-2363">
+          <caret line="78" column="36" lean-forward="false" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
+          <folding>
+            <element signature="e#2806#2807#0" expanded="true" />
+            <element signature="e#2839#2840#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/DatabasePropertiesDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="74" column="47" lean-forward="false" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
+        <state relative-caret-position="391">
+          <caret line="70" column="36" lean-forward="false" selection-start-line="70" selection-start-column="36" selection-end-line="70" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_71/javafx-src.zip!/javafx/stage/Stage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="240" column="0" lean-forward="false" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/OpenDatabaseFromURLDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="50" column="34" lean-forward="true" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5926#5927#0" expanded="true" />
+            <element signature="e#5966#5967#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/DatabaseActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_71/src.zip!/java/io/FileOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="435" column="0" lean-forward="true" selection-start-line="435" selection-start-column="0" selection-end-line="435" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/_17od/upm/gui/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="560" column="68" lean-forward="true" selection-start-line="560" selection-start-column="68" selection-end-line="560" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#setAppAlwaysonTop#0;class#MainWindow#0" expanded="false" />
+            <element signature="class#ChangeDatabaseAction#0;class#MainWindow#0" expanded="false" />
+            <element signature="class#EditAccountAction#0;class#MainWindow#0" expanded="false" />
+            <element signature="class#ChangeMasterPasswordAction#0;class#MainWindow#0" expanded="false" />
+            <element signature="class#DeleteAccountAction#0;class#MainWindow#0" expanded="false" />
+            <element signature="class#AddAccountAction#0;class#MainWindow#0" expanded="false" />
+            <element signature="class#ShowDatabasePropertiesAction#0;class#MainWindow#0" expanded="false" />
+            <element signature="class#ImportAccountsAction#0;class#MainWindow#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -499,10 +499,10 @@ public class DatabaseActions extends Stage {
 
             //Initialise the AccountDialog
             AccountInformation accInfo = new AccountInformation();
-            AccountDialog accDialog = new AccountDialog(accInfo, mainWindow, false, accountNames);
-            accDialog.pack();
-            accDialog.setLocationRelativeTo(mainWindow);
-            accDialog.show();
+            AccountDialog accDialog = new AccountDialog(accInfo, this, false, accountNames);
+//            accDialog.pack();
+//            accDialog.setLocationRelativeTo(mainWindow);
+//            accDialog.show();
 
             //If the user press OK then save the new account to the database
             if (accDialog.okClicked()) {
@@ -561,10 +561,10 @@ public class DatabaseActions extends Stage {
 
     public void viewAccount() {
         AccountInformation accInfo = getSelectedAccount();
-        AccountDialog accDialog = new AccountDialog(accInfo, mainWindow, true, accountNames);
-        accDialog.pack();
-        accDialog.setLocationRelativeTo(mainWindow);
-        accDialog.show();
+        AccountDialog accDialog = new AccountDialog(accInfo, this, true, accountNames);
+//        accDialog.pack();
+//        accDialog.setLocationRelativeTo(mainWindow);
+//        accDialog.show();
     }
 
 
@@ -580,10 +580,10 @@ public class DatabaseActions extends Stage {
                                 "accountDoesntExist", accountName));
             }
 
-            AccountDialog accDialog = new AccountDialog(accInfo, mainWindow, false, accountNames);
-            accDialog.pack();
-            accDialog.setLocationRelativeTo(mainWindow);
-            accDialog.show();
+            AccountDialog accDialog = new AccountDialog(accInfo, this, false, accountNames);
+//            accDialog.pack();
+//            accDialog.setLocationRelativeTo(mainWindow);
+//            accDialog.show();
 
             //If the ok button was clicked then save the account to the database and update the
             //listview with the new account name (if it's changed)
@@ -679,10 +679,10 @@ public class DatabaseActions extends Stage {
 
 
     public void options() {
-        OptionsDialog oppDialog = new OptionsDialog(mainWindow);
-        oppDialog.pack();
-        oppDialog.setLocationRelativeTo(mainWindow);
-        oppDialog.show();
+        OptionsDialog oppDialog = new OptionsDialog(mainWindow, "Options Dialog", true);
+//        oppDialog.pack();
+//        oppDialog.setLocationRelativeTo(mainWindow);
+//        oppDialog.show();
 
         configureAutoLock();
 
@@ -713,10 +713,10 @@ public class DatabaseActions extends Stage {
     public void showDatabaseProperties() throws ProblemReadingDatabaseFile, IOException, CryptoException, PasswordDatabaseException {
         try {
             if (getLatestVersionOfDatabase()) {
-                DatabasePropertiesDialog dbPropsDialog = new DatabasePropertiesDialog(mainWindow, getAccountNames(), database);
-                dbPropsDialog.pack();
-                dbPropsDialog.setLocationRelativeTo(mainWindow);
-                dbPropsDialog.show();
+                DatabasePropertiesDialog dbPropsDialog = new DatabasePropertiesDialog(getAccountNames(), database);
+//                dbPropsDialog.pack();
+//                dbPropsDialog.setLocationRelativeTo(mainWindow);
+//                dbPropsDialog.show();
                 if (dbPropsDialog.getDatabaseNeedsSaving()) {
                     saveDatabase();
                 }
@@ -743,9 +743,9 @@ public class DatabaseActions extends Stage {
 
         // Ask the user for the remote database location
         OpenDatabaseFromURLDialog openDBDialog = new OpenDatabaseFromURLDialog(mainWindow);
-        openDBDialog.pack();
-        openDBDialog.setLocationRelativeTo(mainWindow);
-        openDBDialog.show();
+//        openDBDialog.pack();
+//        openDBDialog.setLocationRelativeTo(mainWindow);
+//        openDBDialog.show();
 
         if (openDBDialog.getOkClicked()) {
             // Get the remote database options

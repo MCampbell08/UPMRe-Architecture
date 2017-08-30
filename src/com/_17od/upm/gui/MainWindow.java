@@ -190,7 +190,7 @@ public class MainWindow extends Application implements EventHandler {
 
 		PlatformSpecificCode.getInstance().initialiseApplication(this);
 
-		dbActions = new DatabaseActions(this);
+		//dbActions = new DatabaseActions(this);
 
 		// Set up the content pane.
 		addComponentsToPane();
@@ -259,6 +259,7 @@ public class MainWindow extends Application implements EventHandler {
 				}
 			}
 		});
+		launch(args);
 	}
 
 	@Override
@@ -338,7 +339,7 @@ public class MainWindow extends Application implements EventHandler {
 		pane.getChildren().add(new Separator());
 
 		// The search field row
-		Image backgroundImage10 = new Image(getClass().getResourceAsStream("/util/search.gif"));
+		Image backgroundImage10 = new Image(getClass().getResourceAsStream("../util/images/search.gif"));
 		searchIcon = new Label();
 		searchIcon.setGraphic(new ImageView(backgroundImage10));
 		//searchIcon.setDisabledIcon(Util.loadImage("search_d.gif"));
@@ -389,7 +390,7 @@ public class MainWindow extends Application implements EventHandler {
 		pane.getChildren().add(searchField);
 
 
-		Image backgroundImage9 = new Image(getClass().getResourceAsStream("/util/stop.gif"));
+		Image backgroundImage9 = new Image(getClass().getResourceAsStream("../util/images/stop.gif"));
 		//resetSearchButton = new Button(Util.loadImage("stop.gif"));
 		resetSearchButton = new Button();
 		resetSearchButton.setGraphic(new ImageView(backgroundImage9));
@@ -403,9 +404,9 @@ public class MainWindow extends Application implements EventHandler {
 			}
 		});
 		resetSearchButton.setOnAction(this);
-		Border other = new Border(new BorderStroke(javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
-		databaseFileChangedPanel.setBorder(other);
-		resetSearchButton.setBorder(other);
+//		Border other = new Border(new BorderStroke(javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+//		databaseFileChangedPanel.setBorder(other);
+//		resetSearchButton.setBorder(other);
 		resetSearchButton.setDisable(true);
 //		c.gridx = 2;
 //		c.gridy = 2;
@@ -555,7 +556,7 @@ public class MainWindow extends Application implements EventHandler {
 //		toolbar.setRollover(true);
 
 		// The "Add Account" button
-		Image backgroundImage = new Image(getClass().getResourceAsStream("/util/add_account.gif"));
+		Image backgroundImage = new Image(getClass().getResourceAsStream("../util/images/add_account.gif"));
 		addAccountButton = new Button();
 		addAccountButton.setGraphic(new ImageView(backgroundImage));
 		addAccountButton.setTooltip(new Tooltip(Translator.translate(ADD_ACCOUNT_TXT)));
@@ -568,10 +569,11 @@ public class MainWindow extends Application implements EventHandler {
 				addAccountMenuItem.setText(ADD_ACCOUNT_TXT);
 			}
 		});
-		toolbar.getChildrenUnmodifiable().add(addAccountButton);
+
+		toolbar.getItems().add(addAccountButton);
 
 		// The "Edit Account" button
-		Image backgroundImage2 = new Image(getClass().getResourceAsStream("/util/edit_account.gif"));
+		Image backgroundImage2 = new Image(getClass().getResourceAsStream("../util/images/edit_account.gif"));
 		//editAccountButton = new Button(Util.loadImage("edit_account.gif"));
 		editAccountButton = new Button();
 		editAccountButton.setGraphic(new ImageView(backgroundImage2));
@@ -585,10 +587,10 @@ public class MainWindow extends Application implements EventHandler {
 				editAccountMenuItem.setText(EDIT_ACCOUNT_TXT);
 			}
 		});
-		toolbar.getChildrenUnmodifiable().add(editAccountButton);
+		toolbar.getItems().add(editAccountButton);
 
 		// The "Delete Account" button
-		Image backgroundImage3 = new Image(getClass().getResourceAsStream("/util/delete_account.gif"));
+		Image backgroundImage3 = new Image(getClass().getResourceAsStream("../util/images/delete_account.gif"));
 		//deleteAccountButton = new Button(Util.loadImage("delete_account.gif"));
 		deleteAccountButton = new Button();
 		deleteAccountButton.setGraphic(new ImageView(backgroundImage3));
@@ -602,12 +604,12 @@ public class MainWindow extends Application implements EventHandler {
 				deleteAccountMenuItem.setText(DELETE_ACCOUNT_TXT);
 			}
 		});
-		toolbar.getChildrenUnmodifiable().add(deleteAccountButton);
+		toolbar.getItems().add(deleteAccountButton);
 
-		toolbar.getChildrenUnmodifiable().add(new Separator());
+		toolbar.getItems().add(new Separator());
 
 		// The "Copy Username" button
-		Image backgroundImage4 = new Image(getClass().getResourceAsStream("/util/copy_username.gif"));
+		Image backgroundImage4 = new Image(getClass().getResourceAsStream("../util/images/copy_username.gif"));
 		//copyUsernameButton = new Button(Util.loadImage("copy_username.gif"));
 		copyUsernameButton = new Button();
 		copyUsernameButton.setGraphic(new ImageView(backgroundImage4));
@@ -620,10 +622,10 @@ public class MainWindow extends Application implements EventHandler {
 			}
 		});
 		copyUsernameButton.setDisable(true);
-		toolbar.getChildrenUnmodifiable().add(copyUsernameButton);
+		toolbar.getItems().add(copyUsernameButton);
 
 		// The "Copy Password" button
-		Image backgroundImage5 = new Image(getClass().getResourceAsStream("/util/copy_password.gif"));
+		Image backgroundImage5 = new Image(getClass().getResourceAsStream("../util/images/copy_password.gif"));
 		//copyPasswordButton = new Button(Util.loadImage("copy_password.gif"));
 		copyPasswordButton = new Button();
 		copyPasswordButton.setGraphic(new ImageView(backgroundImage5));
@@ -636,10 +638,10 @@ public class MainWindow extends Application implements EventHandler {
 			}
 		});
 		copyPasswordButton.setDisable(true);
-		toolbar.getChildrenUnmodifiable().add(copyPasswordButton);
+		toolbar.getItems().add(copyPasswordButton);
 
 		// The "Launch URL" button
-		Image backgroundImage6 = new Image(getClass().getResourceAsStream("/util/launch_URL.gif"));
+		Image backgroundImage6 = new Image(getClass().getResourceAsStream("../util/images/launch_URL.gif"));
 		//launchURLButton = new Button(Util.loadImage("launch_URL.gif"));
 		launchURLButton = new Button();
 		launchURLButton.setGraphic(new ImageView(backgroundImage6));
@@ -678,12 +680,12 @@ public class MainWindow extends Application implements EventHandler {
 			}
 		});
 		launchURLButton.setDisable(true);
-		toolbar.getChildrenUnmodifiable().add(launchURLButton);
+		toolbar.getItems().add(launchURLButton);
 
-		toolbar.getChildrenUnmodifiable().add(new Separator());
+		toolbar.getItems().add(new Separator());
 
 		// The "Option" button
-		Image backgroundImage7 = new Image(getClass().getResourceAsStream("/util/options.gif"));
+		Image backgroundImage7 = new Image(getClass().getResourceAsStream("../util/images/options.gif"));
 		//optionsButton = new Button(Util.loadImage("options.gif"));
 		optionsButton = new Button();
 		optionsButton.setGraphic(new ImageView(backgroundImage7));
@@ -697,12 +699,12 @@ public class MainWindow extends Application implements EventHandler {
 				optionsButton.setText(OPTIONS_TXT);
 			}
 		});
-		toolbar.getChildrenUnmodifiable().add(optionsButton);
+		toolbar.getItems().add(optionsButton);
 
-		toolbar.getChildrenUnmodifiable().add(new Separator());
+		toolbar.getItems().add(new Separator());
 
 		// The Sync database button
-		Image backgroundImage8 = new Image(getClass().getResourceAsStream("/util/sync.png"));
+		Image backgroundImage8 = new Image(getClass().getResourceAsStream("../util/images/sync.png"));
 		//syncDatabaseButton = new Button(Util.loadImage("sync.png"));
 		syncDatabaseButton = new Button();
 		syncDatabaseButton.setGraphic(new ImageView(backgroundImage8));
@@ -716,7 +718,7 @@ public class MainWindow extends Application implements EventHandler {
 				syncWithRemoteDatabaseMenuItem.setText(SYNC_DATABASE_TXT);
 			}
 		});
-		toolbar.getChildrenUnmodifiable().add(syncDatabaseButton);
+		toolbar.getItems().add(syncDatabaseButton);
 
 		return toolbar;
 	}

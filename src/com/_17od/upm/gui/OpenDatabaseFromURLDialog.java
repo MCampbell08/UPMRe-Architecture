@@ -20,63 +20,52 @@
  */
 package com._17od.upm.gui;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
 
 import com._17od.upm.util.Translator;
+import javafx.application.Application;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
 
 
 public class OpenDatabaseFromURLDialog extends EscapeDialog {
 
     private static final long serialVersionUID = 1L;
 
-    public JTextField urlTextField;
-    public JTextField usernameTextField;
-    public JPasswordField passwordTextField;
+    public TextField urlTextField;
+    public TextField usernameTextField;
+    public PasswordField passwordTextField;
     private boolean okClicked = false;
 
 
-    public OpenDatabaseFromURLDialog(final JFrame frame) {
+    public OpenDatabaseFromURLDialog(final Application frame) {
         super(frame, Translator.translate("openDatabaseFromURL"), true);
 
-        Container container = getContentPane();
+        Pane container = new Pane();
 
         // Create a pane with an empty border for spacing
-        Border emptyBorder = BorderFactory.createEmptyBorder(2, 5, 5, 5);
-        JPanel emptyBorderPanel = new JPanel();
-        emptyBorderPanel.setLayout(new BoxLayout(emptyBorderPanel, BoxLayout.Y_AXIS));
+        Border emptyBorder = Border.EMPTY;
+        Pane emptyBorderPanel = new Pane();
+        emptyBorderPanel.setLayoutX(5);
+        emptyBorderPanel.setLayoutY(5);
         emptyBorderPanel.setBorder(emptyBorder);
-        container.add(emptyBorderPanel);
+        container.getChildren().add(emptyBorderPanel);
 
         // Create a pane with an title etched border
-        Border etchedBorder = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-        Border etchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder, ' ' + Translator.translate("remoteLocation") + ' ');
-        JPanel mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(etchedTitleBorder);
-        emptyBorderPanel.add(mainPanel);
+//        Border etchedBorder = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+//        Border etchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder, ' ' + Translator.translate("remoteLocation") + ' ');
+        GridPane mainPanel = new GridPane();
+//        mainPanel.setBorder(etchedTitleBorder);
+        emptyBorderPanel.getChildren().add(mainPanel);
 
         GridBagConstraints c = new GridBagConstraints();
 
         // The URL Label row
-        JLabel urlLabel = new JLabel(Translator.translate("url"));
+        Label urlLabel = new Label(Translator.translate("url"));
         c.gridx = 0;
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_START;
@@ -85,10 +74,10 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(urlLabel, c);
+        //mainPanel.add(urlLabel, 0, 0);
 
         // The Remote URL input field row
-        urlTextField = new JTextField(20);
+        urlTextField = new TextField();
         c.gridx = 0;
         c.gridy = 1;
         c.anchor = GridBagConstraints.LINE_START;
@@ -97,10 +86,10 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(urlTextField, c);
+        mainPanel.add(urlTextField, 1,0);
 
         // The username label field
-        JLabel usernameLabel = new JLabel(Translator.translate("username"));
+        Label usernameLabel = new Label(Translator.translate("username"));
         c.gridx = 0;
         c.gridy = 2;
         c.anchor = GridBagConstraints.LINE_START;
@@ -109,10 +98,10 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(usernameLabel, c);
+        //mainPanel.add(usernameLabel, 2, 0);
 
         // The username inpur field
-        usernameTextField = new JTextField(10);
+        usernameTextField = new TextField();
         c.gridx = 0;
         c.gridy = 3;
         c.anchor = GridBagConstraints.LINE_START;
@@ -121,10 +110,10 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.NONE;
-        mainPanel.add(usernameTextField, c);
+        mainPanel.add(usernameTextField, 3, 0);
 
         // The password label field
-        JLabel passwordLabel = new JLabel(Translator.translate("password"));
+        Label passwordLabel = new Label(Translator.translate("password"));
         c.gridx = 0;
         c.gridy = 4;
         c.anchor = GridBagConstraints.LINE_START;
@@ -133,10 +122,10 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(passwordLabel, c);
+        //mainPanel.add(passwordLabel, 4, 0);
 
         // The username inpur field
-        passwordTextField = new JPasswordField(10);
+        passwordTextField = new PasswordField();
         c.gridx = 0;
         c.gridy = 5;
         c.anchor = GridBagConstraints.LINE_START;
@@ -145,52 +134,49 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.NONE;
-        mainPanel.add(passwordTextField, c);
+        mainPanel.add(passwordTextField, 5, 0);
 
         // Some spacing
-        Component verticalSpace = Box.createVerticalGlue();
+        VBox verticalSpace = new VBox(1);
+        verticalSpace.setSpacing(5);
         c.gridy = 6;
         c.weighty = 1;
-        mainPanel.add(verticalSpace, c);
+        mainPanel.getChildren().add(verticalSpace);
 
         // The buttons row
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        Panel buttonPanel = new Panel(new FlowLayout());
 
-        JButton okButton = new JButton(Translator.translate("ok"));
+        Button okButton = new Button(Translator.translate("ok"));
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 okClicked = true;
-                setVisible(false);
-                dispose();
             }
         });
         buttonPanel.add(okButton);
 
-        JButton cancelButton = new JButton(Translator.translate("cancel"));
+        Button cancelButton = new Button(Translator.translate("cancel"));
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                dispose();
             }
         });
         buttonPanel.add(cancelButton);
 
-        emptyBorderPanel.add(buttonPanel);
+        //emptyBorderPanel.getChildren().add(buttonPanel);
 
     }
 
 
-    public JTextField getPasswordTextField() {
+    public TextField getPasswordTextField() {
         return passwordTextField;
     }
 
 
-    public JTextField getUrlTextField() {
+    public TextField getUrlTextField() {
         return urlTextField;
     }
 
 
-    public JTextField getUsernameTextField() {
+    public TextField getUsernameTextField() {
         return usernameTextField;
     }
 
