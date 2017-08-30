@@ -41,6 +41,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.UrlValidator;
@@ -146,10 +147,9 @@ public class MainWindow extends Application implements EventHandler {
 //
 //		PlatformSpecificCode.getInstance().initialiseApplication(this);
 //
-//		//dbActions = new DatabaseActions(this);
+
 //
 //		// Set up the content pane.
-//		addComponentsToPane();
 //
 //		// Add listener to store current position and size on closing
 //
@@ -232,13 +232,14 @@ public class MainWindow extends Application implements EventHandler {
 			@Override
 			public void handle(javafx.stage.WindowEvent event) {
 				event.consume();
-				storeWindowBounds();
-				try {
-					Preferences.save();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+//				storeWindowBounds();
+//				try {
+//					Preferences.save();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
 				System.out.println("Closing Application");
+				primaryStage.close();
 			}
 		});
 		MenuBar menuBar = createMenuBar();
@@ -248,14 +249,16 @@ public class MainWindow extends Application implements EventHandler {
 		Scene scene = new Scene(box);
 
 
-//		Boolean appAlwaysOnTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
-//		primaryStage.setAlwaysOnTop(appAlwaysOnTop.booleanValue());
+		//Boolean appAlwaysOnTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
+		//primaryStage.setAlwaysOnTop(appAlwaysOnTop.booleanValue());
+
+		primaryStage.setAlwaysOnTop(true);
 
 		primaryStage.setScene(scene);
 		primary_stage = primaryStage;
 		primaryStage.show();
-		// -------------------------- // primaryStage.setVisible(true); // ---------------------------- //
-
+		dbActions = new DatabaseActions(this);
+		addComponentsToPane();
 	}
 
 	private GridPane addComponentsToPane() {
