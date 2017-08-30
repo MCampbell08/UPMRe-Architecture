@@ -96,7 +96,7 @@ public class DatabaseActions extends Stage {
      */
     public void newDatabase() throws IOException, CryptoException {
 
-        File newDatabaseFile = getSaveAsFile(Translator.translate("newPasswordDatabase"));
+        File newDatabaseFile = getSaveAsFile("newPasswordDatabase");
         if (newDatabaseFile == null) {
             return;
         }
@@ -111,9 +111,9 @@ public class DatabaseActions extends Stage {
             confirmedMasterPassword.setText("");
             //OptionPane pane = new OptionPane(new Object[] {Translator.translate("enterMasterPassword"), masterPassword, Translator.translate("confirmation"), confirmedMasterPassword}, JOptionPane.QUESTION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(Translator.translate("enterMasterPassword"));
-            alert.setHeaderText(Translator.translate("confirmation"));
-            alert.setContentText(Translator.translate("masterPassword"));
+            alert.setTitle("enterMasterPassword");
+            alert.setHeaderText("confirmation");
+            alert.setContentText("masterPassword");
             ButtonType ok = new ButtonType("OK");
             ButtonType cancel = new ButtonType("Cancel");
             alert.getButtonTypes().setAll(ok, cancel);
@@ -121,7 +121,7 @@ public class DatabaseActions extends Stage {
             if (result.get() == ok) {
                 if (!Arrays.equals(masterPassword.getText().toCharArray(), confirmedMasterPassword.getText().toCharArray())) {
                     Alert error = new Alert(Alert.AlertType.ERROR);
-                    error.setContentText(Translator.translate("passwordsDontMatch"));
+                    error.setContentText("passwordsDontMatch");
                     error.showAndWait();
                 } else {
                     passwordsMatch = true;
@@ -148,8 +148,8 @@ public class DatabaseActions extends Stage {
         if (Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP) == null ||
                 Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP).equals("")) {
             Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
-            newAlert.setTitle(Translator.translate("setNewLoadOnStartupDatabase"));
-            newAlert.setHeaderText(Translator.translate("newPasswordDatabase"));
+            newAlert.setTitle("setNewLoadOnStartupDatabase");
+            newAlert.setHeaderText("newPasswordDatabase");
             ButtonType yes = new ButtonType("Yes");
             ButtonType no = new ButtonType("No");
             newAlert.getButtonTypes().setAll(yes, no);
@@ -171,7 +171,7 @@ public class DatabaseActions extends Stage {
             boolean passwordCorrect = false;
             boolean okClicked = true;
             do {
-                char[] password = askUserForPassword(Translator.translate("enterDatabasePassword"));
+                char[] password = askUserForPassword("enterDatabasePassword");
                 if (password == null) {
                     okClicked = false;
                 } else {
@@ -180,7 +180,7 @@ public class DatabaseActions extends Stage {
                         passwordCorrect = true;
                     } catch (InvalidPasswordException e) {
                         Alert wrong = new Alert(Alert.AlertType.ERROR);
-                        wrong.setHeaderText(Translator.translate("incorrectPassword"));
+                        wrong.setHeaderText("incorrectPassword");
                         wrong.showAndWait();
                     }
                 }
@@ -205,9 +205,9 @@ public class DatabaseActions extends Stage {
                     confirmedMasterPassword.setText("");
 
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle(Translator.translate("enterNewMasterPassword"));
+                    alert.setTitle("enterNewMasterPassword");
                     alert.setHeaderText(null);
-                    alert.setContentText(Translator.translate("confirmation"));
+                    alert.setContentText("confirmation");
                     ok = new ButtonType("OK");
                     cancel = new ButtonType("Cancel");
                     alert.getButtonTypes().setAll(ok, cancel);
@@ -215,7 +215,7 @@ public class DatabaseActions extends Stage {
                     if (result.get() == ok) {
                         if (!Arrays.equals(masterPassword.getText().toCharArray(), confirmedMasterPassword.getText().toCharArray())) {
                             Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                            newAlert.setHeaderText(Translator.translate("passwordsDontMatch"));
+                            newAlert.setHeaderText("passwordsDontMatch");
                             newAlert.showAndWait();
                         } else {
                             passwordsMatch = true;
@@ -243,7 +243,7 @@ public class DatabaseActions extends Stage {
         }
         //JOptionPane.showMessageDialog(mainWindow, errorMessage, Translator.translate("error"), JOptionPane.ERROR_MESSAGE);
         Alert newAlert = new Alert(Alert.AlertType.ERROR);
-        newAlert.setHeaderText(Translator.translate("error"));
+        newAlert.setHeaderText("error");
         newAlert.showAndWait();
     }
 
@@ -387,7 +387,7 @@ public class DatabaseActions extends Stage {
         Alert askUser = new Alert(Alert.AlertType.INFORMATION);
 //        askUser.setTitle(Translator.translate("enterMasterPassword"));
 //        askUser.setHeaderText(masterPassword);
-        askUser.setContentText(Translator.translate("masterPassword"));
+        askUser.setContentText("masterPassword");
         ButtonType ok = new ButtonType("OK");
         ButtonType cancel = new ButtonType("Cancel");
         askUser.getButtonTypes().setAll(ok, cancel);
@@ -412,7 +412,7 @@ public class DatabaseActions extends Stage {
         while (!passwordCorrect && okClicked) {
             // If we weren't given a password then ask the user to enter one
             if (password == null) {
-                password = askUserForPassword(Translator.translate("enterDatabasePassword"));
+                password = askUserForPassword("enterDatabasePassword");
                 if (password == null) {
                     okClicked = false;
                 }
@@ -427,7 +427,7 @@ public class DatabaseActions extends Stage {
                     passwordCorrect = true;
                 } catch (InvalidPasswordException e) {
                     Alert error = new Alert(Alert.AlertType.ERROR);
-                    error.setContentText(Translator.translate("incorrectPassword"));
+                    error.setContentText("incorrectPassword");
                     password = null;
                 }
             }
@@ -442,18 +442,18 @@ public class DatabaseActions extends Stage {
 
     public void openDatabase() throws IOException, ProblemReadingDatabaseFile, CryptoException {
         FileChooser fc = new FileChooser();
-        fc.setTitle(Translator.translate("openDatabase"));
+        fc.setTitle("openDatabase");
         File databaseFile = fc.showOpenDialog(this);
 
-            if (databaseFile.exists()) {
-                openDatabase(databaseFile.getAbsolutePath());
-            } else {
-                //JOptionPane.showMessageDialog(mainWindow, Translator.translate("fileDoesntExistWithName", databaseFile.getAbsolutePath()), Translator.translate("fileDoesntExist"), JOptionPane.ERROR_MESSAGE);
-                Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                newAlert.setTitle(Translator.translate("fileDoesntExistWithName") + databaseFile.getAbsolutePath());
-                newAlert.setContentText(Translator.translate("fileDoesntExist"));
-                newAlert.showAndWait();
-            }
+        if (databaseFile.exists()) {
+            openDatabase(databaseFile.getAbsolutePath());
+        } else {
+            //JOptionPane.showMessageDialog(mainWindow, Translator.translate("fileDoesntExistWithName", databaseFile.getAbsolutePath()), Translator.translate("fileDoesntExist"), JOptionPane.ERROR_MESSAGE);
+            Alert newAlert = new Alert(Alert.AlertType.ERROR);
+            newAlert.setTitle("fileDoesntExistWithName" + databaseFile.getAbsolutePath());
+            newAlert.setContentText("fileDoesntExist");
+            newAlert.showAndWait();
+        }
 
         // Stop any "SetDBDirtyThread"s that are running
         runSetDBDirtyThread = false;
@@ -470,9 +470,9 @@ public class DatabaseActions extends Stage {
             String selectedAccName = (String) mainWindow.getAccountsListview().getSelectionModel().getSelectedItem();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(Translator.translate("askConfirmDeleteAccount" + selectedAccName));
+            alert.setTitle("askConfirmDeleteAccount" + selectedAccName);
             alert.setHeaderText(null);
-            alert.setContentText(Translator.translate("confirmDeleteAccount"));
+            alert.setContentText("confirmDeleteAccount");
             ButtonType yes = new ButtonType("Yes");
             ButtonType no = new ButtonType("No");
             alert.getButtonTypes().setAll(yes, no);
@@ -531,9 +531,9 @@ public class DatabaseActions extends Stage {
         // Ensure we're working with the latest version of the database
         if (databaseHasRemoteInstance() && localDatabaseDirty) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(Translator.translate("askSyncWithRemoteDB"));
+            alert.setTitle("askSyncWithRemoteDB");
             alert.setHeaderText(null);
-            alert.setContentText(Translator.translate("syncDatabase"));
+            alert.setContentText("syncDatabase");
             ButtonType yes = new ButtonType("Yes");
             ButtonType no = new ButtonType("No");
             alert.getButtonTypes().setAll(yes, no);
@@ -576,8 +576,8 @@ public class DatabaseActions extends Stage {
             AccountInformation accInfo = database.getAccount(accountName);
             if (accInfo == null) {
                 throw new UPMException(
-                        Translator.translate(
-                                "accountDoesntExist", accountName));
+
+                        "accountDoesntExist" + accountName);
             }
 
             AccountDialog accDialog = new AccountDialog(accInfo, this, false, accountNames);
@@ -723,9 +723,9 @@ public class DatabaseActions extends Stage {
             }
         } catch (TransportException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(Translator.translate("problemRetrievingRemoteDB"));
+            alert.setTitle("problemRetrievingRemoteDB");
             alert.setHeaderText(null);
-            alert.setContentText(Translator.translate("detachDatabase"));
+            alert.setContentText("detachDatabase");
             ButtonType yes = new ButtonType("Yes");
             ButtonType no = new ButtonType("No");
             alert.getButtonTypes().setAll(yes, no);
@@ -754,7 +754,7 @@ public class DatabaseActions extends Stage {
             String password = openDBDialog.getPasswordTextField().getText();
 
             // Ask the user for a location to save the database file to
-            File saveDatabaseTo = getSaveAsFile(Translator.translate("saveDatabaseAs"));
+            File saveDatabaseTo = getSaveAsFile("saveDatabaseAs");
 
             if (saveDatabaseTo != null) {
 
@@ -788,7 +788,7 @@ public class DatabaseActions extends Stage {
             // the open database
             boolean okClicked = false;
             do {
-                char[] password = askUserForPassword(Translator.translate("enterDatabasePassword"));
+                char[] password = askUserForPassword("enterDatabasePassword");
                 if (password == null) {
                     okClicked = false;
                 } else {
@@ -798,7 +798,7 @@ public class DatabaseActions extends Stage {
                     } catch (InvalidPasswordException invalidPassword) {
                         //JOptionPane.showMessageDialog(mainWindow, com.sun.java.accessibility.util.Translator.translate("incorrectPassword"));
                         Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                        newAlert.setTitle(Translator.translate("incorrectPassword"));
+                        newAlert.setTitle("incorrectPassword");
                         newAlert.showAndWait();
                     } catch (CryptoException e1) {
                         errorHandler(e);
@@ -819,9 +819,9 @@ public class DatabaseActions extends Stage {
         boolean proceedWithAction = false;
         if (this.databaseNeedsReload) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(Translator.translate("askReloadDatabase"));
+            alert.setTitle("askReloadDatabase");
             alert.setHeaderText(null);
-            alert.setContentText(Translator.translate("reloadDatabase"));
+            alert.setContentText("reloadDatabase");
             ButtonType yes = new ButtonType("Yes");
             ButtonType no = new ButtonType("No");
             alert.getButtonTypes().setAll(yes, no);
@@ -863,7 +863,7 @@ public class DatabaseActions extends Stage {
 //                        JOptionPane.showMessageDialog(mainWindow,
 //                                Translator.translate("incorrectPassword"));
                         Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                        newAlert.setContentText(Translator.translate("incorrectPassword"));
+                        newAlert.setContentText("incorrectPassword");
                         newAlert.showAndWait();
                     } catch (CryptoException e1) {
                         errorHandler(e);
@@ -917,7 +917,7 @@ public class DatabaseActions extends Stage {
                 // (most likely the user changed the local database's master password)
                 boolean okClicked = false;
                 do {
-                    password = askUserForPassword(Translator.translate("enterPaswordForRemoteDB"));
+                    password = askUserForPassword("enterPaswordForRemoteDB");
                     if (password == null) {
                         okClicked = false;
                     } else {
@@ -928,7 +928,7 @@ public class DatabaseActions extends Stage {
                         } catch (InvalidPasswordException invalidPassword) {
                             //JOptionPane.showMessageDialog(mainWindow, Translator.translate("incorrectPassword"));
                             Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                            newAlert.setContentText(Translator.translate("incorrectPassword"));
+                            newAlert.setContentText("incorrectPassword");
                             newAlert.showAndWait();
                         }
                     }
@@ -1005,7 +1005,7 @@ public class DatabaseActions extends Stage {
 
 
     public void export() {
-        File exportFile = getSaveAsFile(Translator.translate("exportFile"));
+        File exportFile = getSaveAsFile("exportFile");
         if (exportFile == null) {
             return;
         }
@@ -1020,7 +1020,7 @@ public class DatabaseActions extends Stage {
         } catch (ExportException e) {
             //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemExporting"), JOptionPane.ERROR_MESSAGE);
             Alert newAlert = new Alert(Alert.AlertType.ERROR);
-            newAlert.setTitle(Translator.translate("problemExporting"));
+            newAlert.setTitle("problemExporting");
             newAlert.showAndWait();
         }
     }
@@ -1030,7 +1030,7 @@ public class DatabaseActions extends Stage {
         if (getLatestVersionOfDatabase()) {
             // Prompt for the file to import
             FileChooser fc = new FileChooser();
-            fc.setTitle(Translator.translate("import"));
+            fc.setTitle("import");
 
 
             File csvFile = fc.showOpenDialog(this);
@@ -1049,9 +1049,9 @@ public class DatabaseActions extends Stage {
                     if (database.getAccount(importedAccount.getAccountName()) != null) {
 //
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        alert.setTitle(Translator.translate("importExistingQuestion", importedAccount.getAccountName()));
+                        alert.setTitle("importExistingQuestion" + importedAccount.getAccountName());
                         alert.setHeaderText(null);
-                        alert.setContentText(Translator.translate("importExistingTitle"));
+                        alert.setContentText("importExistingTitle");
                         ButtonType yes = new ButtonType("Yes");
                         ButtonType no = new ButtonType("No");
                         ButtonType cancel = new ButtonType("Cancel");
@@ -1083,17 +1083,17 @@ public class DatabaseActions extends Stage {
             } catch (ImportException e) {
                 //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
                 Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                newAlert.setContentText(Translator.translate("problemImporting"));
+                newAlert.setContentText("problemImporting");
                 newAlert.showAndWait();
             } catch (IOException e) {
                 //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
                 Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                newAlert.setContentText(Translator.translate("problemImporting"));
+                newAlert.setContentText("problemImporting");
                 newAlert.showAndWait();
             } catch (CryptoException e) {
                 //JOptionPane.showMessageDialog(mainWindow, e.getMessage(), Translator.translate("problemImporting"), JOptionPane.ERROR_MESSAGE);
                 Alert newAlert = new Alert(Alert.AlertType.ERROR);
-                newAlert.setContentText(Translator.translate("problemImporting"));
+                newAlert.setContentText("problemImporting");
                 newAlert.showAndWait();
             }
         }
@@ -1121,9 +1121,9 @@ public class DatabaseActions extends Stage {
             //Warn the user if the database file already exists
             if (selectedFile.exists()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle(Translator.translate("fileAlreadyExistsWithFileName") + selectedFile.getAbsolutePath());
-                alert.setHeaderText(Translator.translate("fileAlreadyExists"));
-                alert.setContentText(Translator.translate("fileAlreadyExists"));
+                alert.setTitle("fileAlreadyExistsWithFileName" + selectedFile.getAbsolutePath());
+                alert.setHeaderText("fileAlreadyExists");
+                alert.setContentText("fileAlreadyExists");
                 ButtonType yes = new ButtonType("Yes");
                 ButtonType no = new ButtonType("No");
                 alert.getButtonTypes().setAll(yes, no);
@@ -1178,15 +1178,15 @@ public class DatabaseActions extends Stage {
         Color color = null;
         if (databaseHasRemoteInstance()) {
             if (localDatabaseDirty) {
-                status = Translator.translate("unsynchronised");
+                status = "unsynchronised";
                 color = Color.RED;
             } else {
-                status = Translator.translate("synchronised");
+                status = "synchronised";
                 color = Color.BLACK;
             }
-            status = Translator.translate("revision") + ' ' + String.valueOf(database.getRevision()) + " - " + status;
+            status = "revision" + ' ' + String.valueOf(database.getRevision()) + " - " + status;
         } else {
-            status = Translator.translate("localDatabase");
+            status = "localDatabase";
             color = Color.BLACK;
         }
         mainWindow.getStatusBar().setText(status);

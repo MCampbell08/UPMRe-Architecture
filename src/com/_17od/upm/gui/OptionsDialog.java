@@ -82,7 +82,7 @@ public class OptionsDialog extends EscapeDialog {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage.setTitle(Translator.translate("options"));
+		primaryStage.setTitle("options");
 		BorderPane container = new BorderPane();
 
 		// Create a pane with an empty border for spacing
@@ -108,7 +108,7 @@ public class OptionsDialog extends EscapeDialog {
 		GridBagConstraints c = new GridBagConstraints();
 
 		// The "Database to Load on Startup" row
-		Label urlLabel = new Label(Translator.translate("dbToLoadOnStartup"));
+		Label urlLabel = new Label("dbToLoadOnStartup");
 //        c.gridx = 0;
 //        c.gridy = 0;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -151,7 +151,7 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.getChildren().add(dbToLoadOnStartupButton);
 
 		// The "Language" label row
-		Label localeLabel = new Label(Translator.translate("language"));
+		Label localeLabel = new Label("language");
 		//localeLabel.setText(Translator.translate("language"));
 //        c.gridx = 0;
 //        c.gridy = 2;
@@ -195,7 +195,7 @@ public class OptionsDialog extends EscapeDialog {
 		// The "Hide account password" row
 		Boolean hideAccountPassword = new Boolean(
 				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_HIDE_PASSWORD, "true"));
-		hideAccountPasswordCheckbox = new CheckBox(Translator.translate("hideAccountPassword") +
+		hideAccountPasswordCheckbox = new CheckBox("hideAccountPassword" +
 				hideAccountPassword.booleanValue());
 //        c.gridx = 0;
 //        c.gridy = 4;
@@ -210,7 +210,7 @@ public class OptionsDialog extends EscapeDialog {
 		// The "Database auto lock" row
 		Boolean databaseAutoLock = new Boolean(
 				Preferences.get(Preferences.ApplicationOptions.DATABASE_AUTO_LOCK, "false"));
-		databaseAutoLockCheckbox = new CheckBox(Translator.translate("databaseAutoLock") +
+		databaseAutoLockCheckbox = new CheckBox("databaseAutoLock" +
 				databaseAutoLock.booleanValue());
 //        c.gridx = 0;
 //        c.gridy = 5;
@@ -244,7 +244,7 @@ public class OptionsDialog extends EscapeDialog {
 		databaseAutoLockTime.setDisable(!databaseAutoLockCheckbox.isSelected());
 
 		// The "Generated password length" row
-		accountPasswordLengthLabel = new Label(Translator.translate("generatedPasswodLength"));
+		accountPasswordLengthLabel = new Label("generatedPasswodLength");
 //        c.gridx = 0;
 //        c.gridy = 6;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -270,7 +270,7 @@ public class OptionsDialog extends EscapeDialog {
 		// The "Include Escape Characters to Generated Passwords" row
 		Boolean inclEscCharstoPass = new Boolean(
 				Preferences.get(Preferences.ApplicationOptions.INCLUDE_ESCAPE_CHARACTERS, "true"));
-		inclEscCharstoPassCheckbox = new CheckBox((Translator.translate("includePunctuationCharacters")) +
+		inclEscCharstoPassCheckbox = new CheckBox(("includePunctuationCharacters") +
 				inclEscCharstoPass.booleanValue());
 //        c.gridx = 0;
 //        c.gridy = 7;
@@ -285,7 +285,7 @@ public class OptionsDialog extends EscapeDialog {
 		// The "Store Window position" row
 		Boolean storeWindowPos = Boolean
 				.valueOf(Preferences.get(Preferences.ApplicationOptions.REMEMBER_WINDOW_POSITION, "false"));
-		storeWindowPosCheckbox = new CheckBox((Translator.translate("storeWindowPosition")) +
+		storeWindowPosCheckbox = new CheckBox("storeWindowPosition" +
 				storeWindowPos.booleanValue());
 //        c.gridx = 0;
 //        c.gridy = 8;
@@ -300,7 +300,7 @@ public class OptionsDialog extends EscapeDialog {
 		// The "Application always on top" row
 		Boolean appAlwaysonTop = new Boolean(
 				Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
-		appAlwaysonTopCheckbox = new CheckBox((Translator.translate("applicationAlwaysonTop")) +
+		appAlwaysonTopCheckbox = new CheckBox("applicationAlwaysonTop" +
 				appAlwaysonTop.booleanValue());
 //        c.gridx = 0;
 //        c.gridy = 9;
@@ -328,7 +328,7 @@ public class OptionsDialog extends EscapeDialog {
 		// The "Accept Self Sigend Certificates" checkbox row
 		Boolean acceptSelfSignedCerts = new Boolean(
 				Preferences.get(Preferences.ApplicationOptions.HTTPS_ACCEPT_SELFSIGNED_CERTS, "false"));
-		acceptSelfSignedCertsCheckbox = new CheckBox(Translator.translate("acceptSelfSignedCerts") +
+		acceptSelfSignedCertsCheckbox = new CheckBox("acceptSelfSignedCerts" +
 				acceptSelfSignedCerts.booleanValue());
 //        c.gridx = 0;
 //        c.gridy = 0;
@@ -353,7 +353,7 @@ public class OptionsDialog extends EscapeDialog {
 
 		// The "Enable Proxy" row
 		Boolean proxyEnabled = new Boolean(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_ENABLED));
-		enableProxyCheckbox = new CheckBox(Translator.translate("enableProxy") + proxyEnabled.booleanValue());
+		enableProxyCheckbox = new CheckBox("enableProxy" + proxyEnabled.booleanValue());
 		enableProxyCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -376,7 +376,7 @@ public class OptionsDialog extends EscapeDialog {
 		proxyPanel.getChildren().add(enableProxyCheckbox);
 
 		// The "HTTP Proxy" label row
-		proxyLabel = new Label(Translator.translate("httpProxy"));
+		proxyLabel = new Label("httpProxy");
 //        c.gridx = 0;
 //        c.gridy = 1;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -388,7 +388,7 @@ public class OptionsDialog extends EscapeDialog {
 		proxyPanel.getChildren().add(proxyLabel);
 
 		// The "HTTP Proxy Port" label
-		proxyPortLabel = new Label(Translator.translate("port"));
+		proxyPortLabel = new Label("port");
 //        c.gridx = 1;
 //        c.gridy = 1;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -423,7 +423,7 @@ public class OptionsDialog extends EscapeDialog {
 		proxyPanel.getChildren().add(httpProxyPort);
 
 		// The "HTTP Proxy Username" label row
-		proxyUsernameLabel = new Label(Translator.translate("httpProxyUsername"));
+		proxyUsernameLabel = new Label("httpProxyUsername");
 //        c.gridx = 0;
 //        c.gridy = 3;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -447,7 +447,7 @@ public class OptionsDialog extends EscapeDialog {
 		proxyPanel.getChildren().add(httpProxyUsername);
 
 		// The "HTTP Proxy Password" label row
-		proxyPasswordLabel = new Label(Translator.translate("httpProxyPassword"));
+		proxyPasswordLabel = new Label("httpProxyPassword");
 //        c.gridx = 0;
 //        c.gridy = 5;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -476,7 +476,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.fill = GridBagConstraints.HORIZONTAL;
 		proxyPanel.getChildren().add(httpProxyPassword);
 
-		hidePasswordCheckbox = new CheckBox(Translator.translate("hide"));
+		hidePasswordCheckbox = new CheckBox("hide");
 		//defaultEchoChar = httpProxyPassword.getEchoChar();
 //		hidePasswordCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 //			@Override
@@ -505,7 +505,7 @@ public class OptionsDialog extends EscapeDialog {
 		// The buttons row
 		HBox buttonPanel = new HBox();
 		emptyBorderPanel.getChildren().add(buttonPanel);
-		Button okButton = new Button(Translator.translate("ok"));
+		Button okButton = new Button("ok");
 		// Link Enter key to okButton
 		//getRootPane().setDefaultButton(okButton);
 		okButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
@@ -516,7 +516,7 @@ public class OptionsDialog extends EscapeDialog {
 		});
 		buttonPanel.getChildren().add(okButton);
 
-		Button cancelButton = new Button(Translator.translate("cancel"));
+		Button cancelButton = new Button("cancel");
 		cancelButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 			@Override
 			public void handle(javafx.event.ActionEvent event) {
@@ -552,9 +552,8 @@ public class OptionsDialog extends EscapeDialog {
 				if (databaseAutoLockTime.getText() == null || databaseAutoLockTime.getText().trim().equals("")
 						|| !Util.isNumeric(databaseAutoLockTime.getText())) {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setTitle(Translator.translate("invalidValueForDatabaseAutoLockTime"));
-					alert.setContentText(Translator.translate("problem"));
-					alert.showAndWait();
+					alert.setTitle("invalidValueForDatabaseAutoLockTime");
+					alert.setContentText("problem");
 					databaseAutoLockTime.setFocusTraversable(true);
 					return;
 				}
@@ -563,8 +562,8 @@ public class OptionsDialog extends EscapeDialog {
 			if (accountPasswordLength.getText() == null || accountPasswordLength.getText().trim().equals("")
 					|| !Util.isNumeric(accountPasswordLength.getText())) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle(Translator.translate("invalidValueForAccountPasswordLength"));
-				alert.setContentText(Translator.translate("problem"));
+				alert.setTitle("invalidValueForAccountPasswordLength");
+				alert.setContentText("problem");
 				alert.showAndWait();
 				databaseAutoLockTime.setFocusTraversable(true);
 				return;
@@ -613,14 +612,14 @@ public class OptionsDialog extends EscapeDialog {
 		} catch (Exception e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			//alert.setTitle(e.getStackTrace());
-			alert.setContentText(Translator.translate("error"));
+			alert.setContentText("error");
 			alert.showAndWait();
 		}
 	}
 
 	private void getDBToLoadOnStartup() {
 		FileChooser fc = new FileChooser();
-		fc.setTitle(Translator.translate("dbToOpenOnStartup"));
+		fc.setTitle("dbToOpenOnStartup");
 		File databaseFile = fc.showOpenDialog(primaryStage);
 		dbToLoadOnStartup.setText(databaseFile.getAbsoluteFile().toString());
 	}

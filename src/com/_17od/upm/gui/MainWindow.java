@@ -41,6 +41,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.UrlValidator;
@@ -131,10 +132,10 @@ public class MainWindow extends Application implements EventHandler {
 	public Stage primary_stage;
 
 	private String windowTitle = "";
-    private static int window_X = 0;
-    private static int window_Y = 0;
-    private static int window_Height = 0;
-    private static int window_Width = 0;
+	private static int window_X = 0;
+	private static int window_Y = 0;
+	private static int window_Height = 0;
+	private static int window_Width = 0;
 
 //	public MainWindow(String title) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 //			IllegalBlockSizeException, IOException, GeneralSecurityException,
@@ -178,10 +179,10 @@ public class MainWindow extends Application implements EventHandler {
 //			dbActions.errorHandler(e);
 //		}
 
-		// Give the search field focus
-		// I'm using requestFocusInWindow() rathar than requestFocus()
-		// because the javadocs recommend i
-		// ----------------- //searchField.requestFocusInWindow(); // -------------------- //
+	// Give the search field focus
+	// I'm using requestFocusInWindow() rathar than requestFocus()
+	// because the javadocs recommend i
+	// ----------------- //searchField.requestFocusInWindow(); // -------------------- //
 
 	//}
 
@@ -220,13 +221,15 @@ public class MainWindow extends Application implements EventHandler {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../util/images/upm.gif")));
+		//Image image = new Image(getClass().getResourceAsStream("/util/images/upm.gif"));
+		//primaryStage.getIcons().add(image);
+		//primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("./util/images/upm.gif")));
 		primaryStage.setTitle("Hi");
 
-        window_X = (int)primaryStage.getX();
-        window_Y = (int)primaryStage.getY();
-        window_Width = (int)primaryStage.getWidth();
-        window_Height = (int)primaryStage.getHeight();
+		window_X = (int)primaryStage.getX();
+		window_Y = (int)primaryStage.getY();
+		window_Width = (int)primaryStage.getWidth();
+		window_Height = (int)primaryStage.getHeight();
 
 		primaryStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
 			@Override
@@ -243,13 +246,11 @@ public class MainWindow extends Application implements EventHandler {
 		});
 		MenuBar menuBar = createMenuBar();
 		GridPane newPane = addComponentsToPane();
-		VBox box = new VBox();
-		box.getChildren().addAll(menuBar, newPane);
-		Scene scene = new Scene(box);
+		Scene scene = new Scene(new VBox());
+		scene.getRoot().getChildrenUnmodifiable().addAll(menuBar, newPane);
 
-
-//		Boolean appAlwaysOnTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
-//		primaryStage.setAlwaysOnTop(appAlwaysOnTop.booleanValue());
+		Boolean appAlwaysonTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
+		primaryStage.setAlwaysOnTop(appAlwaysonTop.booleanValue());
 
 		primaryStage.setScene(scene);
 		primary_stage = primaryStage;
@@ -809,23 +810,23 @@ public class MainWindow extends Application implements EventHandler {
 				String url = accountInformation.getUrl();
 
 				if((url == null) || (url.length() == 0)){
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("UrlErrorJoptionpaneTitle");
-                    alert.setContentText("EmptyUrlJoptionpaneMsg");
-                    alert.showAndWait();
+					Alert alert = new Alert(Alert.AlertType.WARNING);
+					alert.setTitle("UrlErrorJoptionpaneTitle");
+					alert.setContentText("EmptyUrlJoptionpaneMsg");
+					alert.showAndWait();
 				}
 				else if (!(urlIsValid(url))) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("UrlErrorJoptionpaneTitle");
-                alert.setContentText("InvalidUrlJoptionpaneMsg");
-                alert.showAndWait();
+					Alert alert = new Alert(Alert.AlertType.WARNING);
+					alert.setTitle("UrlErrorJoptionpaneTitle");
+					alert.setContentText("InvalidUrlJoptionpaneMsg");
+					alert.showAndWait();
 
-                // Call the method LaunchSelectedURL() using the selected
-                // url as input
-                 } else {
-                    LaunchSelectedURL(url);
+					// Call the method LaunchSelectedURL() using the selected
+					// url as input
+				} else {
+					LaunchSelectedURL(url);
 
-                }
+				}
 			}
 		});
 
@@ -833,7 +834,7 @@ public class MainWindow extends Application implements EventHandler {
 
 		exitMenuItem = new MenuItem(EXIT_TXT);
 		exitMenuItem.setAccelerator(
-                new KeyCodeCombination(KeyCode.X));
+				new KeyCodeCombination(KeyCode.X));
 		exitMenuItem.setOnAction(this);
 
 		aboutMenuItem = new MenuItem(ABOUT_TXT);

@@ -43,7 +43,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
 
 
     public OpenDatabaseFromURLDialog(final Application frame) {
-        super(frame, Translator.translate("openDatabaseFromURL"), true);
+        super(frame, "openDatabaseFromURL", true);
 
         Pane container = new Pane();
 
@@ -65,7 +65,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         GridBagConstraints c = new GridBagConstraints();
 
         // The URL Label row
-        Label urlLabel = new Label(Translator.translate("url"));
+        Label urlLabel = new Label("url");
         c.gridx = 0;
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_START;
@@ -89,7 +89,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         mainPanel.add(urlTextField, 1,0);
 
         // The username label field
-        Label usernameLabel = new Label(Translator.translate("username"));
+        Label usernameLabel = new Label("username");
         c.gridx = 0;
         c.gridy = 2;
         c.anchor = GridBagConstraints.LINE_START;
@@ -113,7 +113,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         mainPanel.add(usernameTextField, 3, 0);
 
         // The password label field
-        Label passwordLabel = new Label(Translator.translate("password"));
+        Label passwordLabel = new Label("password");
         c.gridx = 0;
         c.gridy = 4;
         c.anchor = GridBagConstraints.LINE_START;
@@ -146,7 +146,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         // The buttons row
         Panel buttonPanel = new Panel(new FlowLayout());
 
-        Button okButton = new Button(Translator.translate("ok"));
+        Button okButton = new Button("ok");
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 okClicked = true;
@@ -154,7 +154,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         });
         buttonPanel.add(okButton);
 
-        Button cancelButton = new Button(Translator.translate("cancel"));
+        Button cancelButton = new Button("cancel");
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             }

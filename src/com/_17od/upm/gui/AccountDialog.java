@@ -139,12 +139,12 @@ public class AccountDialog extends Application {
 
 		String title = null;
 		if (readOnly) {
-			title = Translator.translate("viewAccount");
+			title = "viewAccount";
 		} else if (!readOnly && pAccount.getAccountName().trim().equals("")) {
-			title = Translator.translate("addAccount");
+			title = "addAccount";
 			addingAccount = true;
 		} else {
-			title = Translator.translate("editAccount");
+			title = "editAccount";
 		}
 		primaryStage.setTitle(title);
 	}
@@ -171,7 +171,7 @@ public class AccountDialog extends Application {
 
 		// The AccountName Row
 		Label accountLabel = new Label();
-		accountLabel.setText(Translator.translate("account"));
+		accountLabel.setText("account");
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.LINE_START;
@@ -199,14 +199,14 @@ public class AccountDialog extends Application {
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		accountPanel.getChildren().add(accountName);
-        accountName.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (newValue) {
-                accountName.selectAll();
-            }
-        });
+		accountName.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+			if (newValue) {
+				accountName.selectAll();
+			}
+		});
 
 		Button acctCopyButton = new Button();
-		Image acctCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
+		Image acctCopy = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
 		//acctCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		acctCopyButton.setGraphic(new ImageView(acctCopy));
 		acctCopyButton.setTooltip(new Tooltip("Copy"));
@@ -229,7 +229,7 @@ public class AccountDialog extends Application {
 		accountPanel.getChildren().add(acctCopyButton);
 
 		Button acctPasteButton = new Button();
-		Image acctPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
+		Image acctPaste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
 		//acctPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		acctPasteButton.setGraphic(new ImageView(acctPaste));
 		acctPasteButton.setTooltip(new Tooltip("Paste"));
@@ -263,7 +263,7 @@ public class AccountDialog extends Application {
 
 		// Userid Row
 		Label useridLabel = new Label();
-		useridLabel.setText(Translator.translate("userid"));
+		useridLabel.setText("userid");
 		c.gridx = 0;
 		c.gridy = 1;
 		c.anchor = GridBagConstraints.LINE_START;
@@ -291,14 +291,14 @@ public class AccountDialog extends Application {
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		idPanel.getChildren().add(userId);
-        userId.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (newValue) {
-                userId.selectAll();
-            }
-        });
+		userId.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+			if (newValue) {
+				userId.selectAll();
+			}
+		});
 
 		Button idCopyButton = new Button();
-		Image copyBackground = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
+		Image copyBackground = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
 		//idCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		idCopyButton.setGraphic(new ImageView(copyBackground));
 		idCopyButton.setTooltip(new Tooltip("Copy"));
@@ -321,7 +321,7 @@ public class AccountDialog extends Application {
 		idPanel.getChildren().add(idCopyButton);
 
 		Button idPasteButton = new Button();
-		Image paste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
+		Image paste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
 		//idPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		idPasteButton.setGraphic(new ImageView(paste));
 		idPasteButton.setTooltip(new Tooltip("Paste"));
@@ -355,7 +355,7 @@ public class AccountDialog extends Application {
 
 		// Password Row
 		Label passwordLabel = new Label();
-		passwordLabel.setText(Translator.translate("password"));
+		passwordLabel.setText("password");
 		c.gridx = 0;
 		c.gridy = 2;
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -375,11 +375,11 @@ public class AccountDialog extends Application {
 		// allow CTRL-C on the password field
 		//password.putClientProperty("JPasswordField.cutCopyAllowed", Boolean.TRUE);
 		password.setEditable(!readOnly);
-        password.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (newValue) {
-                password.selectAll();
-            }
-        });
+		password.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+			if (newValue) {
+				password.selectAll();
+			}
+		});
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.LINE_START;
@@ -390,7 +390,7 @@ public class AccountDialog extends Application {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		passwordPanel.getChildren().add(password);
 
-		Button generateRandomPasswordButton = new Button(Translator.translate("generate"));
+		Button generateRandomPasswordButton = new Button("generate");
 		if (readOnly) {
 			generateRandomPasswordButton.setDisable(true);
 		}
@@ -439,7 +439,7 @@ public class AccountDialog extends Application {
 		passwordPanel.getChildren().add(generateRandomPasswordButton);
 
 		Button pwCopyButton = new Button();
-		Image pwCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
+		Image pwCopy = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
 		//pwCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		pwCopyButton.setGraphic(new ImageView(pwCopy));
 		pwCopyButton.setTooltip(new Tooltip("Copy"));
@@ -462,7 +462,7 @@ public class AccountDialog extends Application {
 		passwordPanel.getChildren().add(pwCopyButton);
 
 		Button pwPasteButton = new Button();
-		Image pwPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
+		Image pwPaste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
 		//pwPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		pwPasteButton.setGraphic(new ImageView(pwPaste));
 		pwPasteButton.setTooltip(new Tooltip("Paste"));
@@ -484,7 +484,7 @@ public class AccountDialog extends Application {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		passwordPanel.getChildren().add(pwPasteButton);
 
-		CheckBox hidePasswordCheckbox = new CheckBox(Translator.translate("hide"));
+		CheckBox hidePasswordCheckbox = new CheckBox("hide");
 //		defaultEchoChar = password.getEchoChar();
 //		hidePasswordCheckbox.setMargin(new Insets(5, 0, 5, 0));
 //		hidePasswordCheckbox.addItemListener(new ItemListener() {
@@ -523,7 +523,7 @@ public class AccountDialog extends Application {
 
 		// URL Row
 		Label urlLabel = new Label();
-		urlLabel.setText(Translator.translate("url"));
+		urlLabel.setText("url");
 		c.gridx = 0;
 		c.gridy = 3;
 		c.anchor = GridBagConstraints.LINE_START;
@@ -550,11 +550,11 @@ public class AccountDialog extends Application {
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		urlPanel.getChildren().add(url);
-        url.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (newValue) {
-                url.selectAll();
-            }
-        });
+		url.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+			if (newValue) {
+				url.selectAll();
+			}
+		});
 
 		final Button urlLaunchButton = new Button();
 		Image urlLaunch = new Image(getClass().getResourceAsStream("/util/launch-url-sm.png"));
@@ -572,16 +572,16 @@ public class AccountDialog extends Application {
 				// via JoptioPane message
 				if ((urlText == null) || (urlText.length() == 0)) {
 					Alert alert = new Alert(Alert.AlertType.WARNING);
-					alert.setTitle(Translator.translate("EmptyUrlMsg"));
-					alert.setContentText(Translator.translate("UrlErrorTitle"));
+					alert.setTitle("EmptyUrlMsg");
+					alert.setContentText("UrlErrorTitle");
 					alert.showAndWait();
 					// Check if the selected url is a valid formated url(via
 					// urlIsValid() method) and inform the user via JoptioPane
 					// message
 				} else if (!(urlIsValid(urlText))) {
 					Alert alert = new Alert(Alert.AlertType.WARNING);
-					alert.setTitle(Translator.translate("InvalidUrlMsg"));
-					alert.setContentText(Translator.translate("UrlErrorTitle"));
+					alert.setTitle("InvalidUrlMsg");
+					alert.setContentText("UrlErrorTitle");
 					alert.showAndWait();
 					// Call the method LaunchSelectedURL() using the selected
 					// url as input
@@ -601,7 +601,7 @@ public class AccountDialog extends Application {
 		urlPanel.getChildren().add(urlLaunchButton);
 
 		Button urlCopyButton = new Button();
-		Image urlCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
+		Image urlCopy = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
 		//urlCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		urlCopyButton.setGraphic(new ImageView(urlCopy));
 		urlCopyButton.setTooltip(new Tooltip("Copy"));
@@ -624,7 +624,7 @@ public class AccountDialog extends Application {
 		urlPanel.getChildren().add(urlCopyButton);
 
 		Button urlPasteButton = new Button();
-		Image urlPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
+		Image urlPaste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
 		//urlPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		urlPasteButton.setGraphic(new ImageView(urlPaste));
 		urlPasteButton.setTooltip(new Tooltip("Paste"));
@@ -658,7 +658,7 @@ public class AccountDialog extends Application {
 
 		// Notes Row
 		Label notesLabel = new Label();
-		notesLabel.setText(Translator.translate("notes"));
+		notesLabel.setText("notes");
 		c.gridx = 0;
 		c.gridy = 4;
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -691,7 +691,7 @@ public class AccountDialog extends Application {
 		notesPanel.getChildren().add(notesScrollPane);
 
 		Button notesCopyButton = new Button();
-		Image notesCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
+		Image notesCopy = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
 		//notesCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		notesCopyButton.setGraphic(new ImageView(notesCopy));
 		notesCopyButton.setTooltip(new Tooltip("Copy"));
@@ -714,7 +714,7 @@ public class AccountDialog extends Application {
 		notesPanel.getChildren().add(notesCopyButton);
 
 		Button notesPasteButton = new Button();
-		Image notesPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
+		Image notesPaste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
 		//notesPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		notesPasteButton.setGraphic(new ImageView(notesPaste));
 		notesPasteButton.setTooltip(new Tooltip("Paste"));
@@ -760,7 +760,7 @@ public class AccountDialog extends Application {
 
 		// Button Row
 		GridPane buttonPanel = new GridPane();
-		Button okButton = new Button(Translator.translate("ok"));
+		Button okButton = new Button("ok");
 		// Link Enter key to okButton
 		//getRootPane().setDefaultButton(okButton);
 		okButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
@@ -771,7 +771,7 @@ public class AccountDialog extends Application {
 		});
 		buttonPanel.getChildren().add(okButton);
 		if (!readOnly) {
-			Button cancelButton = new Button(Translator.translate("cancel"));
+			Button cancelButton = new Button("cancel");
 			cancelButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 				@Override
 				public void handle(javafx.event.ActionEvent event) {
@@ -815,8 +815,8 @@ public class AccountDialog extends Application {
 		// name has actually changed
 		if (accountChanged && existingAccounts.indexOf(accountName.getText().trim()) > -1) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle(Translator.translate("accountAlreadyExistsWithName" + accountName.getText().trim()));
-			alert.setContentText(Translator.translate("accountAlreadyExists"));
+			alert.setTitle("accountAlreadyExistsWithName" + accountName.getText().trim());
+			alert.setContentText("accountAlreadyExists");
 			alert.showAndWait();
 		} else {
 			// Check for changes
