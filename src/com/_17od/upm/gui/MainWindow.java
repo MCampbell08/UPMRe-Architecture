@@ -41,7 +41,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.UrlValidator;
@@ -221,13 +220,7 @@ public class MainWindow extends Application implements EventHandler {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-<<<<<<< HEAD
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../util/images/upm.gif")));
-=======
-		//Image image = new Image(getClass().getResourceAsStream("/util/images/upm.gif"));
-		//primaryStage.getIcons().add(image);
-		//primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("./util/images/upm.gif")));
->>>>>>> origin/master
 		primaryStage.setTitle("Hi");
 
         window_X = (int)primaryStage.getX();
@@ -250,11 +243,13 @@ public class MainWindow extends Application implements EventHandler {
 		});
 		MenuBar menuBar = createMenuBar();
 		GridPane newPane = addComponentsToPane();
-		Scene scene = new Scene(new VBox());
-		scene.getRoot().getChildrenUnmodifiable().addAll(menuBar, newPane);
+		VBox box = new VBox();
+		box.getChildren().addAll(menuBar, newPane);
+		Scene scene = new Scene(box);
 
-		Boolean appAlwaysonTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
-		primaryStage.setAlwaysOnTop(appAlwaysonTop.booleanValue());
+
+//		Boolean appAlwaysOnTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
+//		primaryStage.setAlwaysOnTop(appAlwaysOnTop.booleanValue());
 
 		primaryStage.setScene(scene);
 		primary_stage = primaryStage;
