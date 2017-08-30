@@ -21,6 +21,7 @@
 package com._17od.upm.gui;
 
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -138,7 +139,7 @@ public class MainWindow extends Application implements EventHandler {
 	private static int window_Width = 0;
 
 //	public MainWindow(String title) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
-//			IllegalBlockSizeException, IOException, GeneralSecurityException,
+//			IOException,
 //			ProblemReadingDatabaseFile {
 //		super();
 //		windowTitle = title;
@@ -147,7 +148,7 @@ public class MainWindow extends Application implements EventHandler {
 //
 //		PlatformSpecificCode.getInstance().initialiseApplication(this);
 //
-
+//
 //
 //		// Set up the content pane.
 //
@@ -157,33 +158,14 @@ public class MainWindow extends Application implements EventHandler {
 //		// Display the window.
 ////		pack();
 ////		setLocationRelativeTo(null);
-//		boolean restore = Preferences.get(Preferences.ApplicationOptions.REMEMBER_WINDOW_POSITION, "false")
-//				.equals("true");
-//		if (restore) {
-//			restoreWindowBounds();
-//		}
 //
-//		try {
-//			// Load the startup database if it's configured
-//			String db = Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP);
-//			if (db != null && !db.equals("")) {
-//				File dbFile = new File(db);
-//				if (!dbFile.exists()) {
-//					dbActions.errorHandler(new Exception(Translator.translate("dbDoesNotExist", db)));
-//				} else {
-//					dbActions.openDatabase(db);
-//				}
-//			}
-//		} catch (Exception e) {
-//			dbActions.errorHandler(e);
-//		}
-
-	// Give the search field focus
-	// I'm using requestFocusInWindow() rathar than requestFocus()
-	// because the javadocs recommend i
-	// ----------------- //searchField.requestFocusInWindow(); // -------------------- //
-
-	//}
+//
+////	 Give the search field focus
+////	 I'm using requestFocusInWindow() rathar than requestFocus()
+////	 because the javadocs recommend i
+////	 ----------------- //searchField.requestFocusInWindow(); // -------------------- //
+//
+//	}
 
 	public static void setAppAlwaysonTop(boolean val) {
 		//AppWindow.setAlwaysOnTop(val);
@@ -220,9 +202,7 @@ public class MainWindow extends Application implements EventHandler {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//Image image = new Image(getClass().getResourceAsStream("/util/images/upm.gif"));
-		//primaryStage.getIcons().add(image);
-		//primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("./util/images/upm.gif")));
+		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../util/images/upm.gif")));
 		primaryStage.setTitle("Hi");
 
 		window_X = (int)primaryStage.getX();
@@ -246,8 +226,9 @@ public class MainWindow extends Application implements EventHandler {
 		});
 		MenuBar menuBar = createMenuBar();
 		GridPane newPane = addComponentsToPane();
-		Scene scene = new Scene(new VBox());
-		scene.getRoot().getChildrenUnmodifiable().addAll(menuBar, newPane);
+		VBox box = new VBox();
+		box.getChildren().addAll(menuBar, newPane);
+		Scene scene = new Scene(box);
 
 		//Boolean appAlwaysOnTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
 		//primaryStage.setAlwaysOnTop(appAlwaysOnTop.booleanValue());
@@ -256,8 +237,33 @@ public class MainWindow extends Application implements EventHandler {
 		primaryStage.setScene(scene);
 		primary_stage = primaryStage;
 		primaryStage.show();
+
 		dbActions = new DatabaseActions(this);
 		addComponentsToPane();
+		windowTitle = "UPM";
+
+//		boolean restore = Preferences.get(Preferences.ApplicationOptions.REMEMBER_WINDOW_POSITION, "false")
+//				.equals("true");
+//		if (restore) {
+//			restoreWindowBounds();
+//		}
+
+//		try {
+//			// Load the startup database if it's configured
+//			String db = Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP);
+//			if (db != null && !db.equals("")) {
+//				File dbFile = new File(db);
+//				if (!dbFile.exists()) {
+//					dbActions.errorHandler(new Exception(Translator.translate("dbDoesNotExist", db)));
+//				} else {
+//					dbActions.openDatabase(db);
+//				}
+//			}
+//		} catch (Exception e) {
+//			dbActions.errorHandler(e);
+//		}
+
+		PlatformSpecificCode.getInstance().initialiseApplication(this);
 	}
 
 	private GridPane addComponentsToPane() {
