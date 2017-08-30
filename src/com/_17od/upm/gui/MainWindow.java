@@ -1101,7 +1101,7 @@ public class MainWindow extends Application implements EventHandler {
 			} else if(item.getText() == MainWindow.OPEN_DATABASE_TXT){
 				dbActions.openDatabase();
 			} else if(item.getText() == MainWindow.OPEN_DATABASE_FROM_URL_TXT){
-				//dbActions.openDatabaseFromURL();
+				dbActions.openDatabaseFromURL();
 			} else if(item.getText() == MainWindow.SYNC_DATABASE_TXT){
 				dbActions.syncWithRemoteDatabase();
 			} else if(item.getText() == MainWindow.ADD_ACCOUNT_TXT){
