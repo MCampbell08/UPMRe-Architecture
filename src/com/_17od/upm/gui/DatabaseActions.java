@@ -86,7 +86,6 @@ public class DatabaseActions extends Stage {
         this.mainWindow = mainWindow;
     }
 
-
     /**
      * This method asks the user for the name of a new database and then creates
      * it. If the file already exists then the user is asked if they'd like to
@@ -493,16 +492,15 @@ public class DatabaseActions extends Stage {
     }
 
 
-    public void addAccount() throws IOException, CryptoException, TransportException, ProblemReadingDatabaseFile, PasswordDatabaseException {
+    public void addAccount() throws Exception {
 
         if (getLatestVersionOfDatabase()) {
 
             //Initialise the AccountDialog
             AccountInformation accInfo = new AccountInformation();
             AccountDialog accDialog = new AccountDialog(accInfo, this, false, accountNames);
-//            accDialog.pack();
-//            accDialog.setLocationRelativeTo(mainWindow);
-//            accDialog.show();
+            Stage test = new Stage();
+            accDialog.start(test);
 
             //If the user press OK then save the new account to the database
             if (accDialog.okClicked()) {
@@ -559,18 +557,15 @@ public class DatabaseActions extends Stage {
     }
 
 
-    public void viewAccount() {
+    public void viewAccount() throws Exception {
         AccountInformation accInfo = getSelectedAccount();
         AccountDialog accDialog = new AccountDialog(accInfo, this, true, accountNames);
-//        accDialog.pack();
-//        accDialog.setLocationRelativeTo(mainWindow);
-//        accDialog.show();
+        Stage newStage = new Stage();
+        accDialog.start(newStage);
     }
 
 
-    public void editAccount(String accountName) throws TransportException,
-            ProblemReadingDatabaseFile, IOException, CryptoException,
-            PasswordDatabaseException, InvalidPasswordException, UPMException {
+    public void editAccount(String accountName) throws Exception {
 
         if (getLatestVersionOfDatabase()) {
             AccountInformation accInfo = database.getAccount(accountName);
@@ -581,9 +576,8 @@ public class DatabaseActions extends Stage {
             }
 
             AccountDialog accDialog = new AccountDialog(accInfo, this, false, accountNames);
-//            accDialog.pack();
-//            accDialog.setLocationRelativeTo(mainWindow);
-//            accDialog.show();
+            Stage test = new Stage();
+            accDialog.start(test);
 
             //If the ok button was clicked then save the account to the database and update the
             //listview with the new account name (if it's changed)
@@ -678,11 +672,10 @@ public class DatabaseActions extends Stage {
     }
 
 
-    public void options() {
+    public void options() throws Exception {
         OptionsDialog oppDialog = new OptionsDialog(mainWindow, "Options Dialog", true);
-//        oppDialog.pack();
-//        oppDialog.setLocationRelativeTo(mainWindow);
-//        oppDialog.show();
+        Stage opp = new Stage();
+        oppDialog.start(opp);
 
         configureAutoLock();
 
@@ -695,13 +688,10 @@ public class DatabaseActions extends Stage {
     }
 
 
-    public void showAbout() {
-        new Thread() {
-            @Override
-            public void run() {
-                javafx.application.Application.launch(AboutDialog.class);
-            }
-        }.start();
+    public void showAbout() throws Exception {
+        AboutDialog ab = new AboutDialog();
+        Stage anotherStage = new Stage();
+        ab.start(anotherStage);
     }
 
 
@@ -739,13 +729,12 @@ public class DatabaseActions extends Stage {
     }
 
 
-    public void openDatabaseFromURL() throws TransportException, IOException, ProblemReadingDatabaseFile, CryptoException {
+    public void openDatabaseFromURL() throws Exception {
 
         // Ask the user for the remote database location
         OpenDatabaseFromURLDialog openDBDialog = new OpenDatabaseFromURLDialog(mainWindow);
-//        openDBDialog.pack();
-//        openDBDialog.setLocationRelativeTo(mainWindow);
-//        openDBDialog.show();
+        Stage anotherStage = new Stage();
+        openDBDialog.start(anotherStage);
 
         if (openDBDialog.getOkClicked()) {
             // Get the remote database options
@@ -772,7 +761,6 @@ public class DatabaseActions extends Stage {
 
                 // Now open the downloaded database
                 openDatabase(saveDatabaseTo.getAbsolutePath());
-
             }
         }
 
