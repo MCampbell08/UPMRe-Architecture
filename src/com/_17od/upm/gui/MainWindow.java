@@ -24,52 +24,9 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.security.GeneralSecurityException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.swing.*;
-//import javax.swing.*;
-//import javax.swing.BorderFactory;
-//import javax.swing.Box;
-//import javax.swing.BoxLayout;
-//import javax.swing.JButton;
-//import javax.swing.JFrame;
-//import javax.swing.JLabel;
-//import javax.swing.JList;
-//import javax.swing.JMenu;
-//import javax.swing.JMenuBar;
-//import javax.swing.JMenuItem;
-//import javax.swing.JOptionPane;
-//import javax.swing.JPanel;
-//import javax.swing.JScrollPane;
-//import javax.swing.JSeparator;
-//import javax.swing.JTextField;
-//import javax.swing.JToolBar;
-//import javax.swing.KeyStroke;
-//import javax.swing.ListSelectionModel;
-//import javax.swing.UIManager;
-//import javax.swing.UnsupportedLookAndFeelException;
-//import javax.swing.border.EmptyBorder;
-//import javax.swing.event.DocumentEvent;
-//import javax.swing.event.DocumentListener;
-//import javax.swing.event.ListSelectionEvent;
-//import javax.swing.event.ListSelectionListener;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -264,7 +221,13 @@ public class MainWindow extends Application implements EventHandler {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+<<<<<<< HEAD
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../util/images/upm.gif")));
+=======
+		//Image image = new Image(getClass().getResourceAsStream("/util/images/upm.gif"));
+		//primaryStage.getIcons().add(image);
+		//primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("./util/images/upm.gif")));
+>>>>>>> origin/master
 		primaryStage.setTitle("Hi");
 
         window_X = (int)primaryStage.getX();
@@ -396,11 +359,11 @@ public class MainWindow extends Application implements EventHandler {
 		resetSearchButton.setGraphic(new ImageView(backgroundImage9));
 		//resetSearchButton.setDisabledIcon(Util.loadImage("stop_d.gif"));
 		resetSearchButton.setDisable(true);
-		resetSearchButton.setTooltip(new Tooltip(Translator.translate(RESET_SEARCH_TXT)));
+		resetSearchButton.setTooltip(new Tooltip(RESET_SEARCH_TXT));
 		resetSearchButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 			@Override
 			public void handle(javafx.event.ActionEvent event) {
-				resetSearchButton.setText(Translator.translate(RESET_SEARCH_TXT));
+				resetSearchButton.setText(RESET_SEARCH_TXT);
 			}
 		});
 		resetSearchButton.setOnAction(this);
@@ -559,7 +522,7 @@ public class MainWindow extends Application implements EventHandler {
 		Image backgroundImage = new Image(getClass().getResourceAsStream("../util/images/add_account.gif"));
 		addAccountButton = new Button();
 		addAccountButton.setGraphic(new ImageView(backgroundImage));
-		addAccountButton.setTooltip(new Tooltip(Translator.translate(ADD_ACCOUNT_TXT)));
+		addAccountButton.setTooltip(new Tooltip(ADD_ACCOUNT_TXT));
 		//addAccountButton.setDisabledIcon(Util.loadImage("add_account_d.gif"));
 		addAccountButton.setOnAction(this);
 		addAccountButton.setDisable(true);
@@ -577,7 +540,7 @@ public class MainWindow extends Application implements EventHandler {
 		//editAccountButton = new Button(Util.loadImage("edit_account.gif"));
 		editAccountButton = new Button();
 		editAccountButton.setGraphic(new ImageView(backgroundImage2));
-		editAccountButton.setTooltip(new Tooltip(Translator.translate(EDIT_ACCOUNT_TXT)));
+		editAccountButton.setTooltip(new Tooltip(EDIT_ACCOUNT_TXT));
 		//editAccountButton.setDisabledIcon(Util.loadImage("edit_account_d.gif"));
 		editAccountButton.setOnAction(this);
 		editAccountButton.setDisable(true);
@@ -594,7 +557,7 @@ public class MainWindow extends Application implements EventHandler {
 		//deleteAccountButton = new Button(Util.loadImage("delete_account.gif"));
 		deleteAccountButton = new Button();
 		deleteAccountButton.setGraphic(new ImageView(backgroundImage3));
-		deleteAccountButton.setTooltip(new Tooltip(Translator.translate(DELETE_ACCOUNT_TXT)));
+		deleteAccountButton.setTooltip(new Tooltip(DELETE_ACCOUNT_TXT));
 		//deleteAccountButton.setDisabledIcon(Util.loadImage("delete_account_d.gif"));
 		deleteAccountButton.setOnAction(this);
 		deleteAccountButton.setDisable(true);
@@ -613,7 +576,7 @@ public class MainWindow extends Application implements EventHandler {
 		//copyUsernameButton = new Button(Util.loadImage("copy_username.gif"));
 		copyUsernameButton = new Button();
 		copyUsernameButton.setGraphic(new ImageView(backgroundImage4));
-		copyUsernameButton.setTooltip(new Tooltip(Translator.translate(COPY_USERNAME_TXT)));
+		copyUsernameButton.setTooltip(new Tooltip(COPY_USERNAME_TXT));
 		//copyUsernameButton.setDisabledIcon(Util.loadImage("copy_username_d.gif"));
 		copyUsernameButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 			@Override
@@ -629,7 +592,7 @@ public class MainWindow extends Application implements EventHandler {
 		//copyPasswordButton = new Button(Util.loadImage("copy_password.gif"));
 		copyPasswordButton = new Button();
 		copyPasswordButton.setGraphic(new ImageView(backgroundImage5));
-		copyPasswordButton.setTooltip(new Tooltip(Translator.translate(COPY_PASSWORD_TXT)));
+		copyPasswordButton.setTooltip(new Tooltip(COPY_PASSWORD_TXT));
 		//copyPasswordButton.setDisabledIcon(Util.loadImage("copy_password_d.gif"));
 		copyPasswordButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 			@Override
@@ -645,7 +608,7 @@ public class MainWindow extends Application implements EventHandler {
 		//launchURLButton = new Button(Util.loadImage("launch_URL.gif"));
 		launchURLButton = new Button();
 		launchURLButton.setGraphic(new ImageView(backgroundImage6));
-		launchURLButton.setTooltip(new Tooltip(Translator.translate(LAUNCH_URL_TXT)));
+		launchURLButton.setTooltip(new Tooltip(LAUNCH_URL_TXT));
 		//launchURLButton.setDisabledIcon(Util.loadImage("launch_URL_d.gif"));
 		launchURLButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 			@Override
@@ -657,9 +620,9 @@ public class MainWindow extends Application implements EventHandler {
 				// via JoptioPane message
 				if ((uRl == null) || (uRl.length() == 0)) {
 					Alert alert = new Alert(Alert.AlertType.WARNING);
-					alert.setTitle(Translator.translate("EmptyUrlJoptionpaneMsg"));
+					alert.setTitle("EmptyUrlJoptionpaneMsg");
 					alert.setHeaderText(null);
-					alert.setContentText(Translator.translate("UrlErrorJoptionpaneTitle"));
+					alert.setContentText("UrlErrorJoptionpaneTitle");
 					alert.showAndWait();
 
 					// Check if the selected url is a valid formated url(via
@@ -667,9 +630,9 @@ public class MainWindow extends Application implements EventHandler {
 					// message
 				} else if (!(urlIsValid(uRl))) {
 					Alert alert = new Alert(Alert.AlertType.WARNING);
-					alert.setTitle(Translator.translate("InvalidUrlJoptionpaneMsg"));
+					alert.setTitle("InvalidUrlJoptionpaneMsg");
 					alert.setHeaderText(null);
-					alert.setContentText(Translator.translate("UrlErrorJoptionpaneTitle"));
+					alert.setContentText("UrlErrorJoptionpaneTitle");
 					alert.showAndWait();
 					// Call the method LaunchSelectedURL() using the selected
 					// url as input
@@ -689,7 +652,7 @@ public class MainWindow extends Application implements EventHandler {
 		//optionsButton = new Button(Util.loadImage("options.gif"));
 		optionsButton = new Button();
 		optionsButton.setGraphic(new ImageView(backgroundImage7));
-		optionsButton.setTooltip(new Tooltip(Translator.translate(OPTIONS_TXT)));
+		optionsButton.setTooltip(new Tooltip(OPTIONS_TXT));
 		//optionsButton.setDisabledIcon(Util.loadImage("options_d.gif"));
 		optionsButton.setOnAction(this);
 		optionsButton.setDisable(false);
@@ -708,7 +671,7 @@ public class MainWindow extends Application implements EventHandler {
 		//syncDatabaseButton = new Button(Util.loadImage("sync.png"));
 		syncDatabaseButton = new Button();
 		syncDatabaseButton.setGraphic(new ImageView(backgroundImage8));
-		syncDatabaseButton.setTooltip(new Tooltip(Translator.translate(SYNC_DATABASE_TXT)));
+		syncDatabaseButton.setTooltip(new Tooltip(SYNC_DATABASE_TXT));
 		//syncDatabaseButton.setDisabledIcon(Util.loadImage("sync_d.png"));
 		syncDatabaseButton.setOnAction(this);
 		syncDatabaseButton.setDisable(true);
@@ -726,25 +689,25 @@ public class MainWindow extends Application implements EventHandler {
 	private MenuBar createMenuBar() {
 
 		MenuBar menuBar = new MenuBar();
-		databaseMenu = new Menu(Translator.translate("databaseMenu"));
+		databaseMenu = new Menu("Database Menu");//Translator.translate("databaseMenu"));
 		//databaseMenu = new Menu();
 		//databaseMenu.setText(Translator.translate("databaseMenu"));
 		databaseMenu.setAccelerator(new KeyCodeCombination(KeyCode.D));
 		menuBar.getMenus().add(databaseMenu);
 
-		newDatabaseMenuItem = new MenuItem(Translator.translate(NEW_DATABASE_TXT));
+		newDatabaseMenuItem = new MenuItem(NEW_DATABASE_TXT);
 		newDatabaseMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.N));
 		databaseMenu.getItems().add(newDatabaseMenuItem);
 		newDatabaseMenuItem.setOnAction(this);
 
-		openDatabaseMenuItem = new MenuItem(Translator.translate(OPEN_DATABASE_TXT));
+		openDatabaseMenuItem = new MenuItem(OPEN_DATABASE_TXT);
 		openDatabaseMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.O));
 		databaseMenu.getItems().add(openDatabaseMenuItem);
 		openDatabaseMenuItem.setOnAction(this);
 
-		openDatabaseFromURLMenuItem = new MenuItem(Translator.translate(OPEN_DATABASE_FROM_URL_TXT));
+		openDatabaseFromURLMenuItem = new MenuItem(OPEN_DATABASE_FROM_URL_TXT);
 		openDatabaseFromURLMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.L));
 		databaseMenu.getItems().add(openDatabaseFromURLMenuItem);
@@ -752,21 +715,21 @@ public class MainWindow extends Application implements EventHandler {
 
 //		databaseMenu.addSeparator();
 
-		syncWithRemoteDatabaseMenuItem = new MenuItem(Translator.translate(SYNC_DATABASE_TXT));
+		syncWithRemoteDatabaseMenuItem = new MenuItem(SYNC_DATABASE_TXT);
 		syncWithRemoteDatabaseMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.S));
 		databaseMenu.getItems().add(syncWithRemoteDatabaseMenuItem);
 		syncWithRemoteDatabaseMenuItem.setOnAction(this);
 		syncWithRemoteDatabaseMenuItem.setDisable(true);
 
-		changeMasterPasswordMenuItem = new MenuItem(Translator.translate(CHANGE_MASTER_PASSWORD_TXT));
+		changeMasterPasswordMenuItem = new MenuItem(CHANGE_MASTER_PASSWORD_TXT);
 		changeMasterPasswordMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.G));
 		databaseMenu.getItems().add(changeMasterPasswordMenuItem);
 		changeMasterPasswordMenuItem.setOnAction(this);
 		changeMasterPasswordMenuItem.setDisable(true);
 
-		databasePropertiesMenuItem = new MenuItem(Translator.translate(DATABASE_PROPERTIES_TXT));
+		databasePropertiesMenuItem = new MenuItem(DATABASE_PROPERTIES_TXT);
 		databasePropertiesMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.S));
 		databaseMenu.getItems().add(databasePropertiesMenuItem);
@@ -775,49 +738,49 @@ public class MainWindow extends Application implements EventHandler {
 
 //		databaseMenu.addSeparator();
 
-		exportMenuItem = new MenuItem(Translator.translate(EXPORT_TXT));
+		exportMenuItem = new MenuItem(EXPORT_TXT);
 		databaseMenu.getItems().add(exportMenuItem);
 		exportMenuItem.setOnAction(this);
 		exportMenuItem.setDisable(false);
 
-		importMenuItem = new MenuItem(Translator.translate(IMPORT_TXT));
+		importMenuItem = new MenuItem(IMPORT_TXT);
 		databaseMenu.getItems().add(importMenuItem);
 		importMenuItem.setOnAction(this);
 		importMenuItem.setDisable(true);
 
-		accountMenu = new Menu(Translator.translate("accountMenu"));
+		accountMenu = new Menu("accountMenu");
 		accountMenu.setAccelerator(new KeyCodeCombination(KeyCode.A));
 		menuBar.getMenus().add(accountMenu);
 
-		addAccountMenuItem = new MenuItem(Translator.translate(ADD_ACCOUNT_TXT));
+		addAccountMenuItem = new MenuItem(ADD_ACCOUNT_TXT);
 		addAccountMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.A));
 		accountMenu.getItems().add(addAccountMenuItem);
 		addAccountMenuItem.setOnAction(this);
 		addAccountMenuItem.setDisable(true);
 
-		editAccountMenuItem = new MenuItem(Translator.translate(EDIT_ACCOUNT_TXT));
+		editAccountMenuItem = new MenuItem(EDIT_ACCOUNT_TXT);
 		editAccountMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.E));
 		accountMenu.getItems().add(editAccountMenuItem);
 		editAccountMenuItem.setOnAction(this);
 		editAccountMenuItem.setDisable(true);
 
-		deleteAccountMenuItem = new MenuItem(Translator.translate(DELETE_ACCOUNT_TXT));
+		deleteAccountMenuItem = new MenuItem(DELETE_ACCOUNT_TXT);
 		deleteAccountMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.D));
 		accountMenu.getItems().add(deleteAccountMenuItem);
 		deleteAccountMenuItem.setOnAction(this);
 		deleteAccountMenuItem.setDisable(true);
 
-		viewAccountMenuItem = new MenuItem(Translator.translate(VIEW_ACCOUNT_TXT));
+		viewAccountMenuItem = new MenuItem(VIEW_ACCOUNT_TXT);
 		viewAccountMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.V));
 		accountMenu.getItems().add(viewAccountMenuItem);
 		viewAccountMenuItem.setOnAction(this);
 		viewAccountMenuItem.setDisable(true);
 
-		copyUsernameMenuItem = new MenuItem(Translator.translate(COPY_USERNAME_TXT));
+		copyUsernameMenuItem = new MenuItem(COPY_USERNAME_TXT);
 		copyUsernameMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.U));
 		accountMenu.getItems().add(copyUsernameMenuItem);
@@ -828,7 +791,7 @@ public class MainWindow extends Application implements EventHandler {
 		});
 		copyUsernameMenuItem.setDisable(true);
 
-		copyPasswordMenuItem = new MenuItem(Translator.translate(COPY_PASSWORD_TXT));
+		copyPasswordMenuItem = new MenuItem(COPY_PASSWORD_TXT);
 		copyPasswordMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.P));
 		accountMenu.getItems().add(copyPasswordMenuItem);
@@ -839,7 +802,7 @@ public class MainWindow extends Application implements EventHandler {
 		});
 		copyPasswordMenuItem.setDisable(true);
 
-		launchURLMenuItem = new MenuItem(Translator.translate(LAUNCH_URL_TXT));
+		launchURLMenuItem = new MenuItem(LAUNCH_URL_TXT);
 		launchURLMenuItem.setAccelerator(
 				new KeyCodeCombination(KeyCode.B));
 		accountMenu.getItems().add(launchURLMenuItem);
@@ -852,14 +815,14 @@ public class MainWindow extends Application implements EventHandler {
 
 				if((url == null) || (url.length() == 0)){
                     Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle(Translator.translate("UrlErrorJoptionpaneTitle"));
-                    alert.setContentText(Translator.translate("EmptyUrlJoptionpaneMsg"));
+                    alert.setTitle("UrlErrorJoptionpaneTitle");
+                    alert.setContentText("EmptyUrlJoptionpaneMsg");
                     alert.showAndWait();
 				}
 				else if (!(urlIsValid(url))) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle(Translator.translate("UrlErrorJoptionpaneTitle"));
-                alert.setContentText(Translator.translate("InvalidUrlJoptionpaneMsg"));
+                alert.setTitle("UrlErrorJoptionpaneTitle");
+                alert.setContentText("InvalidUrlJoptionpaneMsg");
                 alert.showAndWait();
 
                 // Call the method LaunchSelectedURL() using the selected
@@ -873,12 +836,12 @@ public class MainWindow extends Application implements EventHandler {
 
 		launchURLMenuItem.setDisable(true);
 
-		exitMenuItem = new MenuItem(Translator.translate(EXIT_TXT));
+		exitMenuItem = new MenuItem(EXIT_TXT);
 		exitMenuItem.setAccelerator(
                 new KeyCodeCombination(KeyCode.X));
 		exitMenuItem.setOnAction(this);
 
-		aboutMenuItem = new MenuItem(Translator.translate(ABOUT_TXT));
+		aboutMenuItem = new MenuItem(ABOUT_TXT);
 		aboutMenuItem.setOnAction(this);
 
 		// Because the MAC version of UPM will have a program item in the menu
@@ -888,7 +851,7 @@ public class MainWindow extends Application implements EventHandler {
 //			databaseMenu.addSeparator();
 			databaseMenu.getItems().add(exitMenuItem);
 
-			helpMenu = new Menu(Translator.translate("helpMenu"));
+			helpMenu = new Menu("helpMenu");
 			helpMenu.setAccelerator(new KeyCodeCombination(KeyCode.H));
 			menuBar.getMenus().add(helpMenu);
 
@@ -1192,42 +1155,42 @@ public class MainWindow extends Application implements EventHandler {
 	 * selected by the user
 	 */
 	public void initialiseControlsWithDefaultLanguage() {
-		databaseMenu.setText(Translator.translate("databaseMenu"));
-		newDatabaseMenuItem.setText(Translator.translate(NEW_DATABASE_TXT));
-		openDatabaseMenuItem.setText(Translator.translate(OPEN_DATABASE_TXT));
-		openDatabaseFromURLMenuItem.setText(Translator.translate(OPEN_DATABASE_FROM_URL_TXT));
-		syncWithRemoteDatabaseMenuItem.setText(Translator.translate(SYNC_DATABASE_TXT));
-		changeMasterPasswordMenuItem.setText(Translator.translate(CHANGE_MASTER_PASSWORD_TXT));
-		databasePropertiesMenuItem.setText(Translator.translate(DATABASE_PROPERTIES_TXT));
-		accountMenu.setText(Translator.translate("accountMenu"));
-		addAccountMenuItem.setText(Translator.translate(ADD_ACCOUNT_TXT));
-		editAccountMenuItem.setText(Translator.translate(EDIT_ACCOUNT_TXT));
-		deleteAccountMenuItem.setText(Translator.translate(DELETE_ACCOUNT_TXT));
-		viewAccountMenuItem.setText(Translator.translate(VIEW_ACCOUNT_TXT));
-		copyUsernameMenuItem.setText(Translator.translate(COPY_USERNAME_TXT));
-		copyPasswordMenuItem.setText(Translator.translate(COPY_PASSWORD_TXT));
-		launchURLMenuItem.setText(Translator.translate(LAUNCH_URL_TXT));
-		exitMenuItem.setText(Translator.translate(EXIT_TXT));
-		aboutMenuItem.setText(Translator.translate(ABOUT_TXT));
-		exportMenuItem.setText(Translator.translate(EXPORT_TXT));
-		importMenuItem.setText(Translator.translate(IMPORT_TXT));
+		databaseMenu.setText("databaseMenu");
+		newDatabaseMenuItem.setText(NEW_DATABASE_TXT);
+		openDatabaseMenuItem.setText(OPEN_DATABASE_TXT);
+		openDatabaseFromURLMenuItem.setText(OPEN_DATABASE_FROM_URL_TXT);
+		syncWithRemoteDatabaseMenuItem.setText(SYNC_DATABASE_TXT);
+		changeMasterPasswordMenuItem.setText(CHANGE_MASTER_PASSWORD_TXT);
+		databasePropertiesMenuItem.setText(DATABASE_PROPERTIES_TXT);
+		accountMenu.setText("accountMenu");
+		addAccountMenuItem.setText(ADD_ACCOUNT_TXT);
+		editAccountMenuItem.setText(EDIT_ACCOUNT_TXT);
+		deleteAccountMenuItem.setText(DELETE_ACCOUNT_TXT);
+		viewAccountMenuItem.setText(VIEW_ACCOUNT_TXT);
+		copyUsernameMenuItem.setText(COPY_USERNAME_TXT);
+		copyPasswordMenuItem.setText(COPY_PASSWORD_TXT);
+		launchURLMenuItem.setText(LAUNCH_URL_TXT);
+		exitMenuItem.setText(EXIT_TXT);
+		aboutMenuItem.setText(ABOUT_TXT);
+		exportMenuItem.setText(EXPORT_TXT);
+		importMenuItem.setText(IMPORT_TXT);
 
 		// Because the MAC version of UPM will have a program item in the menu
 		// bar then these items
 		// only need to be added on non-mac platforms
 		if (!PlatformSpecificCode.isMAC()) {
-			helpMenu.setText(Translator.translate("helpMenu"));
+			helpMenu.setText("helpMenu");
 		}
 
-		addAccountButton.setTooltip(new Tooltip(Translator.translate(ADD_ACCOUNT_TXT)));
-		editAccountButton.setTooltip(new Tooltip(Translator.translate(EDIT_ACCOUNT_TXT)));
-		deleteAccountButton.setTooltip(new Tooltip(Translator.translate(DELETE_ACCOUNT_TXT)));
-		copyUsernameButton.setTooltip(new Tooltip(Translator.translate(COPY_USERNAME_TXT)));
-		copyPasswordButton.setTooltip(new Tooltip(Translator.translate(COPY_PASSWORD_TXT)));
-		launchURLButton.setTooltip(new Tooltip(Translator.translate(LAUNCH_URL_TXT)));
-		optionsButton.setTooltip(new Tooltip(Translator.translate(OPTIONS_TXT)));
-		syncDatabaseButton.setTooltip(new Tooltip(Translator.translate(SYNC_DATABASE_TXT)));
-		resetSearchButton.setTooltip(new Tooltip(Translator.translate(RESET_SEARCH_TXT)));
+		addAccountButton.setTooltip(new Tooltip(ADD_ACCOUNT_TXT));
+		editAccountButton.setTooltip(new Tooltip(EDIT_ACCOUNT_TXT));
+		deleteAccountButton.setTooltip(new Tooltip(DELETE_ACCOUNT_TXT));
+		copyUsernameButton.setTooltip(new Tooltip(COPY_USERNAME_TXT));
+		copyPasswordButton.setTooltip(new Tooltip(COPY_PASSWORD_TXT));
+		launchURLButton.setTooltip(new Tooltip(LAUNCH_URL_TXT));
+		optionsButton.setTooltip(new Tooltip(OPTIONS_TXT));
+		syncDatabaseButton.setTooltip(new Tooltip(SYNC_DATABASE_TXT));
+		resetSearchButton.setTooltip(new Tooltip(RESET_SEARCH_TXT));
 	}
 
 	public interface ChangeDatabaseAction {
