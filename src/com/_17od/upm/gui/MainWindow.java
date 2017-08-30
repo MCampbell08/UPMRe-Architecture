@@ -180,54 +180,54 @@ public class MainWindow extends Application implements EventHandler {
     private static int window_Height = 0;
     private static int window_Width = 0;
 
-	public MainWindow(String title) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
-			IllegalBlockSizeException, IOException, GeneralSecurityException,
-			ProblemReadingDatabaseFile {
-		super();
-		windowTitle = title;
-
-
-
-		PlatformSpecificCode.getInstance().initialiseApplication(this);
-
-		//dbActions = new DatabaseActions(this);
-
-		// Set up the content pane.
-		addComponentsToPane();
-
-		// Add listener to store current position and size on closing
-
-
-		// Display the window.
-//		pack();
-//		setLocationRelativeTo(null);
-		boolean restore = Preferences.get(Preferences.ApplicationOptions.REMEMBER_WINDOW_POSITION, "false")
-				.equals("true");
-		if (restore) {
-			restoreWindowBounds();
-		}
-
-		try {
-			// Load the startup database if it's configured
-			String db = Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP);
-			if (db != null && !db.equals("")) {
-				File dbFile = new File(db);
-				if (!dbFile.exists()) {
-					dbActions.errorHandler(new Exception(Translator.translate("dbDoesNotExist", db)));
-				} else {
-					dbActions.openDatabase(db);
-				}
-			}
-		} catch (Exception e) {
-			dbActions.errorHandler(e);
-		}
+//	public MainWindow(String title) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+//			IllegalBlockSizeException, IOException, GeneralSecurityException,
+//			ProblemReadingDatabaseFile {
+//		super();
+//		windowTitle = title;
+//
+//
+//
+//		PlatformSpecificCode.getInstance().initialiseApplication(this);
+//
+//		//dbActions = new DatabaseActions(this);
+//
+//		// Set up the content pane.
+//		addComponentsToPane();
+//
+//		// Add listener to store current position and size on closing
+//
+//
+//		// Display the window.
+////		pack();
+////		setLocationRelativeTo(null);
+//		boolean restore = Preferences.get(Preferences.ApplicationOptions.REMEMBER_WINDOW_POSITION, "false")
+//				.equals("true");
+//		if (restore) {
+//			restoreWindowBounds();
+//		}
+//
+//		try {
+//			// Load the startup database if it's configured
+//			String db = Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP);
+//			if (db != null && !db.equals("")) {
+//				File dbFile = new File(db);
+//				if (!dbFile.exists()) {
+//					dbActions.errorHandler(new Exception(Translator.translate("dbDoesNotExist", db)));
+//				} else {
+//					dbActions.openDatabase(db);
+//				}
+//			}
+//		} catch (Exception e) {
+//			dbActions.errorHandler(e);
+//		}
 
 		// Give the search field focus
 		// I'm using requestFocusInWindow() rathar than requestFocus()
 		// because the javadocs recommend i
 		// ----------------- //searchField.requestFocusInWindow(); // -------------------- //
 
-	}
+	//}
 
 	public static void setAppAlwaysonTop(boolean val) {
 		//AppWindow.setAlwaysOnTop(val);
@@ -236,36 +236,38 @@ public class MainWindow extends Application implements EventHandler {
 	}
 
 	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-
-				try {
-					// Use the System look and feel
-					Preferences.load();
-					Translator.initialise();
-					Double jvmVersion = new Double(System.getProperty("java.specification.version"));
-					if (jvmVersion.doubleValue() < 1.4) {
-						Alert alert = new Alert(Alert.AlertType.ERROR);
-						alert.setTitle(Translator.translate("problem"));
-						alert.setHeaderText(null);
-						alert.setContentText(Translator.translate("requireJava14"));
-						alert.showAndWait();
-					} else {
-						AppWindow = new MainWindow(applicationName);
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		launch(args);
+//		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//
+//				try {
+//					// Use the System look and feel
+//					Preferences.load();
+//					Translator.initialise();
+//					Double jvmVersion = new Double(System.getProperty("java.specification.version"));
+//					if (jvmVersion.doubleValue() < 1.4) {
+//						Alert alert = new Alert(Alert.AlertType.ERROR);
+//						alert.setTitle(Translator.translate("problem"));
+//						alert.setHeaderText(null);
+//						alert.setContentText(Translator.translate("requireJava14"));
+//						alert.showAndWait();
+//					} else {
+//						AppWindow = new MainWindow(applicationName);
+//					}
+//
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+		Application.launch(args);
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage.getIcons().add(new Image("upm.gif"));
-		primaryStage.setTitle(windowTitle);
+		//Image image = new Image(getClass().getResourceAsStream("/util/images/upm.gif"));
+		//primaryStage.getIcons().add(image);
+		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("./util/images/upm.gif")));
+		primaryStage.setTitle("Hi");
 
         window_X = (int)primaryStage.getX();
         window_Y = (int)primaryStage.getY();
@@ -294,8 +296,8 @@ public class MainWindow extends Application implements EventHandler {
 		primaryStage.setAlwaysOnTop(appAlwaysonTop.booleanValue());
 
 		primaryStage.setScene(scene);
-		primaryStage.show();
 		primary_stage = primaryStage;
+		primaryStage.show();
 		// -------------------------- // primaryStage.setVisible(true); // ---------------------------- //
 
 	}
@@ -727,6 +729,8 @@ public class MainWindow extends Application implements EventHandler {
 
 		MenuBar menuBar = new MenuBar();
 		databaseMenu = new Menu(Translator.translate("databaseMenu"));
+		//databaseMenu = new Menu();
+		//databaseMenu.setText(Translator.translate("databaseMenu"));
 		databaseMenu.setAccelerator(new KeyCodeCombination(KeyCode.D));
 		menuBar.getMenus().add(databaseMenu);
 
