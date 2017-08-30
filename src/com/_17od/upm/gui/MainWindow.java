@@ -264,9 +264,7 @@ public class MainWindow extends Application implements EventHandler {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//Image image = new Image(getClass().getResourceAsStream("/util/images/upm.gif"));
-		//primaryStage.getIcons().add(image);
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("./util/images/upm.gif")));
+		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../util/images/upm.gif")));
 		primaryStage.setTitle("Hi");
 
         window_X = (int)primaryStage.getX();
