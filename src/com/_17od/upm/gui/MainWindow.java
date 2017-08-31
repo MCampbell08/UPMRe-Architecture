@@ -229,10 +229,13 @@ public class MainWindow extends Application implements EventHandler {
 				primaryStage.close();
 			}
 		});
-		MenuBar menuBar = createMenuBar();
+		PlatformSpecificCode.getInstance().initialiseApplication(this);
+
+        MenuBar menuBar = createMenuBar();
 		GridPane newPane = addComponentsToPane();
 		VBox box = new VBox();
 		box.getChildren().addAll(menuBar, newPane);
+		box.setFillWidth(true);
 		Scene scene = new Scene(box);
 
 		//Boolean appAlwaysOnTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
@@ -267,7 +270,7 @@ public class MainWindow extends Application implements EventHandler {
 //			dbActions.errorHandler(e);
 //		}
 
-		PlatformSpecificCode.getInstance().initialiseApplication(this);
+        searchField.requestFocus();
 	}
 
 	private GridPane addComponentsToPane() {
@@ -278,7 +281,7 @@ public class MainWindow extends Application implements EventHandler {
 //        }
 
 		GridPane pane = new GridPane();
-		pane.setPadding(new Insets(0,10,0,10));
+//		pane.setGridLinesVisible(true);
 
 		//GridBagConstraints c = new GridBagConstraints();
 
@@ -292,8 +295,9 @@ public class MainWindow extends Application implements EventHandler {
 //		c.gridwidth = 3;
 //		c.fill = GridBagConstraints.HORIZONTAL;
 		ToolBar toolbar = createToolBar();
+		toolbar.setMinWidth(3);
 		toolbar.setOrientation(Orientation.HORIZONTAL);
-		pane.add(toolbar, 0, 0);
+		pane.add(toolbar, 0, 0, 3, 1);
 
 		// Keep the frame background color consistent
 		pane.setBackground(toolbar.getBackground());
@@ -307,7 +311,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 3;
 //		c.fill = GridBagConstraints.HORIZONTAL;
-		pane.add(new Separator(), 1,0);
+		pane.add(new Separator(), 0,1, 1, 3 );
 
 		// The search field row
 		Image backgroundImage10 = new Image(getClass().getResourceAsStream("../util/images/search.gif"));
@@ -323,7 +327,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 1;
 //		c.fill = GridBagConstraints.NONE;
-		pane.add(searchIcon, 2, 0);
+		pane.add(searchIcon, 0, 2);
 
 		searchField = new TextField();
 		searchField.setDisable(true);
@@ -358,7 +362,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 1;
 //		c.fill = GridBagConstraints.NONE;
-		pane.add(searchField, 2, 1);
+		pane.add(searchField, 1, 2);
 
 
 		Image backgroundImage9 = new Image(getClass().getResourceAsStream("../util/images/stop.gif"));
@@ -465,7 +469,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 1;
 //		c.gridwidth = 3;
 //		c.fill = GridBagConstraints.BOTH;
-		pane.add(accountsScrollList, 3, 0);
+		pane.add(accountsScrollList, 0, 3, 3, 1);
 
 		// The "File Changed" panel
 //		c.gridx = 0;
@@ -501,7 +505,7 @@ public class MainWindow extends Application implements EventHandler {
 
 		databaseFileChangedPanel.getChildren().add(reloadButton);
 		databaseFileChangedPanel.setVisible(false);
-		pane.add(databaseFileChangedPanel, 4, 0);
+		pane.add(databaseFileChangedPanel, 0, 4);
 
 		// Add the statusbar
 //		c.gridx = 0;
@@ -512,7 +516,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 3;
 //		c.fill = GridBagConstraints.HORIZONTAL;
-		pane.add(statusBar, 5, 0);
+		pane.add(statusBar, 0, 5);
 		return pane;
 	}
 
