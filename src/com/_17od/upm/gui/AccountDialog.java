@@ -206,7 +206,7 @@ public class AccountDialog extends Application {
 		});
 
 		Button acctCopyButton = new Button();
-		Image acctCopy = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
+		Image acctCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
 		//acctCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		acctCopyButton.setGraphic(new ImageView(acctCopy));
 		acctCopyButton.setTooltip(new Tooltip("Copy"));
@@ -229,7 +229,7 @@ public class AccountDialog extends Application {
 		accountPanel.getChildren().add(acctCopyButton);
 
 		Button acctPasteButton = new Button();
-		Image acctPaste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
+		Image acctPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
 		//acctPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		acctPasteButton.setGraphic(new ImageView(acctPaste));
 		acctPasteButton.setTooltip(new Tooltip("Paste"));
@@ -298,7 +298,7 @@ public class AccountDialog extends Application {
 		});
 
 		Button idCopyButton = new Button();
-		Image copyBackground = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
+		Image copyBackground = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
 		//idCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		idCopyButton.setGraphic(new ImageView(copyBackground));
 		idCopyButton.setTooltip(new Tooltip("Copy"));
@@ -321,7 +321,7 @@ public class AccountDialog extends Application {
 		idPanel.getChildren().add(idCopyButton);
 
 		Button idPasteButton = new Button();
-		Image paste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
+		Image paste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
 		//idPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		idPasteButton.setGraphic(new ImageView(paste));
 		idPasteButton.setTooltip(new Tooltip("Paste"));
@@ -439,7 +439,7 @@ public class AccountDialog extends Application {
 		passwordPanel.getChildren().add(generateRandomPasswordButton);
 
 		Button pwCopyButton = new Button();
-		Image pwCopy = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
+		Image pwCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
 		//pwCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		pwCopyButton.setGraphic(new ImageView(pwCopy));
 		pwCopyButton.setTooltip(new Tooltip("Copy"));
@@ -462,7 +462,7 @@ public class AccountDialog extends Application {
 		passwordPanel.getChildren().add(pwCopyButton);
 
 		Button pwPasteButton = new Button();
-		Image pwPaste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
+		Image pwPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
 		//pwPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		pwPasteButton.setGraphic(new ImageView(pwPaste));
 		pwPasteButton.setTooltip(new Tooltip("Paste"));
@@ -497,9 +497,9 @@ public class AccountDialog extends Application {
 //			}
 //		});
 
-		Boolean hideAccountPassword = new Boolean(
-				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_HIDE_PASSWORD, "true"));
-		hidePasswordCheckbox.setSelected(hideAccountPassword.booleanValue());
+//		Boolean hideAccountPassword = new Boolean(
+//				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_HIDE_PASSWORD, "true"));
+//		hidePasswordCheckbox.setSelected(hideAccountPassword.booleanValue());
 
 		c.gridx = 0;
 		c.gridy = 1;
@@ -557,7 +557,7 @@ public class AccountDialog extends Application {
 		});
 
 		final Button urlLaunchButton = new Button();
-		Image urlLaunch = new Image(getClass().getResourceAsStream("/util/launch-url-sm.png"));
+		Image urlLaunch = new Image(getClass().getResourceAsStream("../util/images/launch-url-sm.png"));
 		//urlLaunchButton.setIcon(Util.loadImage("launch-url-sm.png"));
 		urlLaunchButton.setGraphic(new ImageView(urlLaunch));
 		urlLaunchButton.setTooltip(new Tooltip("Launch URL"));
@@ -601,7 +601,7 @@ public class AccountDialog extends Application {
 		urlPanel.getChildren().add(urlLaunchButton);
 
 		Button urlCopyButton = new Button();
-		Image urlCopy = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
+		Image urlCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
 		//urlCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		urlCopyButton.setGraphic(new ImageView(urlCopy));
 		urlCopyButton.setTooltip(new Tooltip("Copy"));
@@ -624,7 +624,7 @@ public class AccountDialog extends Application {
 		urlPanel.getChildren().add(urlCopyButton);
 
 		Button urlPasteButton = new Button();
-		Image urlPaste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
+		Image urlPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
 		//urlPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		urlPasteButton.setGraphic(new ImageView(urlPaste));
 		urlPasteButton.setTooltip(new Tooltip("Paste"));
@@ -691,7 +691,7 @@ public class AccountDialog extends Application {
 		notesPanel.getChildren().add(notesScrollPane);
 
 		Button notesCopyButton = new Button();
-		Image notesCopy = new Image(getClass().getResourceAsStream("/util/copy-icon.png"));
+		Image notesCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
 		//notesCopyButton.setIcon(Util.loadImage("copy-icon.png"));
 		notesCopyButton.setGraphic(new ImageView(notesCopy));
 		notesCopyButton.setTooltip(new Tooltip("Copy"));
@@ -714,7 +714,7 @@ public class AccountDialog extends Application {
 		notesPanel.getChildren().add(notesCopyButton);
 
 		Button notesPasteButton = new Button();
-		Image notesPaste = new Image(getClass().getResourceAsStream("/util/paste-icon.png"));
+		Image notesPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
 		//notesPasteButton.setIcon(Util.loadImage("paste-icon.png"));
 		notesPasteButton.setGraphic(new ImageView(notesPaste));
 		notesPasteButton.setTooltip(new Tooltip("Paste"));

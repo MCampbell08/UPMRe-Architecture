@@ -285,16 +285,16 @@ public class DatabaseActions extends Stage {
 
 
     private void doOpenDatabaseActions() {
-        mainWindow.getAddAccountButton().setDisable(true);
-        mainWindow.getAddAccountMenuItem().setDisable(true);
-        mainWindow.getSearchField().setDisable(true);
+        mainWindow.getAddAccountButton().setDisable(false);
+        mainWindow.getAddAccountMenuItem().setDisable(false);
+        mainWindow.getSearchField().setDisable(false);
         mainWindow.getSearchField().setText("");
-        mainWindow.getSearchIcon().setDisable(true);
-        mainWindow.getResetSearchButton().setDisable(true);
-        mainWindow.getChangeMasterPasswordMenuItem().setDisable(true);
-        mainWindow.getDatabasePropertiesMenuItem().setDisable(true);
-        mainWindow.getExportMenuItem().setDisable(true);
-        mainWindow.getImportMenuItem().setDisable(true);
+        mainWindow.getSearchIcon().setDisable(false);
+        mainWindow.getResetSearchButton().setDisable(false);
+        mainWindow.getChangeMasterPasswordMenuItem().setDisable(false);
+        mainWindow.getDatabasePropertiesMenuItem().setDisable(false);
+        mainWindow.getExportMenuItem().setDisable(false);
+        mainWindow.getImportMenuItem().setDisable(false);
 
         //mainWindow.setTitle(database.getDatabaseFile() + " - " + MainWindow.getApplicationName());
 
@@ -318,7 +318,7 @@ public class DatabaseActions extends Stage {
         // If the user asked for the db to close after a period of
         // inactivity then register a listener to capture window focus
         // events.
-        configureAutoLock();
+        //configureAutoLock();
 
         // Give the search field focus.
         // I'm using requestFocusInWindow() rather than
@@ -328,27 +328,27 @@ public class DatabaseActions extends Stage {
         mainWindow.getDatabaseFileChangedPanel().setVisible(false);
     }
 
-    private void configureAutoLock() {
-        lockIfInactive = Preferences.get(
-                Preferences.ApplicationOptions.DATABASE_AUTO_LOCK, "false").
-                equals("true");
-        msToWaitBeforeClosingDB = Preferences.getInt(
-                Preferences.ApplicationOptions.DATABASE_AUTO_LOCK_TIME, 5)
-                * 60 * 1000;
-
-        if (lockIfInactive) {
-            LOG.debug("Enabling autoclose when focus lost");
-//            if (mainWindow.getWindowFocusListeners().length == 0) {
-//                mainWindow.addWindowFocusListener(new AutoLockDatabaseListener());
-//            }
-        } else {
-            LOG.debug("Disabling autoclose when focus lost");
-//            for (int i=0; i<mainWindow.getWindowFocusListeners().length; i++) {
-//                mainWindow.removeWindowFocusListener(
-//                        mainWindow.getWindowFocusListeners()[i]);
-//            }
-        }
-    }
+//    private void configureAutoLock() {
+//        lockIfInactive = Preferences.get(
+//                Preferences.ApplicationOptions.DATABASE_AUTO_LOCK, "false").
+//                equals("true");
+//        msToWaitBeforeClosingDB = Preferences.getInt(
+//                Preferences.ApplicationOptions.DATABASE_AUTO_LOCK_TIME, 5)
+//                * 60 * 1000;
+//
+//        if (lockIfInactive) {
+//            LOG.debug("Enabling autoclose when focus lost");
+////            if (mainWindow.getWindowFocusListeners().length == 0) {
+////                mainWindow.addWindowFocusListener(new AutoLockDatabaseListener());
+////            }
+//        } else {
+//            LOG.debug("Disabling autoclose when focus lost");
+////            for (int i=0; i<mainWindow.getWindowFocusListeners().length; i++) {
+////                mainWindow.removeWindowFocusListener(
+////                        mainWindow.getWindowFocusListeners()[i]);
+////            }
+//        }
+//    }
 
     public ArrayList getAccountNames() {
         ArrayList dbAccounts = database.getAccounts();
@@ -1175,7 +1175,7 @@ public class DatabaseActions extends Stage {
             color = Color.BLACK;
         }
         mainWindow.getStatusBar().setText(status);
-        mainWindow.getStatusBar().setTextFill(javafx.scene.paint.Paint.valueOf(color.toString()));
+        //mainWindow.getStatusBar().setTextFill(javafx.scene.paint.Paint.valueOf(color.toString()));
     }
 
     private class AutoLockDatabaseListener implements WindowFocusListener {
