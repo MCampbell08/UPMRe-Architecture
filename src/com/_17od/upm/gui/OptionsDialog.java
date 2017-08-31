@@ -28,6 +28,7 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -85,7 +86,6 @@ public class OptionsDialog extends EscapeDialog {
 		Border emptyBorder = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
 		//Border emptyBorder = BorderFactory.createEmptyBorder(2, 5, 5, 5);
 		GridPane emptyBorderPanel = new GridPane();
-		emptyBorderPanel.add(emptyBorderPanel, 0,0);
 		emptyBorderPanel.setBorder(emptyBorder);
 		container.getChildren().add(emptyBorderPanel);
 
@@ -95,7 +95,7 @@ public class OptionsDialog extends EscapeDialog {
 		// Create a pane with an title etched border
 		BorderStroke etchedBorder = new BorderStroke(Color.BLACK, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT);
 		Border etchedTitleBorder = new Border(etchedBorder);
-//				' ' + Translator.translate("general") + ' ');
+		// ' + Translator.translate("general") + ' ');
 
 		GridPane mainPanel = new GridPane();
 		mainPanel.setBorder(etchedTitleBorder);
@@ -116,8 +116,8 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.add(urlLabel, 0, 0, 2, 1);
 
 		// The "Database to Load on Startup" input field row
-		dbToLoadOnStartup = new TextField(Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP));
-		dbToLoadOnStartup.setMinSize(25, 5);
+		dbToLoadOnStartup = new TextField(/*Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP)*/);
+//		dbToLoadOnStartup.setMinSize(25, 5);
 		//dbToLoadOnStartup.setHorizontalAlignment(TextField.LEFT);
 //        c.gridx = 0;
 //        c.gridy = 1;
@@ -161,7 +161,7 @@ public class OptionsDialog extends EscapeDialog {
 
 		// The "Locale" field row
 		localeComboBox = new ComboBox();
-		localeComboBox.getItems().addAll(getSupportedLocaleNames());
+//		localeComboBox.getItems().addAll(getSupportedLocaleNames());
 		for (int i = 0; i < localeComboBox.getItems().size(); i++) {
 			// If the locale language is blank then set it to the English
 			// language
@@ -189,10 +189,9 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.add(localeComboBox, 3, 0, 2, 1);
 
 		// The "Hide account password" row
-		Boolean hideAccountPassword = new Boolean(
-				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_HIDE_PASSWORD, "true"));
-		hideAccountPasswordCheckbox = new CheckBox("hideAccountPassword" +
-				hideAccountPassword.booleanValue());
+//		Boolean hideAccountPassword = new Boolean(
+//				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_HIDE_PASSWORD, "true"));
+		hideAccountPasswordCheckbox = new CheckBox("hideAccountPassword" + true);
 //        c.gridx = 0;
 //        c.gridy = 4;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -204,10 +203,10 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.add(hideAccountPasswordCheckbox, 4, 0);
 
 		// The "Database auto lock" row
-		Boolean databaseAutoLock = new Boolean(
-				Preferences.get(Preferences.ApplicationOptions.DATABASE_AUTO_LOCK, "false"));
+//		Boolean databaseAutoLock = new Boolean(
+//				Preferences.get(Preferences.ApplicationOptions.DATABASE_AUTO_LOCK, "false"));
 		databaseAutoLockCheckbox = new CheckBox("databaseAutoLock" +
-				databaseAutoLock.booleanValue());
+				false);
 //        c.gridx = 0;
 //        c.gridy = 5;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -226,7 +225,7 @@ public class OptionsDialog extends EscapeDialog {
 
 
 		// The "Database auto lock" field row
-		databaseAutoLockTime = new TextField(Preferences.get(Preferences.ApplicationOptions.DATABASE_AUTO_LOCK_TIME));
+		databaseAutoLockTime = new TextField(/*Preferences.get(Preferences.ApplicationOptions.DATABASE_AUTO_LOCK_TIME)*/);
 		databaseAutoLockTime.setMinSize(5, 5);
 //        c.gridx = 1;
 //        c.gridy = 5;
@@ -252,7 +251,7 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.add(accountPasswordLengthLabel, 6, 0);
 
 		accountPasswordLength = new TextField(
-				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_PASSWORD_LENGTH));
+				/*Preferences.get(Preferences.ApplicationOptions.ACCOUNT_PASSWORD_LENGTH)*/);
 //        c.gridx = 1;
 //        c.gridy = 6;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -264,10 +263,10 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.add(accountPasswordLength, 6, 1);
 
 		// The "Include Escape Characters to Generated Passwords" row
-		Boolean inclEscCharstoPass = new Boolean(
-				Preferences.get(Preferences.ApplicationOptions.INCLUDE_ESCAPE_CHARACTERS, "true"));
+//		Boolean inclEscCharstoPass = new Boolean(
+//				Preferences.get(Preferences.ApplicationOptions.INCLUDE_ESCAPE_CHARACTERS, "true"));
 		inclEscCharstoPassCheckbox = new CheckBox(("includePunctuationCharacters") +
-				inclEscCharstoPass.booleanValue());
+				true);
 //        c.gridx = 0;
 //        c.gridy = 7;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -279,10 +278,10 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.add(inclEscCharstoPassCheckbox, 7, 0);
 
 		// The "Store Window position" row
-		Boolean storeWindowPos = Boolean
-				.valueOf(Preferences.get(Preferences.ApplicationOptions.REMEMBER_WINDOW_POSITION, "false"));
+//		Boolean storeWindowPos = Boolean
+//				.valueOf(Preferences.get(Preferences.ApplicationOptions.REMEMBER_WINDOW_POSITION, "false"));
 		storeWindowPosCheckbox = new CheckBox("storeWindowPosition" +
-				storeWindowPos.booleanValue());
+				false);
 //        c.gridx = 0;
 //        c.gridy = 8;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -294,10 +293,10 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.add(storeWindowPosCheckbox, 8, 0);
 
 		// The "Application always on top" row
-		Boolean appAlwaysonTop = new Boolean(
-				Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
+//		Boolean appAlwaysonTop = new Boolean(
+//				Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
 		appAlwaysonTopCheckbox = new CheckBox("applicationAlwaysonTop" +
-				appAlwaysonTop.booleanValue());
+				false);
 //        c.gridx = 0;
 //        c.gridy = 9;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -322,10 +321,10 @@ public class OptionsDialog extends EscapeDialog {
 		emptyBorderPanel.getChildren().add(httpsPanel);
 
 		// The "Accept Self Sigend Certificates" checkbox row
-		Boolean acceptSelfSignedCerts = new Boolean(
-				Preferences.get(Preferences.ApplicationOptions.HTTPS_ACCEPT_SELFSIGNED_CERTS, "false"));
+//		Boolean acceptSelfSignedCerts = new Boolean(
+//				Preferences.get(Preferences.ApplicationOptions.HTTPS_ACCEPT_SELFSIGNED_CERTS, "false"));
 		acceptSelfSignedCertsCheckbox = new CheckBox("acceptSelfSignedCerts" +
-				acceptSelfSignedCerts.booleanValue());
+				false);
 //        c.gridx = 0;
 //        c.gridy = 0;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -348,8 +347,8 @@ public class OptionsDialog extends EscapeDialog {
 		emptyBorderPanel.getChildren().add(proxyPanel);
 
 		// The "Enable Proxy" row
-		Boolean proxyEnabled = new Boolean(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_ENABLED));
-		enableProxyCheckbox = new CheckBox("enableProxy" + proxyEnabled.booleanValue());
+		//Boolean proxyEnabled = new Boolean(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_ENABLED));
+		enableProxyCheckbox = new CheckBox("enableProxy" + false);
 		enableProxyCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -396,7 +395,7 @@ public class OptionsDialog extends EscapeDialog {
 		proxyPanel.add(proxyPortLabel, 1, 1);
 
 		// The "HTTP Proxy" field row
-		httpProxyHost = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_HOST));
+		httpProxyHost = new TextField(/*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_HOST)*/);
 //		c.gridx = 0;
 //		c.gridy = 2;
 //		c.anchor = GridBagConstraints.LINE_START;
@@ -407,7 +406,7 @@ public class OptionsDialog extends EscapeDialog {
 //		c.fill = GridBagConstraints.HORIZONTAL;
 		proxyPanel.add(httpProxyHost, 2, 0);
 
-		httpProxyPort = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PORT));
+		httpProxyPort = new TextField(/*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PORT)*/);
 //        c.gridx = 1;
 //        c.gridy = 2;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -431,7 +430,7 @@ public class OptionsDialog extends EscapeDialog {
 		proxyPanel.add(proxyUsernameLabel, 3, 0);
 
 		// The "HTTP Proxy Username" field row
-		httpProxyUsername = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_USERNAME));
+		httpProxyUsername = new TextField(/*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_USERNAME)*/);
 //        c.gridx = 0;
 //        c.gridy = 4;
 //        c.anchor = GridBagConstraints.LINE_START;
@@ -455,7 +454,7 @@ public class OptionsDialog extends EscapeDialog {
 		proxyPanel.add(proxyPasswordLabel, 5, 0);
 
 		// The "HTTP Proxy Password" field row
-		String encodedPassword = Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PASSWORD);
+		String encodedPassword = /*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PASSWORD)*/ null;
 		String decodedPassword = null;
 		if (encodedPassword != null) {
 			decodedPassword = new String(Base64.decodeBase64(encodedPassword.getBytes()));
@@ -522,8 +521,10 @@ public class OptionsDialog extends EscapeDialog {
 		});
 		buttonPanel.getChildren().add(cancelButton);
 
-		enableProxyComponents(proxyEnabled.booleanValue());
+		enableProxyComponents(/*proxyEnabled.booleanValue()*/false);
 		this.primaryStage = primaryStage;
+		Scene scene = new Scene(container);
+		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 

@@ -677,7 +677,7 @@ public class DatabaseActions extends Stage {
         Stage opp = new Stage();
         oppDialog.start(opp);
 
-        configureAutoLock();
+//        configureAutoLock();
 
         if (oppDialog.hasLanguageChanged()) {
             mainWindow.initialiseControlsWithDefaultLanguage();

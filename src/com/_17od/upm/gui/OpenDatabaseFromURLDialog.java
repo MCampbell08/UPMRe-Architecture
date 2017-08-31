@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 import java.awt.*;
 
 
-public class OpenDatabaseFromURLDialog extends Application {
+public class OpenDatabaseFromURLDialog extends EscapeDialog {
 
     private static final long serialVersionUID = 1L;
 

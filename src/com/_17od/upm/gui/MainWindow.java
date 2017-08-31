@@ -652,12 +652,6 @@ public class MainWindow extends Application implements EventHandler {
         //syncDatabaseButton.setDisabledIcon(Util.loadImage("sync_d.png"));
         syncDatabaseButton.setOnAction(this);
         syncDatabaseButton.setDisable(true);
-        syncDatabaseButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-            @Override
-            public void handle(javafx.event.ActionEvent event) {
-                syncWithRemoteDatabaseMenuItem.setText(SYNC_DATABASE_TXT);
-            }
-        });
         toolbar.getItems().add(syncDatabaseButton);
 
         return toolbar;
@@ -1100,23 +1094,23 @@ public class MainWindow extends Application implements EventHandler {
             }
             else if(event.getSource().getClass() == Button.class) {
                 Button item = (Button) event.getSource();
-                if (item.getText() == MainWindow.ADD_ACCOUNT_TXT) {
+                if (item.getTooltip().getText() == MainWindow.ADD_ACCOUNT_TXT) {
                     syncWithRemoteDatabaseMenuItem.setText(ADD_ACCOUNT_TXT);
                     dbActions.reloadDatabaseBefore(new AddAccountAction());
-                } else if (item.getText() == MainWindow.EDIT_ACCOUNT_TXT) {
+                } else if (item.getTooltip().getText() == MainWindow.EDIT_ACCOUNT_TXT) {
                     syncWithRemoteDatabaseMenuItem.setText(EDIT_ACCOUNT_TXT);
                     String selectedAccName = (String) this.accountsListview.getSelectionModel().getSelectedItem();
                     dbActions.reloadDatabaseBefore(new EditAccountAction(selectedAccName));
-                } else if (item.getText() == MainWindow.DELETE_ACCOUNT_TXT) {
+                } else if (item.getTooltip().getText() == MainWindow.DELETE_ACCOUNT_TXT) {
                     syncWithRemoteDatabaseMenuItem.setText(DELETE_ACCOUNT_TXT);
                     dbActions.reloadDatabaseBefore(new DeleteAccountAction());
-                } else if (item.getText() == MainWindow.VIEW_ACCOUNT_TXT) {
+                } else if (item.getTooltip().getText() == MainWindow.VIEW_ACCOUNT_TXT) {
                     syncWithRemoteDatabaseMenuItem.setText(VIEW_ACCOUNT_TXT);
                     dbActions.viewAccount();
-                } else if (item.getText() == MainWindow.OPTIONS_TXT) {
+                } else if (item.getTooltip().getText() == MainWindow.OPTIONS_TXT) {
                     syncWithRemoteDatabaseMenuItem.setText(OPTIONS_TXT);
                     dbActions.options();
-                } else if (item.getText() == MainWindow.RESET_SEARCH_TXT) {
+                } else if (item.getTooltip().getText() == MainWindow.RESET_SEARCH_TXT) {
                     syncWithRemoteDatabaseMenuItem.setText(RESET_SEARCH_TXT);
                     dbActions.resetSearch();
                 }
