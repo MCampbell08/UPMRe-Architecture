@@ -124,6 +124,7 @@ public class AccountDialog extends Application {
 	private Scene scene;
 	private Pane pane;
 	private GridPane container;
+	private Stage primaryStage;
 	private boolean readOnly = false;
 
 	@Override
@@ -152,6 +153,7 @@ public class AccountDialog extends Application {
 		}
 		primaryStage.setTitle(title);
 		primaryStage.setScene(scene);
+		this.primaryStage = primaryStage;
 		primaryStage.show();
 	}
 
@@ -795,7 +797,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 3;
 		c.fill = GridBagConstraints.NONE;
-		container.getChildren().add(buttonPanel);
+		container.add(buttonPanel, 10, 4);
 	} // End AccountDialog constructor
 
 	public boolean okClicked() {
@@ -847,8 +849,7 @@ public class AccountDialog extends Application {
 			pAccount.setNotes(notes.getText());
 
 			okClicked = true;
-//          setVisible(false);
-//		    dispose();
+			primaryStage.close();
 		}
 	} // End okButtonAction()
 
@@ -858,8 +859,7 @@ public class AccountDialog extends Application {
 
 	private void closeButtonAction() {
 		okClicked = false;
-//		setVisible(false);
-//		dispose();
+		primaryStage.close();
 	} // End closeButtonAction()
 
 	/**
