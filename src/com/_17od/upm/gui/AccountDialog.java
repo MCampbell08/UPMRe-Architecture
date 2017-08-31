@@ -121,6 +121,7 @@ public class AccountDialog extends Application {
 	private char defaultEchoChar;
 	private Scene scene;
 	private Pane pane;
+	private GridPane container;
 	private boolean readOnly = false;
 
 	@Override
@@ -135,6 +136,7 @@ public class AccountDialog extends Application {
 				}
 			}
 		});
+		pane.getChildren().add(container);
 		boolean addingAccount = false;
 
 		String title = null;
@@ -147,6 +149,8 @@ public class AccountDialog extends Application {
 			title = "editAccount";
 		}
 		primaryStage.setTitle(title);
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 	public AccountDialog(AccountInformation account, Stage parentWindow, boolean readOnly,
@@ -167,7 +171,7 @@ public class AccountDialog extends Application {
 		//getContentPane().setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 
-		GridPane container = new GridPane();
+		container = new GridPane();
 
 		// The AccountName Row
 		Label accountLabel = new Label();
@@ -497,9 +501,9 @@ public class AccountDialog extends Application {
 //			}
 //		});
 
-//		Boolean hideAccountPassword = new Boolean(
-//				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_HIDE_PASSWORD, "true"));
-//		hidePasswordCheckbox.setSelected(hideAccountPassword.booleanValue());
+		Boolean hideAccountPassword = new Boolean(
+				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_HIDE_PASSWORD, "true"));
+		hidePasswordCheckbox.setSelected(hideAccountPassword.booleanValue());
 
 		c.gridx = 0;
 		c.gridy = 1;
