@@ -41,6 +41,7 @@ import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.logging.Log;
@@ -383,15 +384,11 @@ public class DatabaseActions extends Stage {
 //        if (pane.getValue() != null && pane.getValue().equals(new Integer(JOptionPane.OK_OPTION))) {
 //            password = masterPassword.getPassword();
 //        }
-        Alert askUser = new Alert(Alert.AlertType.INFORMATION);
-//        askUser.setTitle(Translator.translate("enterMasterPassword"));
-//        askUser.setHeaderText(masterPassword);
+        TextInputDialog askUser = new TextInputDialog();
+        askUser.setTitle(Translator.translate("enterMasterPassword"));
         askUser.setContentText("masterPassword");
-        ButtonType ok = new ButtonType("OK");
-        ButtonType cancel = new ButtonType("Cancel");
-        askUser.getButtonTypes().setAll(ok, cancel);
-        Optional<ButtonType> result = askUser.showAndWait();
-        if (result.get() != null && result.get() == ok) {
+        Optional<String> result = askUser.showAndWait();
+        if (result.isPresent()) {
             password = masterPassword.getText().toCharArray();
         }
 
