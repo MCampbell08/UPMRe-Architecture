@@ -110,15 +110,13 @@ public class DatabaseActions extends Stage {
             PasswordField confirmedMasterPassword = new PasswordField();
             confirmedMasterPassword.setText("");
             //OptionPane pane = new OptionPane(new Object[] {Translator.translate("enterMasterPassword"), masterPassword, Translator.translate("confirmation"), confirmedMasterPassword}, JOptionPane.QUESTION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("enterMasterPassword");
-            alert.setHeaderText("confirmation");
-            alert.setContentText("masterPassword");
-            ButtonType ok = new ButtonType("OK");
-            ButtonType cancel = new ButtonType("Cancel");
-            alert.getButtonTypes().setAll(ok, cancel);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ok) {
+
+            TextInputDialog askUser = new TextInputDialog();
+            askUser.setTitle(Translator.translate("enterMasterPassword"));
+            askUser.setContentText(Translator.translate("masterPassword"));
+            confirmedMasterPassword.setText(masterPassword.getText());
+            Optional<String> result = askUser.showAndWait();
+            if (result.get() != null && result.isPresent()) {
                 if (!Arrays.equals(masterPassword.getText().toCharArray(), confirmedMasterPassword.getText().toCharArray())) {
                     Alert error = new Alert(Alert.AlertType.ERROR);
                     error.setContentText("passwordsDontMatch");
@@ -328,27 +326,27 @@ public class DatabaseActions extends Stage {
         mainWindow.getDatabaseFileChangedPanel().setVisible(false);
     }
 
-//    private void configureAutoLock() {
-//        lockIfInactive = Preferences.get(
-//                Preferences.ApplicationOptions.DATABASE_AUTO_LOCK, "false").
-//                equals("true");
-//        msToWaitBeforeClosingDB = Preferences.getInt(
-//                Preferences.ApplicationOptions.DATABASE_AUTO_LOCK_TIME, 5)
-//                * 60 * 1000;
-//
-//        if (lockIfInactive) {
-//            LOG.debug("Enabling autoclose when focus lost");
-////            if (mainWindow.getWindowFocusListeners().length == 0) {
-////                mainWindow.addWindowFocusListener(new AutoLockDatabaseListener());
-////            }
-//        } else {
-//            LOG.debug("Disabling autoclose when focus lost");
-////            for (int i=0; i<mainWindow.getWindowFocusListeners().length; i++) {
-////                mainWindow.removeWindowFocusListener(
-////                        mainWindow.getWindowFocusListeners()[i]);
-////            }
-//        }
-//    }
+    private void configureAutoLock() {
+        lockIfInactive = Preferences.get(
+                Preferences.ApplicationOptions.DATABASE_AUTO_LOCK, "false").
+                equals("true");
+        msToWaitBeforeClosingDB = Preferences.getInt(
+                Preferences.ApplicationOptions.DATABASE_AUTO_LOCK_TIME, 5)
+                * 60 * 1000;
+
+        if (lockIfInactive) {
+            LOG.debug("Enabling autoclose when focus lost");
+//            if (mainWindow.getWindowFocusListeners().length == 0) {
+//                mainWindow.addWindowFocusListener(new AutoLockDatabaseListener());
+//            }
+        } else {
+            LOG.debug("Disabling autoclose when focus lost");
+//            for (int i=0; i<mainWindow.getWindowFocusListeners().length; i++) {
+//                mainWindow.removeWindowFocusListener(
+//                        mainWindow.getWindowFocusListeners()[i]);
+//            }
+        }
+    }
 
     public ArrayList getAccountNames() {
         ArrayList dbAccounts = database.getAccounts();
@@ -385,8 +383,8 @@ public class DatabaseActions extends Stage {
 //            password = masterPassword.getPassword();
 //        }
         TextInputDialog askUser = new TextInputDialog();
-        askUser.setTitle("enterMasterPassword");
-        askUser.setContentText("masterPassword");
+        askUser.setTitle(Translator.translate("enterMasterPassword"));
+        askUser.setContentText(Translator.translate("masterPassword"));
         Optional<String> result = askUser.showAndWait();
         if (result.get() != null && result.isPresent()) {
             password = masterPassword.getText().toCharArray();

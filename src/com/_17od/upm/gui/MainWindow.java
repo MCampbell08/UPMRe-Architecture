@@ -385,9 +385,9 @@ public class MainWindow extends Application implements EventHandler {
                 dbActions.setButtonState();
             }
 
-//			public void valueChanged(ChangeListener e) {
-//				dbActions.setButtonState();
-//			}
+			public void valueChanged(ChangeListener e) {
+				dbActions.setButtonState();
+			}
         });
         accountsListview.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
