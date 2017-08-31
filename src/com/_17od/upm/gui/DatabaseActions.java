@@ -265,7 +265,7 @@ public class DatabaseActions extends Stage {
         databaseNeedsReload = false;
 
         SortedListModel listModel = new SortedListModel();
-        for (Object object : mainWindow.getAccountsListview().getItems()) {
+        for (Object object : mainWindow.getAccountsListView().getItems()) {
             listModel.addElement(object);
         }
         listModel.clear();
@@ -460,10 +460,10 @@ public class DatabaseActions extends Stage {
 
         if (getLatestVersionOfDatabase()) {
             SortedListModel listModel = new SortedListModel();
-            for (Object object : mainWindow.getAccountsListview().getItems()) {
+            for (Object object : mainWindow.getAccountsListView().getItems()) {
                 listModel.addElement(object);
             }
-            String selectedAccName = (String) mainWindow.getAccountsListview().getSelectionModel().getSelectedItem();
+            String selectedAccName = (String) mainWindow.getAccountsListView().getSelectionModel().getSelectedItem();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("askConfirmDeleteAccount" + selectedAccName);
@@ -515,7 +515,7 @@ public class DatabaseActions extends Stage {
 
 
     public AccountInformation getSelectedAccount() {
-        String selectedAccName = (String) mainWindow.getAccountsListview().getSelectionModel().getSelectedItem();
+        String selectedAccName = (String) mainWindow.getAccountsListView().getSelectionModel().getSelectedItem();
         return database.getAccount(selectedAccName);
     }
 
@@ -617,20 +617,20 @@ public class DatabaseActions extends Stage {
         populateListview(filteredAccountsList);
 
         //If there's only one item in the listview then select it
-        if (mainWindow.getAccountsListview().getItems().size() == 1) {
-            mainWindow.getAccountsListview().scrollTo(0);
+        if (mainWindow.getAccountsListView().getItems().size() == 1) {
+            mainWindow.getAccountsListView().scrollTo(0);
         }
     }
 
 
     public void populateListview(ArrayList accountNames) {
         SortedListModel listModel = new SortedListModel();
-        for (Object object : mainWindow.getAccountsListview().getItems()) {
+        for (Object object : mainWindow.getAccountsListView().getItems()) {
             listModel.addElement(object);
         }
 
         listModel.clear();
-        mainWindow.getAccountsListview().getItems().clear();
+        mainWindow.getAccountsListView().getItems().clear();
 
         for (int i=0; i<accountNames.size(); i++) {
             listModel.addElement(accountNames.get(i));
@@ -641,7 +641,7 @@ public class DatabaseActions extends Stage {
 
 
     public void setButtonState() {
-        if (mainWindow.getAccountsListview().getSelectionModel().getSelectedItem() == null) {
+        if (mainWindow.getAccountsListView().getSelectionModel().getSelectedItem() == null) {
             mainWindow.getEditAccountButton().setDisable(true);
             mainWindow.getCopyUsernameButton().setDisable(true);
             mainWindow.getCopyPasswordButton().setDisable(true);
@@ -670,11 +670,11 @@ public class DatabaseActions extends Stage {
 
 
     public void options() throws Exception {
-        OptionsDialog oppDialog = new OptionsDialog(mainWindow, "Options Dialog", true);
+        OptionsDialog oppDialog = new OptionsDialog();
         Stage opp = new Stage();
         oppDialog.start(opp);
 
-        configureAutoLock();
+//        configureAutoLock();
 
         if (oppDialog.hasLanguageChanged()) {
             mainWindow.initialiseControlsWithDefaultLanguage();
