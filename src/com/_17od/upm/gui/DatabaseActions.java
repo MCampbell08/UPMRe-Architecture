@@ -385,10 +385,10 @@ public class DatabaseActions extends Stage {
 //            password = masterPassword.getPassword();
 //        }
         TextInputDialog askUser = new TextInputDialog();
-        askUser.setTitle(Translator.translate("enterMasterPassword"));
+        askUser.setTitle("enterMasterPassword");
         askUser.setContentText("masterPassword");
         Optional<String> result = askUser.showAndWait();
-        if (result.isPresent()) {
+        if (result.get() != null && result.isPresent()) {
             password = masterPassword.getText().toCharArray();
         }
 
