@@ -28,6 +28,7 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -82,10 +83,12 @@ public class OptionsDialog extends EscapeDialog {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("options");
 		BorderPane container = new BorderPane();
+		container.setPadding(new Insets(10,10,10,10));
 
 		// Create a pane with an empty border for spacing
 		Border emptyBorder = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
 		GridPane emptyBorderPanel = new GridPane();
+		emptyBorderPanel.setPadding(new Insets(10,10,10,10));
 		emptyBorderPanel.setBorder(emptyBorder);
 		container.getChildren().add(emptyBorderPanel);
 
@@ -99,6 +102,7 @@ public class OptionsDialog extends EscapeDialog {
 
 		GridPane mainPanel = new GridPane();
 		mainPanel.setBorder(etchedTitleBorder);
+		mainPanel.setPadding(new Insets(10,10,10,10));
 		emptyBorderPanel.add(mainPanel,0,0);
 
 		//GridBagConstraints c = new GridBagConstraints();
@@ -309,17 +313,18 @@ public class OptionsDialog extends EscapeDialog {
 		mainPanel.add(appAlwaysonTopCheckbox, 0, 9);
 
 		// Some spacing
-		//emptyBorderPanel.add(new Separator(), 10, 0);
+		mainPanel.add(new Separator(), 0, 10, 2, 1);
 
 		// ******************
 		// *** The HTTPS Section
 		// ******************
 		// Create a pane with an title etched border
 		//Border httpsEtchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder, " HTTPS ");
-		Border httpsEtchedTitleBorder = Border.EMPTY;
+		Border httpsEtchedTitleBorder = new Border(etchedBorder);
 		final GridPane httpsPanel = new GridPane();
 		httpsPanel.setBorder(httpsEtchedTitleBorder);
-		emptyBorderPanel.add(httpsPanel, 0, 1);
+		httpsPanel.setPadding(new Insets(10,10,10,10));
+		//emptyBorderPanel.add(httpsPanel, 0, 1);
 
 		// The "Accept Self Sigend Certificates" checkbox row
 		Boolean acceptSelfSignedCerts = new Boolean(
@@ -334,33 +339,35 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.HORIZONTAL;
-		httpsPanel.add(acceptSelfSignedCertsCheckbox, 0, 0);
+		mainPanel.add(acceptSelfSignedCertsCheckbox, 0, 11);
+
+		mainPanel.add(new Separator(), 0, 12, 2, 1);
 
 //		// ******************
 //		// *** The Proxy Section
 //		// ******************
 //		// Create a pane with an title etched border
-////		Border proxyEtchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder,
-////				' ' + Translator.translate("httpProxy") + ' ');
-//		Border proxyEtchedTitleBorder = Border.EMPTY;
-//		final GridPane proxyPanel = new GridPane();
-//		proxyPanel.setBorder(proxyEtchedTitleBorder);
-//		emptyBorderPanel.getChildren().add(proxyPanel);
-//
-//		// The "Enable Proxy" row
-//		//Boolean proxyEnabled = new Boolean(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_ENABLED));
-//		enableProxyCheckbox = new CheckBox("enableProxy" + false);
-//		enableProxyCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
-//			@Override
-//			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-//				if (enableProxyCheckbox.isSelected()) {
-//					enableProxyComponents(true);
-//				} else {
-//					enableProxyComponents(false);
-//				}
-//			}
-//		});
-//
+//		Border proxyEtchedTitleBorder = BorderFactory.createTitledBorder(etchedBorder,
+//				' ' + Translator.translate("httpProxy") + ' ');
+		Border proxyEtchedTitleBorder = Border.EMPTY;
+		final GridPane proxyPanel = new GridPane();
+		proxyPanel.setBorder(proxyEtchedTitleBorder);
+		//emptyBorderPanel.getChildren().add(proxyPanel);
+
+		// The "Enable Proxy" row
+		Boolean proxyEnabled = new Boolean(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_ENABLED));
+		enableProxyCheckbox = new CheckBox("enableProxy" + false);
+		enableProxyCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if (enableProxyCheckbox.isSelected()) {
+					enableProxyComponents(true);
+				} else {
+					enableProxyComponents(false);
+				}
+			}
+		});
+
 ////        c.gridx = 0;
 ////        c.gridy = 0;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -369,10 +376,10 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 1;
 ////        c.fill = GridBagConstraints.NONE;
-//		proxyPanel.add(enableProxyCheckbox, 0, 0);
-//
-//		// The "HTTP Proxy" label row
-//		proxyLabel = new Label("httpProxy");
+		mainPanel.add(enableProxyCheckbox, 0, 14);
+
+		// The "HTTP Proxy" label row
+		proxyLabel = new Label("httpProxy");
 ////        c.gridx = 0;
 ////        c.gridy = 1;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -381,10 +388,10 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 2;
 ////        c.fill = GridBagConstraints.NONE;
-//		proxyPanel.add(proxyLabel, 1, 0);
-//
-//		// The "HTTP Proxy Port" label
-//		proxyPortLabel = new Label("port");
+		mainPanel.add(proxyLabel, 0, 16);
+
+		// The "HTTP Proxy Port" label
+		proxyPortLabel = new Label("port");
 ////        c.gridx = 1;
 ////        c.gridy = 1;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -393,10 +400,10 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 1;
 ////        c.fill = GridBagConstraints.NONE;
-//		proxyPanel.add(proxyPortLabel, 1, 1);
-//
-//		// The "HTTP Proxy" field row
-//		httpProxyHost = new TextField(/*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_HOST)*/);
+		mainPanel.add(proxyPortLabel, 1, 16);
+
+		// The "HTTP Proxy" field row
+		httpProxyHost = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_HOST));
 ////		c.gridx = 0;
 ////		c.gridy = 2;
 ////		c.anchor = GridBagConstraints.LINE_START;
@@ -405,9 +412,9 @@ public class OptionsDialog extends EscapeDialog {
 ////		c.weighty = 0;
 ////		c.gridwidth = 1;
 ////		c.fill = GridBagConstraints.HORIZONTAL;
-//		proxyPanel.add(httpProxyHost, 0, 2);
-//
-//		httpProxyPort = new TextField(/*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PORT)*/);
+		mainPanel.add(httpProxyHost, 0, 17);
+
+		httpProxyPort = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PORT));
 ////        c.gridx = 1;
 ////        c.gridy = 2;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -416,10 +423,10 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 1;
 ////        c.fill = GridBagConstraints.HORIZONTAL;
-//		proxyPanel.add(httpProxyPort, 1, 2);
-//
-//		// The "HTTP Proxy Username" label row
-//		proxyUsernameLabel = new Label("httpProxyUsername");
+		mainPanel.add(httpProxyPort, 1, 17);
+
+		// The "HTTP Proxy Username" label row
+		proxyUsernameLabel = new Label("httpProxyUsername");
 ////        c.gridx = 0;
 ////        c.gridy = 3;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -428,10 +435,10 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 2;
 ////        c.fill = GridBagConstraints.NONE;
-//		proxyPanel.add(proxyUsernameLabel, 0, 3);
-//
-//		// The "HTTP Proxy Username" field row
-//		httpProxyUsername = new TextField(/*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_USERNAME)*/);
+		mainPanel.add(proxyUsernameLabel, 0, 18);
+
+		// The "HTTP Proxy Username" field row
+		httpProxyUsername = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_USERNAME));
 ////        c.gridx = 0;
 ////        c.gridy = 4;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -440,10 +447,10 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 2;
 ////        c.fill = GridBagConstraints.HORIZONTAL;
-//		proxyPanel.add(httpProxyUsername, 0, 4);
-//
-//		// The "HTTP Proxy Password" label row
-//		proxyPasswordLabel = new Label("httpProxyPassword");
+		mainPanel.add(httpProxyUsername, 0, 19, 2, 1);
+
+		// The "HTTP Proxy Password" label row
+		proxyPasswordLabel = new Label("httpProxyPassword");
 ////        c.gridx = 0;
 ////        c.gridy = 5;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -452,16 +459,16 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 2;
 ////        c.fill = GridBagConstraints.NONE;
-//		proxyPanel.add(proxyPasswordLabel, 0, 5);
-//
-//		// The "HTTP Proxy Password" field row
-//		String encodedPassword = /*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PASSWORD)*/ null;
-//		String decodedPassword = null;
-//		if (encodedPassword != null) {
-//			decodedPassword = new String(Base64.decodeBase64(encodedPassword.getBytes()));
-//		}
-//		httpProxyPassword = new PasswordField();
-//		httpProxyPassword.setText(decodedPassword);
+		mainPanel.add(proxyPasswordLabel, 0, 20);
+
+		// The "HTTP Proxy Password" field row
+		String encodedPassword = /*Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PASSWORD)*/ null;
+		String decodedPassword = null;
+		if (encodedPassword != null) {
+			decodedPassword = new String(Base64.decodeBase64(encodedPassword.getBytes()));
+		}
+		httpProxyPassword = new PasswordField();
+		httpProxyPassword.setText(decodedPassword);
 ////        c.gridx = 0;
 ////        c.gridy = 6;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -470,21 +477,21 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 1;
 ////        c.fill = GridBagConstraints.HORIZONTAL;
-//		proxyPanel.add(httpProxyPassword, 0, 6);
-//
-//		hidePasswordCheckbox = new CheckBox("hide");
-//		//defaultEchoChar = httpProxyPassword.getEchoChar();
-////		hidePasswordCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
-////			@Override
-////			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-////				if (hidePasswordCheckbox.isSelected()) {
-////					httpProxyPassword.setEchoChar(defaultEchoChar);
-////				} else {
-////					httpProxyPassword.setEchoChar((char) 0);
-////				}
-////			}
-////		});
-//
+		mainPanel.add(httpProxyPassword, 0, 21);
+
+		hidePasswordCheckbox = new CheckBox(Translator.translate("hide"));
+//		defaultEchoChar = httpProxyPassword.getEchoChar();
+//		hidePasswordCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+//			@Override
+//			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//				if (hidePasswordCheckbox.isSelected()) {
+//					httpProxyPassword.setEchoChar(defaultEchoChar);
+//				} else {
+//					httpProxyPassword.setEchoChar((char) 0);
+//				}
+//			}
+//		});
+
 ////        c.gridx = 1;
 ////        c.gridy = 6;
 ////        c.anchor = GridBagConstraints.LINE_START;
@@ -493,36 +500,37 @@ public class OptionsDialog extends EscapeDialog {
 ////        c.weighty = 0;
 ////        c.gridwidth = 1;
 ////        c.fill = GridBagConstraints.NONE;
-//		proxyPanel.add(hidePasswordCheckbox, 1, 6);
-//
-//		// Some spacing
-//		emptyBorderPanel.add(new Separator(), 1, 0);
-//
-//		// The buttons row
-//		HBox buttonPanel = new HBox();
-//		emptyBorderPanel.add(buttonPanel, 0, 11);
-//		Button okButton = new Button("ok");
-//		// Link Enter key to okButton
-//		//getRootPane().setDefaultButton(okButton);
-//		okButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-//			@Override
-//			public void handle(javafx.event.ActionEvent event) {
-//				okButtonAction();
-//			}
-//		});
-//		buttonPanel.getChildren().add(okButton);
-//
-//		Button cancelButton = new Button("cancel");
-//		cancelButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-//			@Override
-//			public void handle(javafx.event.ActionEvent event) {
-//				primaryStage.close();
-//				event.consume();
-//			}
-//		});
-//		buttonPanel.getChildren().add(cancelButton);
+		mainPanel.add(hidePasswordCheckbox, 1, 21);
 
-//		enableProxyComponents(/*proxyEnabled.booleanValue()*/false);
+		// Some spacing
+		//emptyBorderPanel.add(new Separator(), 1, 0);
+
+		// The buttons row
+		HBox buttonPanel = new HBox();
+		mainPanel.add(buttonPanel, 0, 22, 2, 1);
+		Button okButton = new Button("ok");
+		// Link Enter key to okButton
+		//getRootPane().setDefaultButton(okButton);
+		okButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
+				okButtonAction();
+			}
+		});
+		buttonPanel.getChildren().add(okButton);
+
+		Button cancelButton = new Button("cancel");
+		cancelButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+			@Override
+			public void handle(javafx.event.ActionEvent event) {
+				primaryStage.close();
+				event.consume();
+			}
+		});
+		buttonPanel.getChildren().add(cancelButton);
+
+		Preferences.save();
+		enableProxyComponents(proxyEnabled.booleanValue());
 		this.primaryStage = primaryStage;
 		container.setCenter(mainPanel);
 		Scene scene = new Scene(container);
@@ -552,8 +560,8 @@ public class OptionsDialog extends EscapeDialog {
 				if (databaseAutoLockTime.getText() == null || databaseAutoLockTime.getText().trim().equals("")
 						|| !Util.isNumeric(databaseAutoLockTime.getText())) {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setTitle("invalidValueForDatabaseAutoLockTime");
-					alert.setContentText("problem");
+					alert.setTitle(Translator.translate("invalidValueForDatabaseAutoLockTime"));
+					alert.setContentText(Translator.translate("problem"));
 					databaseAutoLockTime.setFocusTraversable(true);
 					return;
 				}
