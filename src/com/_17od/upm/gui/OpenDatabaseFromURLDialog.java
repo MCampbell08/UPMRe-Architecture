@@ -20,19 +20,22 @@
  */
 package com._17od.upm.gui;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-
-import com._17od.upm.util.Translator;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+import java.awt.*;
 
 
-public class OpenDatabaseFromURLDialog extends EscapeDialog {
+public class OpenDatabaseFromURLDialog extends Application {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,10 +44,9 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
     public PasswordField passwordTextField;
     private boolean okClicked = false;
 
-
-    public OpenDatabaseFromURLDialog(final Application frame) {
-
-        Pane container = new Pane();
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        BorderPane container = new BorderPane();
 
         // Create a pane with an empty border for spacing
         Border emptyBorder = Border.EMPTY;
@@ -52,7 +54,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         emptyBorderPanel.setLayoutX(5);
         emptyBorderPanel.setLayoutY(5);
         emptyBorderPanel.setBorder(emptyBorder);
-        container.getChildren().add(emptyBorderPanel);
+        //container.getChildren().add(emptyBorderPanel);
 
         // Create a pane with an title etched border
 //        Border etchedBorder = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
@@ -64,7 +66,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         GridBagConstraints c = new GridBagConstraints();
 
         // The URL Label row
-        Label urlLabel = new Label("url");
+        Label urlLabel = new Label("URL");
         c.gridx = 0;
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_START;
@@ -73,7 +75,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        //mainPanel.add(urlLabel, 0, 0);
+        mainPanel.add(urlLabel, 0, 0);
 
         // The Remote URL input field row
         urlTextField = new TextField();
@@ -88,7 +90,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         mainPanel.add(urlTextField, 1,0);
 
         // The username label field
-        Label usernameLabel = new Label("username");
+        Label usernameLabel = new Label("Username");
         c.gridx = 0;
         c.gridy = 2;
         c.anchor = GridBagConstraints.LINE_START;
@@ -97,7 +99,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        //mainPanel.add(usernameLabel, 2, 0);
+        mainPanel.add(usernameLabel, 2, 0);
 
         // The username inpur field
         usernameTextField = new TextField();
@@ -112,7 +114,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         mainPanel.add(usernameTextField, 3, 0);
 
         // The password label field
-        Label passwordLabel = new Label("password");
+        Label passwordLabel = new Label("Password");
         c.gridx = 0;
         c.gridy = 4;
         c.anchor = GridBagConstraints.LINE_START;
@@ -121,7 +123,7 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         c.weighty = 0;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        //mainPanel.add(passwordLabel, 4, 0);
+        mainPanel.add(passwordLabel, 4, 0);
 
         // The username inpur field
         passwordTextField = new PasswordField();
@@ -143,27 +145,34 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
         mainPanel.getChildren().add(verticalSpace);
 
         // The buttons row
-        Panel buttonPanel = new Panel(new FlowLayout());
 
         Button okButton = new Button("ok");
-        okButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        okButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
                 okClicked = true;
             }
         });
-        buttonPanel.add(okButton);
 
         Button cancelButton = new Button("cancel");
-        cancelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
             }
         });
-        buttonPanel.add(cancelButton);
 
-        //emptyBorderPanel.getChildren().add(buttonPanel);
+        HBox button = new HBox(10);
+        button.setAlignment(Pos.BOTTOM_CENTER);
+        button.getChildren().addAll(okButton, cancelButton);
 
+        container.setTop(emptyBorderPanel);
+        container.setBottom(button);
+
+        Scene scene = new Scene(container, 600, 100);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
-
 
     public TextField getPasswordTextField() {
         return passwordTextField;
@@ -183,5 +192,4 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
     public boolean getOkClicked() {
         return okClicked;
     }
-
 }
