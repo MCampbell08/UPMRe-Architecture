@@ -285,16 +285,16 @@ public class DatabaseActions extends Stage {
 
 
     private void doOpenDatabaseActions() {
-        mainWindow.getAddAccountButton().setDisable(true);
-        mainWindow.getAddAccountMenuItem().setDisable(true);
-        mainWindow.getSearchField().setDisable(true);
+        mainWindow.getAddAccountButton().setDisable(false);
+        mainWindow.getAddAccountMenuItem().setDisable(false);
+        mainWindow.getSearchField().setDisable(false);
         mainWindow.getSearchField().setText("");
-        mainWindow.getSearchIcon().setDisable(true);
-        mainWindow.getResetSearchButton().setDisable(true);
-        mainWindow.getChangeMasterPasswordMenuItem().setDisable(true);
-        mainWindow.getDatabasePropertiesMenuItem().setDisable(true);
-        mainWindow.getExportMenuItem().setDisable(true);
-        mainWindow.getImportMenuItem().setDisable(true);
+        mainWindow.getSearchIcon().setDisable(false);
+        mainWindow.getResetSearchButton().setDisable(false);
+        mainWindow.getChangeMasterPasswordMenuItem().setDisable(false);
+        mainWindow.getDatabasePropertiesMenuItem().setDisable(false);
+        mainWindow.getExportMenuItem().setDisable(false);
+        mainWindow.getImportMenuItem().setDisable(false);
 
         //mainWindow.setTitle(database.getDatabaseFile() + " - " + MainWindow.getApplicationName());
 
@@ -318,7 +318,7 @@ public class DatabaseActions extends Stage {
         // If the user asked for the db to close after a period of
         // inactivity then register a listener to capture window focus
         // events.
-        configureAutoLock();
+        //configureAutoLock();
 
         // Give the search field focus.
         // I'm using requestFocusInWindow() rather than
@@ -385,7 +385,8 @@ public class DatabaseActions extends Stage {
 //            password = masterPassword.getPassword();
 //        }
         TextInputDialog askUser = new TextInputDialog();
-        askUser.setTitle(Translator.translate("enterMasterPassword"));
+        //askUser.setTitle(Translator.translate("enterMasterPassword"));
+        askUser.setTitle("Enter Master Password");
         askUser.setContentText("masterPassword");
         Optional<String> result = askUser.showAndWait();
         if (result.isPresent()) {
@@ -1174,8 +1175,8 @@ public class DatabaseActions extends Stage {
             status = "localDatabase";
             color = Color.BLACK;
         }
-        mainWindow.getStatusBar().setText(status);
-        mainWindow.getStatusBar().setTextFill(javafx.scene.paint.Paint.valueOf(color.toString()));
+//        mainWindow.getStatusBar().setText(status);
+//        mainWindow.getStatusBar().setTextFill(javafx.scene.paint.Paint.valueOf(color.toString()));
     }
 
     private class AutoLockDatabaseListener implements WindowFocusListener {

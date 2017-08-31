@@ -23,6 +23,7 @@ public class EscapeDialog extends Application {
             @Override
             public void handle(javafx.scene.input.KeyEvent event) {
                 if(event.getCode() == KeyCode.ESCAPE){
+                    primaryStage.close();
                     event.consume();
                 }
             }

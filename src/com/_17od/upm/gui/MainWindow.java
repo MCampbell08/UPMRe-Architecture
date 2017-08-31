@@ -1090,6 +1090,25 @@ public class MainWindow extends Application implements EventHandler {
                 } else if (item.getText() == MainWindow.IMPORT_TXT) {
                     syncWithRemoteDatabaseMenuItem.setText(IMPORT_TXT);
                     dbActions.reloadDatabaseBefore(new ImportAccountsAction());
+                }else if (item.getText() == MainWindow.ADD_ACCOUNT_TXT) {
+                    syncWithRemoteDatabaseMenuItem.setText(ADD_ACCOUNT_TXT);
+                    dbActions.reloadDatabaseBefore(new AddAccountAction());
+                } else if (item.getText() == MainWindow.EDIT_ACCOUNT_TXT) {
+                    syncWithRemoteDatabaseMenuItem.setText(EDIT_ACCOUNT_TXT);
+                    String selectedAccName = (String) this.accountsListview.getSelectionModel().getSelectedItem();
+                    dbActions.reloadDatabaseBefore(new EditAccountAction(selectedAccName));
+                } else if (item.getText() == MainWindow.DELETE_ACCOUNT_TXT) {
+                    syncWithRemoteDatabaseMenuItem.setText(DELETE_ACCOUNT_TXT);
+                    dbActions.reloadDatabaseBefore(new DeleteAccountAction());
+                } else if (item.getText() == MainWindow.VIEW_ACCOUNT_TXT) {
+                    syncWithRemoteDatabaseMenuItem.setText(VIEW_ACCOUNT_TXT);
+                    dbActions.viewAccount();
+                } else if (item.getText() == MainWindow.OPTIONS_TXT) {
+                    syncWithRemoteDatabaseMenuItem.setText(OPTIONS_TXT);
+                    dbActions.options();
+                } else if (item.getText() == MainWindow.RESET_SEARCH_TXT) {
+                    syncWithRemoteDatabaseMenuItem.setText(RESET_SEARCH_TXT);
+                    dbActions.resetSearch();
                 }
             }
             else if(event.getSource().getClass() == Button.class) {
@@ -1229,7 +1248,7 @@ public class MainWindow extends Application implements EventHandler {
     private class AddAccountAction implements ChangeDatabaseAction {
         public void doAction() {
             try {
-                //dbActions.addAccount();
+                dbActions.addAccount();
             } catch (Exception e) {
                 dbActions.errorHandler(e);
             }
@@ -1239,7 +1258,7 @@ public class MainWindow extends Application implements EventHandler {
     private class ShowDatabasePropertiesAction implements ChangeDatabaseAction {
         public void doAction() {
             try {
-                //dbActions.showDatabaseProperties();
+                dbActions.showDatabaseProperties();
             } catch (Exception e) {
                 dbActions.errorHandler(e);
             }
