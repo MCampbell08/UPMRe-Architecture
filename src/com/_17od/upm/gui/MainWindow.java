@@ -145,29 +145,24 @@ public class MainWindow extends Application implements EventHandler {
     private static int window_Width = 0;
 
     public static void main(String[] args) {
-//		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//
-//				try {
-//					// Use the System look and feel
-//					Preferences.load();
-//					Translator.initialise();
-//					Double jvmVersion = new Double(System.getProperty("java.specification.version"));
-//					if (jvmVersion.doubleValue() < 1.4) {
-//						Alert alert = new Alert(Alert.AlertType.ERROR);
-//						alert.setTitle(Translator.translate("problem"));
-//						alert.setHeaderText(null);
-//						alert.setContentText(Translator.translate("requireJava14"));
-//						alert.showAndWait();
-//					} else {
-//						AppWindow = new MainWindow(applicationName);
-//					}
-//
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
+		try {
+            // Use the System look and feel
+            Preferences.load();
+            Translator.initialise();
+            Double jvmVersion = new Double(System.getProperty("java.specification.version"));
+            if (jvmVersion.doubleValue() < 1.4) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(Translator.translate("problem"));
+                alert.setHeaderText(null);
+                alert.setContentText(Translator.translate("requireJava14"));
+                alert.showAndWait();
+            } else {
+                AppWindow = new MainWindow();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Application.launch(args);
     }
 
