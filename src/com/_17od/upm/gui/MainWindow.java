@@ -232,13 +232,13 @@ public class MainWindow extends Application implements EventHandler {
 		MenuBar menuBar = createMenuBar();
 		GridPane newPane = addComponentsToPane();
 		VBox box = new VBox();
-		box.getChildren().addAll(/*menuBar,*/ newPane);
+		box.getChildren().addAll(menuBar, newPane);
 		Scene scene = new Scene(box);
 
 		//Boolean appAlwaysOnTop = new Boolean(Preferences.get(Preferences.ApplicationOptions.MAINWINDOW_ALWAYS_ON_TOP, "false"));
 		//primaryStage.setAlwaysOnTop(appAlwaysOnTop.booleanValue());
 
-		primaryStage.setAlwaysOnTop(true);
+		primaryStage.setAlwaysOnTop(false);
 		primaryStage.setScene(scene);
 		primary_stage = primaryStage;
 		primaryStage.show();
@@ -307,7 +307,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 3;
 //		c.fill = GridBagConstraints.HORIZONTAL;
-		pane.getChildren().add(new Separator());
+		pane.add(new Separator(), 1,0);
 
 		// The search field row
 		Image backgroundImage10 = new Image(getClass().getResourceAsStream("../util/images/search.gif"));
@@ -323,7 +323,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 1;
 //		c.fill = GridBagConstraints.NONE;
-		pane.add(searchIcon, 2, 1);
+		pane.add(searchIcon, 2, 0);
 
 		searchField = new TextField();
 		searchField.setDisable(true);
@@ -334,9 +334,9 @@ public class MainWindow extends Application implements EventHandler {
 		searchField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
 			@Override
 			public void handle(javafx.scene.input.KeyEvent event) {
-				if (event.getEventType() == javafx.scene.input.KeyEvent.KEY_RELEASED) {
+				if (event.getCode() == KeyCode.ESCAPE) {
 					dbActions.resetSearch();
-				} else if (event.getEventType() == javafx.scene.input.KeyEvent.KEY_PRESSED) {
+				} else if (event.getCode() == KeyCode.ENTER) {
 					// If the user hits the enter key in the search field and
 					// there's only one item
 					// in the listview then open that item (this code assumes
@@ -358,7 +358,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 1;
 //		c.fill = GridBagConstraints.NONE;
-		pane.getChildren().add(searchField);
+		pane.add(searchField, 2, 1);
 
 
 		Image backgroundImage9 = new Image(getClass().getResourceAsStream("../util/images/stop.gif"));
@@ -387,7 +387,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 1;
 //		c.fill = GridBagConstraints.NONE;
-		pane.getChildren().add(resetSearchButton);
+		pane.add(resetSearchButton, 2, 2);
 
 		// The accounts listview row
 		accountsListview = new ListView();
@@ -465,7 +465,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 1;
 //		c.gridwidth = 3;
 //		c.fill = GridBagConstraints.BOTH;
-		pane.getChildren().add(accountsScrollList);
+		pane.add(accountsScrollList, 3, 0);
 
 		// The "File Changed" panel
 //		c.gridx = 0;
@@ -501,7 +501,7 @@ public class MainWindow extends Application implements EventHandler {
 
 		databaseFileChangedPanel.getChildren().add(reloadButton);
 		databaseFileChangedPanel.setVisible(false);
-		pane.getChildren().add(databaseFileChangedPanel);
+		pane.add(databaseFileChangedPanel, 4, 0);
 
 		// Add the statusbar
 //		c.gridx = 0;
@@ -512,7 +512,7 @@ public class MainWindow extends Application implements EventHandler {
 //		c.weighty = 0;
 //		c.gridwidth = 3;
 //		c.fill = GridBagConstraints.HORIZONTAL;
-		pane.getChildren().add(statusBar);
+		pane.add(statusBar, 5, 0);
 		return pane;
 	}
 
