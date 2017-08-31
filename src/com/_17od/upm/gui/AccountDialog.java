@@ -48,6 +48,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -55,6 +56,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.UrlValidator;
@@ -184,7 +186,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		container.getChildren().add(accountLabel);
+		container.add(accountLabel, 0, 0);
 
 		// This panel will hold the Account field and the copy and paste
 		// buttons.
@@ -202,7 +204,7 @@ public class AccountDialog extends Application {
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		accountPanel.getChildren().add(accountName);
+		accountPanel.add(accountName, 0, 0);
 		accountName.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
 			if (newValue) {
 				accountName.selectAll();
@@ -230,7 +232,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		accountPanel.getChildren().add(acctCopyButton);
+		accountPanel.add(acctCopyButton, 3, 0);
 
 		Button acctPasteButton = new Button();
 		Image acctPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
@@ -253,7 +255,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		accountPanel.getChildren().add(acctPasteButton);
+		accountPanel.add(acctPasteButton, 4, 0);
 
 		c.gridx = 1;
 		c.gridy = 0;
@@ -263,7 +265,7 @@ public class AccountDialog extends Application {
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		container.getChildren().add(accountPanel);
+		container.add(accountPanel, 1 , 0);
 
 		// Userid Row
 		Label useridLabel = new Label();
@@ -276,7 +278,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		container.getChildren().add(useridLabel);
+		container.add(useridLabel, 0, 0);
 
 		// This panel will hold the User ID field and the copy and paste
 		// buttons.
@@ -294,7 +296,7 @@ public class AccountDialog extends Application {
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		idPanel.getChildren().add(userId);
+		idPanel.add(userId, 0, 0);
 		userId.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
 			if (newValue) {
 				userId.selectAll();
@@ -322,7 +324,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		idPanel.getChildren().add(idCopyButton);
+		idPanel.add(idCopyButton, 3, 0);
 
 		Button idPasteButton = new Button();
 		Image paste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
@@ -345,7 +347,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		idPanel.getChildren().add(idPasteButton);
+		idPanel.add(idPasteButton, 4, 0);
 
 		c.gridx = 1;
 		c.gridy = 1;
@@ -355,7 +357,7 @@ public class AccountDialog extends Application {
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		container.getChildren().add(idPanel);
+		container.add(idPanel, 2, 2);
 
 		// Password Row
 		Label passwordLabel = new Label();
@@ -368,7 +370,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		container.getChildren().add(passwordLabel);
+		container.add(passwordLabel, 0 ,2);
 
 		// This panel will hold the password, generate password button, copy and
 		// paste buttons, and hide password checkbox
@@ -392,7 +394,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		passwordPanel.getChildren().add(password);
+		passwordPanel.add(password, 0, 0);
 
 		Button generateRandomPasswordButton = new Button("generate");
 		if (readOnly) {
@@ -440,7 +442,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		passwordPanel.getChildren().add(generateRandomPasswordButton);
+		passwordPanel.add(generateRandomPasswordButton, 0, 2);
 
 		Button pwCopyButton = new Button();
 		Image pwCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
@@ -463,7 +465,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		passwordPanel.getChildren().add(pwCopyButton);
+		passwordPanel.add(pwCopyButton, 0, 3);
 
 		Button pwPasteButton = new Button();
 		Image pwPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
@@ -486,7 +488,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		passwordPanel.getChildren().add(pwPasteButton);
+		passwordPanel.add(pwPasteButton, 0, 4);
 
 		CheckBox hidePasswordCheckbox = new CheckBox("hide");
 //		defaultEchoChar = password.getEchoChar();
@@ -513,7 +515,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		passwordPanel.getChildren().add(hidePasswordCheckbox);
+		passwordPanel.add(hidePasswordCheckbox, 1, 0);
 
 		c.gridx = 1;
 		c.gridy = 2;
@@ -523,7 +525,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		container.getChildren().add(passwordPanel);
+		container.add(passwordPanel, 0, 4);
 
 		// URL Row
 		Label urlLabel = new Label();
@@ -536,7 +538,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		container.getChildren().add(urlLabel);
+		container.add(urlLabel, 0, 6);
 
 		// This panel will hold the URL field and the copy and paste buttons.
 		GridPane urlPanel = new GridPane();
@@ -553,7 +555,7 @@ public class AccountDialog extends Application {
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		urlPanel.getChildren().add(url);
+		urlPanel.add(url, 0 ,0);
 		url.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
 			if (newValue) {
 				url.selectAll();
@@ -602,7 +604,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		urlPanel.getChildren().add(urlLaunchButton);
+		urlPanel.add(urlLaunchButton, 0, 2);
 
 		Button urlCopyButton = new Button();
 		Image urlCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
@@ -625,7 +627,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		urlPanel.getChildren().add(urlCopyButton);
+		urlPanel.add(urlCopyButton, 0, 3);
 
 		Button urlPasteButton = new Button();
 		Image urlPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
@@ -648,7 +650,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		urlPanel.getChildren().add(urlPasteButton);
+		urlPanel.add(urlPasteButton, 0 ,4);
 
 		c.gridx = 1;
 		c.gridy = 3;
@@ -658,7 +660,7 @@ public class AccountDialog extends Application {
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		container.getChildren().add(urlPanel);
+		container.add(urlPanel, 0, 6);
 
 		// Notes Row
 		Label notesLabel = new Label();
@@ -671,7 +673,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		container.getChildren().add(notesLabel);
+		container.add(notesLabel, 8, 0);
 
 		// This panel will hold the Notes text area and the copy and paste
 		// buttons.
@@ -692,7 +694,7 @@ public class AccountDialog extends Application {
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.BOTH;
-		notesPanel.getChildren().add(notesScrollPane);
+		notesPanel.add(notesScrollPane, 1, 0);
 
 		Button notesCopyButton = new Button();
 		Image notesCopy = new Image(getClass().getResourceAsStream("../util/images/copy-icon.png"));
@@ -715,7 +717,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		notesPanel.getChildren().add(notesCopyButton);
+		notesPanel.add(notesCopyButton, 3, 0);
 
 		Button notesPasteButton = new Button();
 		Image notesPaste = new Image(getClass().getResourceAsStream("../util/images/paste-icon.png"));
@@ -738,7 +740,7 @@ public class AccountDialog extends Application {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
-		notesPanel.getChildren().add(notesPasteButton);
+		notesPanel.add(notesPasteButton, 4, 0);
 
 		c.gridx = 1;
 		c.gridy = 4;
@@ -748,7 +750,7 @@ public class AccountDialog extends Application {
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		container.getChildren().add(notesPanel);
+		container.add(notesPanel, 8, 1);
 
 		// Seperator Row
 		Separator sep = new Separator();
@@ -763,7 +765,7 @@ public class AccountDialog extends Application {
 		container.getChildren().add(sep);
 
 		// Button Row
-		GridPane buttonPanel = new GridPane();
+		HBox buttonPanel = new HBox(10);
 		Button okButton = new Button("ok");
 		// Link Enter key to okButton
 		//getRootPane().setDefaultButton(okButton);
@@ -773,6 +775,7 @@ public class AccountDialog extends Application {
 				okButtonAction();
 			}
 		});
+		buttonPanel.setAlignment(Pos.BOTTOM_CENTER);
 		buttonPanel.getChildren().add(okButton);
 		if (!readOnly) {
 			Button cancelButton = new Button("cancel");
@@ -1077,7 +1080,7 @@ public class AccountDialog extends Application {
 			}
 		}
 		textArea.setText(text);
-		textArea.getChildrenUnmodifiable().addAll(textArea);
+		//textArea.getChildrenUnmodifiable().addAll(textArea);
 		textArea.requestFocus();
 	}
 
