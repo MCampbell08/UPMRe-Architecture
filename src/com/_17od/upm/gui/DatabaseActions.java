@@ -732,7 +732,7 @@ public class DatabaseActions extends Stage {
     public void openDatabaseFromURL() throws Exception {
 
         // Ask the user for the remote database location
-        OpenDatabaseFromURLDialog openDBDialog = new OpenDatabaseFromURLDialog(mainWindow);
+        OpenDatabaseFromURLDialog openDBDialog = new OpenDatabaseFromURLDialog();
         Stage anotherStage = new Stage();
         openDBDialog.start(anotherStage);
 
