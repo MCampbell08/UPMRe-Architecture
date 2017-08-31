@@ -76,10 +76,6 @@ public class OptionsDialog extends EscapeDialog {
 	private boolean languageChanged;
 	private char defaultEchoChar;
 
-	public OptionsDialog(Application frame, String title, boolean modal) {
-		super(frame, title, modal);
-	}
-
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("options");
@@ -117,7 +113,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 2;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(urlLabel);
+		mainPanel.add(urlLabel, 0, 0, 2, 1);
 
 		// The "Database to Load on Startup" input field row
 		dbToLoadOnStartup = new TextField(Preferences.get(Preferences.ApplicationOptions.DB_TO_LOAD_ON_STARTUP));
@@ -131,7 +127,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.HORIZONTAL;
-		mainPanel.getChildren().add(dbToLoadOnStartup);
+		mainPanel.add(dbToLoadOnStartup,1, 0);
 
 		Button dbToLoadOnStartupButton = new Button("...");
 		dbToLoadOnStartupButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
@@ -148,7 +144,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(dbToLoadOnStartupButton);
+		mainPanel.add(dbToLoadOnStartupButton, 1, 1);
 
 		// The "Language" label row
 		Label localeLabel = new Label("language");
@@ -161,7 +157,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 2;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(localeLabel);
+		mainPanel.add(localeLabel, 2 , 0, 2, 1);
 
 		// The "Locale" field row
 		localeComboBox = new ComboBox();
@@ -190,7 +186,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 2;
 //        c.fill = GridBagConstraints.HORIZONTAL;
-		mainPanel.getChildren().add(localeComboBox);
+		mainPanel.add(localeComboBox, 3, 0, 2, 1);
 
 		// The "Hide account password" row
 		Boolean hideAccountPassword = new Boolean(
@@ -205,7 +201,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(hideAccountPasswordCheckbox);
+		mainPanel.add(hideAccountPasswordCheckbox, 4, 0);
 
 		// The "Database auto lock" row
 		Boolean databaseAutoLock = new Boolean(
@@ -220,7 +216,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(databaseAutoLockCheckbox);
+		mainPanel.add(databaseAutoLockCheckbox, 5, 0);
 		databaseAutoLockCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -253,7 +249,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(accountPasswordLengthLabel);
+		mainPanel.add(accountPasswordLengthLabel, 6, 0);
 
 		accountPasswordLength = new TextField(
 				Preferences.get(Preferences.ApplicationOptions.ACCOUNT_PASSWORD_LENGTH));
@@ -265,7 +261,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.HORIZONTAL;
-		mainPanel.getChildren().add(accountPasswordLength);
+		mainPanel.add(accountPasswordLength, 6, 1);
 
 		// The "Include Escape Characters to Generated Passwords" row
 		Boolean inclEscCharstoPass = new Boolean(
@@ -280,7 +276,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(inclEscCharstoPassCheckbox);
+		mainPanel.add(inclEscCharstoPassCheckbox, 7, 0);
 
 		// The "Store Window position" row
 		Boolean storeWindowPos = Boolean
@@ -295,7 +291,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(storeWindowPosCheckbox);
+		mainPanel.add(storeWindowPosCheckbox, 8, 0);
 
 		// The "Application always on top" row
 		Boolean appAlwaysonTop = new Boolean(
@@ -310,10 +306,10 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		mainPanel.getChildren().add(appAlwaysonTopCheckbox);
+		mainPanel.add(appAlwaysonTopCheckbox, 9, 0);
 
 		// Some spacing
-		emptyBorderPanel.getChildren().add(new Separator());
+		emptyBorderPanel.add(new Separator(), 10, 0);
 
 		// ******************
 		// *** The HTTPS Section
@@ -338,7 +334,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.HORIZONTAL;
-		httpsPanel.getChildren().add(acceptSelfSignedCertsCheckbox);
+		httpsPanel.add(acceptSelfSignedCertsCheckbox, 0, 0);
 
 		// ******************
 		// *** The Proxy Section
@@ -373,7 +369,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		proxyPanel.getChildren().add(enableProxyCheckbox);
+		proxyPanel.add(enableProxyCheckbox, 0, 0);
 
 		// The "HTTP Proxy" label row
 		proxyLabel = new Label("httpProxy");
@@ -385,7 +381,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 2;
 //        c.fill = GridBagConstraints.NONE;
-		proxyPanel.getChildren().add(proxyLabel);
+		proxyPanel.add(proxyLabel, 1, 0);
 
 		// The "HTTP Proxy Port" label
 		proxyPortLabel = new Label("port");
@@ -397,19 +393,19 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		proxyPanel.getChildren().add(proxyPortLabel);
+		proxyPanel.add(proxyPortLabel, 1, 1);
 
 		// The "HTTP Proxy" field row
 		httpProxyHost = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_HOST));
-		c.gridx = 0;
-		c.gridy = 2;
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(0, 5, 5, 0);
-		c.weightx = 1;
-		c.weighty = 0;
-		c.gridwidth = 1;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		proxyPanel.getChildren().add(httpProxyHost);
+//		c.gridx = 0;
+//		c.gridy = 2;
+//		c.anchor = GridBagConstraints.LINE_START;
+//		c.insets = new Insets(0, 5, 5, 0);
+//		c.weightx = 1;
+//		c.weighty = 0;
+//		c.gridwidth = 1;
+//		c.fill = GridBagConstraints.HORIZONTAL;
+		proxyPanel.add(httpProxyHost, 2, 0);
 
 		httpProxyPort = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PORT));
 //        c.gridx = 1;
@@ -420,7 +416,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.HORIZONTAL;
-		proxyPanel.getChildren().add(httpProxyPort);
+		proxyPanel.add(httpProxyPort, 2, 1);
 
 		// The "HTTP Proxy Username" label row
 		proxyUsernameLabel = new Label("httpProxyUsername");
@@ -432,7 +428,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 2;
 //        c.fill = GridBagConstraints.NONE;
-		proxyPanel.getChildren().add(proxyUsernameLabel);
+		proxyPanel.add(proxyUsernameLabel, 3, 0);
 
 		// The "HTTP Proxy Username" field row
 		httpProxyUsername = new TextField(Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_USERNAME));
@@ -444,7 +440,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 2;
 //        c.fill = GridBagConstraints.HORIZONTAL;
-		proxyPanel.getChildren().add(httpProxyUsername);
+		proxyPanel.add(httpProxyUsername, 4, 0);
 
 		// The "HTTP Proxy Password" label row
 		proxyPasswordLabel = new Label("httpProxyPassword");
@@ -456,7 +452,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 2;
 //        c.fill = GridBagConstraints.NONE;
-		proxyPanel.getChildren().add(proxyPasswordLabel);
+		proxyPanel.add(proxyPasswordLabel, 5, 0);
 
 		// The "HTTP Proxy Password" field row
 		String encodedPassword = Preferences.get(Preferences.ApplicationOptions.HTTP_PROXY_PASSWORD);
@@ -474,7 +470,7 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.HORIZONTAL;
-		proxyPanel.getChildren().add(httpProxyPassword);
+		proxyPanel.add(httpProxyPassword, 6, 0);
 
 		hidePasswordCheckbox = new CheckBox("hide");
 		//defaultEchoChar = httpProxyPassword.getEchoChar();
@@ -497,10 +493,10 @@ public class OptionsDialog extends EscapeDialog {
 //        c.weighty = 0;
 //        c.gridwidth = 1;
 //        c.fill = GridBagConstraints.NONE;
-		proxyPanel.getChildren().add(hidePasswordCheckbox);
+		proxyPanel.add(hidePasswordCheckbox, 6, 1);
 
 		// Some spacing
-		emptyBorderPanel.getChildren().add(new Separator());
+		emptyBorderPanel.add(new Separator(), 1, 0);
 
 		// The buttons row
 		HBox buttonPanel = new HBox();
@@ -528,6 +524,7 @@ public class OptionsDialog extends EscapeDialog {
 
 		enableProxyComponents(proxyEnabled.booleanValue());
 		this.primaryStage = primaryStage;
+		primaryStage.show();
 	}
 
 	private void enableProxyComponents(boolean enable) {

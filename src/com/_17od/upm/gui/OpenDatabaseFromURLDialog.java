@@ -43,7 +43,6 @@ public class OpenDatabaseFromURLDialog extends EscapeDialog {
 
 
     public OpenDatabaseFromURLDialog(final Application frame) {
-        super(frame, "openDatabaseFromURL", true);
 
         Pane container = new Pane();
 

@@ -16,15 +16,6 @@ public class EscapeDialog extends Application {
 
     private static final long serialVersionUID = 1L;
 
-    public EscapeDialog(Application frame, String title, boolean modal) {
-        super();
-    }
-
-
-    public EscapeDialog(Application frame, boolean modal) {
-        super();
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane rootPane = new Pane();
@@ -32,10 +23,10 @@ public class EscapeDialog extends Application {
             @Override
             public void handle(javafx.scene.input.KeyEvent event) {
                 if(event.getCode() == KeyCode.ESCAPE){
-                    primaryStage.show();
                     event.consume();
                 }
             }
         });
+        primaryStage.show();
     }
 }
